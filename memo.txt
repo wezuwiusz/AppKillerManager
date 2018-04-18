@@ -1,0 +1,93 @@
+
+    Huawei - Only Pre-EMUI 5.0 / Android 7 - Go to Settings > "Protected apps", check your app.
+    Sony - Tap on the battery icon. Go to Power Management > STAMINA mode > Apps active in standby > Add your app.
+    Asus - Check your app in the Auto-start Manager.
+    Xiaomi - Security (App) > Permissions > Autostart - Enable your app
+    *New Xiaomi - Settings > Developer Options. Disable "memory optimization". To enabled Developer Options go to Settings > About. Tap on MIUI 8 times.
+    Oppo - Go to Settings > "Security settings" > "Data saving" and enable your app.
+    Samsung - Disable battery usage optimizations
+
+
+  new Intent().setComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity")),
+        new Intent().setComponent(new ComponentName("com.letv.android.letvsafe", "com.letv.android.letvsafe.AutobootManageActivity")),
+        new Intent().setComponent(new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.optimize.process.ProtectActivity")),
+        new Intent().setComponent(new ComponentName("com.coloros.safecenter", "com.coloros.safecenter.permission.startup.StartupAppListActivity")),
+        new Intent().setComponent(new ComponentName("com.coloros.safecenter", "com.coloros.safecenter.startupapp.StartupAppListActivity")),
+        new Intent().setComponent(new ComponentName("com.oppo.safe", "com.oppo.safe.permission.startup.StartupAppListActivity")),
+        new Intent().setComponent(new ComponentName("com.iqoo.secure", "com.iqoo.secure.ui.phoneoptimize.AddWhiteListActivity")),
+        new Intent().setComponent(new ComponentName("com.iqoo.secure", "com.iqoo.secure.ui.phoneoptimize.BgStartUpManager")),
+        new Intent().setComponent(new ComponentName("com.vivo.permissionmanager", "com.vivo.permissionmanager.activity.BgStartUpManagerActivity")),
+        new Intent().setComponent(new ComponentName("com.asus.mobilemanager", "com.asus.mobilemanager.MainActivity"))
+
+
+more info
+
+https://stackoverflow.com/questions/34149198/how-to-enable-auto-start-for-my-app-in-xiaomi-programmatically
+https://stackoverflow.com/questions/31638986/protected-apps-setting-on-huawei-phones-and-how-to-handle-it
+https://github.com/dirkam/backgroundable-android
+
+secures pref
+
+samsung 
+
+Intent intent = new Intent();
+intent.setComponent(new ComponentName("com.samsung.android.sm", "com.samsung.android.sm.ui.battery.BatteryActivity"));
+try {
+    getActivity().startActivity(intent);
+} catch (ActivityNotFoundException ex) {
+    Toast.makeText(getActivity(), "Smart manager not installed on this device", Toast.LENGTH_LONG)
+            .show();
+}
+
+Go to Smart manager
+click on battery,
+click on Detail,
+turn off App optimisation.
+
+https://stackoverflow.com/questions/37205106/how-do-i-avoid-that-my-app-enters-optimization-on-samsung-devices
+
+ ASUS ?
+
+https://stackoverflow.com/questions/42293365/not-receiving-gcm-notifications-once-app-is-killed-on-xiaomi-and-lenovo-devices
+
+
+com.huawei.android.smartpowerprovider
+https://www.google.fr/search?q=http%3A%2F%2Fcom.huawei.android.smartpowerprovider%2F&ie=utf-8&oe=utf-8&client=firefox-b&gfe_rd=cr&dcr=0&ei=u7vMWqqrMOzS8AeJvqjQCw
+https://code.briarproject.org/akwizgran/power-detective
+https://code.briarproject.org/akwizgran/briar/issues/1088
+
+ requires com.huawei.systemmanager.permission.ACCESS_INTERFACE or com.huawei.systemmanager.permission.ACCESS_INTERFACE
+ <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+Build.BRAND.equalsIgnoreCase("Honor")
+Build.BRAND.equalsIgnoreCase("Letv")
+Build.BRAND.equalsIgnoreCase("xiaomi")
+
+https://github.com/ttdevs/KillMe
+https://github.com/YougaKing/TamingTask
+https://github.com/xingda920813/HelloDaemon/issues/11
+https://github.com/xingda920813/HelloDaemon/blob/master/hellodaemon/src/main/java/com/xdandroid/hellodaemon/IntentWrapper.java
+https://stackoverflow.com/questions/41804070/how-to-protect-background-service-alarms-to-be-kill-in-newly-launched-devices-in/41804270
+----- miui ----
+// permission
+https://stackoverflow.com/questions/33818970/how-to-open-app-permission-settings-in-miui-devices-programmatically
+
+https://gist.github.com/olegcherr/dc79af4a0a82473e560e1b191a2bea02
+
+    private static boolean isIntentAvailable(Intent intent, Context context) {
+        return intent != null && context.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
+}
+
+// permissions 
+https://github.com/jokermonn/permissions4m/blob/master/permissions4m-api/src/main/java/com/joker/api/support/manufacturer/XIAOMI.java
+
+// to check !!
+https://programtalk.com/vs/?source=AndroidPopWinPermission/permssion/src/main/java/io/github/bunnbylue/permssion/EmotionUIHelper.java
+
+https://github.com/czy1121/settingscompat
+
+ouai mais galère
+https://github.com/CankingApp/XiaomiPJ
+
+//permissions
+https://github.com/jokermonn/permissions4m#help

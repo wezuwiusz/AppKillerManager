@@ -1,8 +1,8 @@
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
-version '0.0.1'
-group 'com.thelittlefireman'
+version = '0.0.1'
+group = 'com.thelittlefireman'
 
 publishing {
     publications {

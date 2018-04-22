@@ -1,4 +1,4 @@
-package com.thelittlefireman.appkillermanager.autostart;
+package com.thelittlefireman.appkillermanager.killerManager;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -8,8 +8,8 @@ import android.content.pm.ResolveInfo;
 
 import java.util.List;
 
-public class AutoStart {
-    public static void askSettings(Context context){
+public class AutoStartManager {
+    public static void askSettings(Context context){/*
         try {
             Intent intent = new Intent();
 
@@ -27,6 +27,6 @@ public class AutoStart {
             }
         } catch (Exception e) {
             Crashlytics.logException(e);
-        }
+        }*/
     }
 }

@@ -8,6 +8,7 @@ import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 import java.util.List;
 
 public interface DeviceBase {
+    boolean isThatRom();
     Manufacturer getDeviceManufacturer();
-    List<Intent> getAutoStartSettings(Context context);
+    Intent getAction(Context context);
 }

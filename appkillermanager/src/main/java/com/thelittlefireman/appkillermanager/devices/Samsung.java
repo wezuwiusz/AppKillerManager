@@ -3,20 +3,31 @@ package com.thelittlefireman.appkillermanager.devices;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
-import com.thelittlefireman.appkillermanager.utils.PackageUtils;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 
 public class Samsung implements DeviceBase {
 
+    // ANDROID 7.0
     private static String p1 = "com.samsung.android.lool";
     private static String p1c1 = "com.samsung.android.sm.ui.battery.BatteryActivity";
 
+    // ANDROID 5.0/5.1
     private static String p2 ="com.samsung.android.sm";
     private static String p2c1 ="com.samsung.android.sm.ui.battery.BatteryActivity";
+
+    // ANDROID 6.0
+    private static String p21 ="com.samsung.android.sm_cn";
+    private static String p21c1 ="com.samsung.android.sm.ui.battery.BatteryActivity";
+
+    @Override
+    public boolean isThatRom() {
+        return Build.BRAND.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
+                Build.MANUFACTURER.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
+                Build.FINGERPRINT.toLowerCase().contains(getDeviceManufacturer().toString());
+    }
 
     @Override
     public Manufacturer getDeviceManufacturer() {
@@ -24,26 +35,30 @@ public class Samsung implements DeviceBase {
     }
 
     @Override
-    public List<Intent> getAutoStartSettings(Context context) {
-        List<ComponentName> componentNames = new ArrayList<>();
-        if(PackageUtils.isPackageExisted(context, p1)){
-            componentNames.add(new ComponentName(p1,p1c1));
+    public Intent getAction(Context context) {
+        Intent intent = ActionsUtils.createIntent();
+        intent.setComponent(getComponentName1());
+        if(ActionsUtils.isIntentAvailable(context,intent)){
+            return intent;
         }
-        if(PackageUtils.isPackageExisted(context,p2)){
-            componentNames.add(new ComponentName(p2,p2c1));
+        intent.setComponent(getComponentName2());
+        if (ActionsUtils.isIntentAvailable(context,intent)){
+            return intent;
         }
-        return componentNames;
+        intent.setComponent(getComponentName21());
+        if (ActionsUtils.isIntentAvailable(context,intent)){
+            return intent;
+        }
+        return null;
     }
 
-    private List<ComponentName> getPackages(Context context){
-        List<ComponentName> componentNames = new ArrayList<>();
-        if(PackageUtils.isPackageExisted(context,p1)){
-            componentNames.add(new ComponentName(p1,p1c1));
-        }
-        if(PackageUtils.isPackageExisted(context,p2)){
-            componentNames.add(new ComponentName(p2,p2c1));
-        }
-        return componentNames;
+    private ComponentName getComponentName1(){
+        return new ComponentName(p1,p1c1);
     }
-
+    private ComponentName getComponentName2(){
+        return new ComponentName(p2,p2c1);
+    }
+    private ComponentName getComponentName21(){
+        return new ComponentName(p21,p21c1);
+    }
 }

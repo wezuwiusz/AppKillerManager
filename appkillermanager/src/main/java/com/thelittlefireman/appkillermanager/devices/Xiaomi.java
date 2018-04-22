@@ -14,10 +14,20 @@ public class Xiaomi implements DeviceBase {
     private static final String MIUI_EXTRA = "extra_pkgname";
 
     @Override
+    public boolean isThatRom() {
+        return false;
+    }
+
+    @Override
     public Manufacturer getDeviceManufacturer() {
         return Manufacturer.XIAOMI;
     }
 
+    @Override
+    public Intent getAction(Context context) {
+        return null;
+    }
+/*
     // TODO CHECK IF GETPACKAGENAME IS NAME OF LIB OR APP
     @Override
     public List<Intent> getAutoStartSettings(Context context) {
@@ -28,7 +38,7 @@ public class Xiaomi implements DeviceBase {
         //com.miui.securitycenter/com.miui.permcenter.autostart.AutoStartManagementActivity
         return intents;
     }
-
+*/
     /*
     * new Intent("miui.intent.action.POWER_HIDE_MODE_APP_LIST").addCategory(Intent.CATEGORY_DEFAULT)
 new Intent("miui.intent.action.OP_AUTO_START").addCategory(Intent.CATEGORY_DEFAULT)

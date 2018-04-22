@@ -2,9 +2,10 @@ package com.thelittlefireman.appkillermanager.devices;
 
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
-import com.thelittlefireman.appkillermanager.utils.PackageUtils;
+import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,20 +20,30 @@ public class Vivo implements DeviceBase {
     private final String p2c1 = "com.vivo.permissionmanager.activity.BgStartUpManagerActivity";
 
     @Override
+    public boolean isThatRom() {
+        return false;
+    }
+
+    @Override
     public Manufacturer getDeviceManufacturer() {
         return Manufacturer.VIVO;
     }
 
     @Override
+    public Intent getAction(Context context) {
+        return null;
+    }
+/*
+    @Override
     public List<ComponentName> getAutoStartSettings(Context context) {
         List<ComponentName> componentNames = new ArrayList<>();
-        if(PackageUtils.isPackageExisted(context, p1)){
+        if(ActionsUtils.isPackageExist(context, p1)){
             componentNames.add(new ComponentName(p1,p1c1));
             componentNames.add(new ComponentName(p1,p1c2));
         }
-        if(PackageUtils.isPackageExisted(context,p2)){
+        if(ActionsUtils.isPackageExist(context,p2)){
             componentNames.add(new ComponentName(p2,p2c1));
         }
         return componentNames;
-    }
+    }*/
 }

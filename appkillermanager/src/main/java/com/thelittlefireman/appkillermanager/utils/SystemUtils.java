@@ -7,7 +7,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class SystemUtils {
-    public static String getSystemProperty(String propName) {
+    public static String getRomName() {
+        try {
+            return SystemUtils.getSystemProperty("ro.build.version.emui");
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    private static String getSystemProperty(String propName) {
         String line;
         BufferedReader input = null;
         try {

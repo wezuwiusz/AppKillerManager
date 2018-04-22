@@ -3,20 +3,37 @@ package com.thelittlefireman.appkillermanager.devices;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
-import com.thelittlefireman.appkillermanager.utils.PackageUtils;
+import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Oppo implements DeviceBase {
+    //coloros3.0
     private static final String p1 = "com.coloros.safecenter";
     private static final String p1c1 = "com.coloros.safecenter.permission.startup.StartupAppListActivity";
     private static final String p1c2 = "com.coloros.safecenter.startupapp.StartupAppListActivity";
 
+    private static final String p12 = "com.coloros.oppoguardelf";
+    private static final String p12c1 = "com.coloros.powermanager.fuelgaue.PowerConsumptionActivity";
+
+    //OLD == ColorOS V2.1
+    private static final String p13 = "com.color.oppoguardelf";
+    private static final String p13c1 = "com.color.safecenter.permission.startup.StartupAppListActivity";
+    private static final String p13c2 = "com.color.safecenter.startupapp.StartupAppListActivity";
+
     private static final String p2 = "com.oppo.safe";
     private static final String p2c1 = "com.oppo.safe.permission.startup.StartupAppListActivity";
+
+    @Override
+    public boolean isThatRom() {
+        return Build.BRAND.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
+                Build.MANUFACTURER.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
+                Build.FINGERPRINT.toLowerCase().contains(getDeviceManufacturer().toString());
+    }
 
     @Override
     public Manufacturer getDeviceManufacturer() {
@@ -24,24 +41,23 @@ public class Oppo implements DeviceBase {
     }
 
     @Override
-    public List<Intent> getAutoStartSettings(Context context) {
-        List<Intent> intents = new ArrayList<>();
-        for (ComponentName componentName : getPackages(context)) {
-            Intent intent = new Intent();
-            intent.setComponent(componentName);
-        }
-        return intents;
+    public Intent getAction(Context context) {
+        return null;
     }
+/*
+    private ComponentName getComponentName(Context context){
+        if(ActionsUtils.isPackageExist(context,p1)){
 
-    private List<ComponentName> getPackages(Context context){
-        List<ComponentName> componentNames = new ArrayList<>();
-        if(PackageUtils.isPackageExisted(context,p1)){
-            componentNames.add(new ComponentName(p1,p1c1));
-            componentNames.add(new ComponentName(p1,p1c2));
         }
-        if(PackageUtils.isPackageExisted(context,p2)){
-            componentNames.add(new ComponentName(p2,p2c1));
+        else if(ActionsUtils.isPackageExist(context,p12)){
+
         }
-        return componentNames;
-    }
+        else if(ActionsUtils.isPackageExist(context,p13)){
+
+        }
+        else if(ActionsUtils.isPackageExist(context,p2)){
+
+        }
+        return null;
+    }*/
 }

@@ -65,6 +65,9 @@ Build.BRAND.equalsIgnoreCase("xiaomi")
 
 https://github.com/ttdevs/KillMe
 https://github.com/YougaKing/TamingTask
+https://github.com/WanghongLin/CRomAppWhitelist !!!!!!!!!!
+https://github.com/by123/permission/blob/master/app/src/main/java/android/by/com/permission/constant/GuideConst.java
+
 https://github.com/xingda920813/HelloDaemon/issues/11
 https://github.com/xingda920813/HelloDaemon/blob/master/hellodaemon/src/main/java/com/xdandroid/hellodaemon/IntentWrapper.java
 https://stackoverflow.com/questions/41804070/how-to-protect-background-service-alarms-to-be-kill-in-newly-launched-devices-in/41804270

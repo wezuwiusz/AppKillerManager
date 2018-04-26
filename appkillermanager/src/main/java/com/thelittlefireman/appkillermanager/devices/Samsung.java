@@ -35,7 +35,7 @@ public class Samsung implements DeviceBase {
     }
 
     @Override
-    public Intent getAction(Context context) {
+    public Intent getActionPowerSaving(Context context) {
         Intent intent = ActionsUtils.createIntent();
         intent.setComponent(getComponentName1());
         if(ActionsUtils.isIntentAvailable(context,intent)){
@@ -49,6 +49,11 @@ public class Samsung implements DeviceBase {
         if (ActionsUtils.isIntentAvailable(context,intent)){
             return intent;
         }
+        return null;
+    }
+
+    @Override
+    public Intent getActionAutoStart(Context context) {
         return null;
     }
 

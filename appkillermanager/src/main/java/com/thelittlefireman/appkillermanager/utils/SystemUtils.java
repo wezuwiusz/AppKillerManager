@@ -1,5 +1,8 @@
 package com.thelittlefireman.appkillermanager.utils;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -10,6 +13,23 @@ public class SystemUtils {
     public static String getRomName() {
         try {
             return SystemUtils.getSystemProperty("ro.build.version.emui");
+        } catch (Exception e) {
+            return "";
+        }
+    }
+    public static String getApplicationName(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        ApplicationInfo applicationInfo = null;
+        try {
+            applicationInfo = packageManager.getApplicationInfo(context.getApplicationInfo().packageName, 0);
+        } catch (final PackageManager.NameNotFoundException e) {
+        }
+        return (String) (applicationInfo != null ? packageManager.getApplicationLabel(applicationInfo) : "Unknown");
+    }
+
+    public static String getMiuiRomName() {
+        try {
+            return SystemUtils.getSystemProperty("ro.miui.ui.version.name");
         } catch (Exception e) {
             return "";
         }

@@ -23,3 +23,6 @@ Get the current activity name :
 $> adb shell
 $> dumpsys activity activities | grep mFocusedActivity
 ```
+
+# THANKS TO:
+Sylvain BORELLI

@@ -12,8 +12,8 @@ public class NotificationSettingsManager {
     public static void doAction(Context context){
         DeviceBase device = DevicesManager.getDevice();
         if(device !=null){
-           if(ActionsUtils.isIntentAvailable(context,device.getAction(context))){
-                context.startActivity(device.getAction(context));
+           if(ActionsUtils.isIntentAvailable(context,device.getActionPowerSaving(context))){
+                context.startActivity(device.getActionPowerSaving(context));
             }else {
                Log.i(NotificationSettingsManager.class.getName(),"INTENT NOT FOUND");
            }

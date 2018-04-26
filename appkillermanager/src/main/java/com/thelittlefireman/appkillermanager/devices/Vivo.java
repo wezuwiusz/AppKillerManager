@@ -1,14 +1,9 @@
 package com.thelittlefireman.appkillermanager.devices;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
-import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Vivo implements DeviceBase {
 
@@ -30,7 +25,12 @@ public class Vivo implements DeviceBase {
     }
 
     @Override
-    public Intent getAction(Context context) {
+    public Intent getActionPowerSaving(Context context) {
+        return null;
+    }
+
+    @Override
+    public Intent getActionAutoStart(Context context) {
         return null;
     }
 /*

@@ -5,10 +5,9 @@ import android.content.Intent;
 
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
-import java.util.List;
-
 public interface DeviceBase {
     boolean isThatRom();
     Manufacturer getDeviceManufacturer();
-    Intent getAction(Context context);
+    Intent getActionPowerSaving(Context context);
+    Intent getActionAutoStart(Context context);
 }

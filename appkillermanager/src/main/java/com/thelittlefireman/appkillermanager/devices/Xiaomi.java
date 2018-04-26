@@ -1,21 +1,32 @@
 package com.thelittlefireman.appkillermanager.devices;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
+import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.thelittlefireman.appkillermanager.utils.SystemUtils;
 
 public class Xiaomi implements DeviceBase {
 
-    private static final String MIUI_ACTION = "miui.intent.action.APP_PERM_EDITOR";
-    private static final String MIUI_EXTRA = "extra_pkgname";
+    private static final String MIUI_ACTION_PERMS = "miui.intent.action.APP_PERM_EDITOR";
+    private static final String MIUI_ACTION_PERMS_EXTRA = "extra_pkgname";
+
+    // ONE SPECIFIQUE APP
+    private static final String[] MIUI_ACTION_POWERSAVE = {"com.miui.powerkeeper", "com.miui.powerkeeper.ui.HiddenAppsConfigActivity"};
+    // OPEN DEFAULT LIST BATTERYSAVER
+    private static final String MIUI_ACTION_POWER8SAVE_LIST = "miui.intent.action.POWER_HIDE_MODE_APP_LIST";
+    private static final String MIUI_ACTION_POWER8SAVE_EXTRA_NAME = "package_name";
+    private static final String MIUI_ACTION_POWER8SAVE_EXTRA_LABEL = "package_label";
+    private static final String MIUI_ACTION_AUTOSTART = "miui.intent.action.OP_AUTO_START";
 
     @Override
     public boolean isThatRom() {
-        return false;
+        return Build.BRAND.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
+                Build.MANUFACTURER.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
+                Build.FINGERPRINT.toLowerCase().contains(getDeviceManufacturer().toString());
     }
 
     @Override
@@ -24,8 +35,22 @@ public class Xiaomi implements DeviceBase {
     }
 
     @Override
-    public Intent getAction(Context context) {
-        return null;
+    public Intent getActionPowerSaving(Context context) {
+        Intent intent = ActionsUtils.createIntent();
+        intent.setComponent(new ComponentName(MIUI_ACTION_POWERSAVE[0], MIUI_ACTION_POWERSAVE[1]));
+        intent.putExtra(MIUI_ACTION_POWER8SAVE_EXTRA_NAME, context.getPackageName());
+        intent.putExtra(MIUI_ACTION_POWER8SAVE_EXTRA_LABEL, SystemUtils.getApplicationName(context));
+        return intent;
+    }
+
+    @Override
+    public Intent getActionAutoStart(Context context) {
+        Intent intent = ActionsUtils.createIntent();
+        intent.setAction(MIUI_ACTION_AUTOSTART);
+        intent.putExtra(MIUI_ACTION_POWER8SAVE_EXTRA_NAME, context.getPackageName());
+        intent.putExtra(MIUI_ACTION_POWER8SAVE_EXTRA_LABEL, SystemUtils.getApplicationName(context));
+
+        return intent;
     }
 /*
     // TODO CHECK IF GETPACKAGENAME IS NAME OF LIB OR APP

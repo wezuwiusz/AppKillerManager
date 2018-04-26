@@ -1,15 +1,10 @@
 package com.thelittlefireman.appkillermanager.devices;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
-import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Oppo implements DeviceBase {
     //coloros3.0
@@ -41,7 +36,12 @@ public class Oppo implements DeviceBase {
     }
 
     @Override
-    public Intent getAction(Context context) {
+    public Intent getActionPowerSaving(Context context) {
+        return null;
+    }
+
+    @Override
+    public Intent getActionAutoStart(Context context) {
         return null;
     }
 /*

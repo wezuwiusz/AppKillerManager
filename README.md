@@ -47,3 +47,7 @@ $> dumpsys activity activities | grep mFocusedActivity
 Sylvain BORELLI
 
 ## SOURCES/HELPING TOOLS :
+[backgroundable-android](https://github.com/dirkam/backgroundable-android)
+[TamingTask](https://github.com/YougaKing/TamingTask)
+[CRomAppWhitelist](https://github.com/WanghongLin/CRomAppWhitelist)
+[AndroidPopWinPermission](https://programtalk.com/vs/?source=AndroidPopWinPermission/permssion/src/main/java/io/github/bunnbylue/permssion/)

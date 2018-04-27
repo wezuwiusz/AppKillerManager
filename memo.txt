@@ -86,7 +86,6 @@ https://github.com/jokermonn/permissions4m/blob/master/permissions4m-api/src/mai
 
 // to check !!
 https://programtalk.com/vs/?source=AndroidPopWinPermission/permssion/src/main/java/io/github/bunnbylue/permssion/EmotionUIHelper.java
-https://github.com/YougaKing/TamingTask
 
 https://github.com/czy1121/settingscompat
 

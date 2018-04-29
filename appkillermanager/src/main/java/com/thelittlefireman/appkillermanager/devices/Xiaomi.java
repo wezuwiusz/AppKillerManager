@@ -17,9 +17,9 @@ public class Xiaomi implements DeviceBase {
     // ONE SPECIFIQUE APP
     private static final String[] MIUI_ACTION_POWERSAVE = {"com.miui.powerkeeper", "com.miui.powerkeeper.ui.HiddenAppsConfigActivity"};
     // OPEN DEFAULT LIST BATTERYSAVER
-    private static final String MIUI_ACTION_POWER8SAVE_LIST = "miui.intent.action.POWER_HIDE_MODE_APP_LIST";
-    private static final String MIUI_ACTION_POWER8SAVE_EXTRA_NAME = "package_name";
-    private static final String MIUI_ACTION_POWER8SAVE_EXTRA_LABEL = "package_label";
+    private static final String MIUI_ACTION_POWER_SAVE_LIST = "miui.intent.action.POWER_HIDE_MODE_APP_LIST";
+    private static final String MIUI_ACTION_POWER_SAVE_EXTRA_NAME = "package_name";
+    private static final String MIUI_ACTION_POWER_SAVE_EXTRA_LABEL = "package_label";
     private static final String MIUI_ACTION_AUTOSTART = "miui.intent.action.OP_AUTO_START";
 
     @Override
@@ -38,8 +38,8 @@ public class Xiaomi implements DeviceBase {
     public Intent getActionPowerSaving(Context context) {
         Intent intent = ActionsUtils.createIntent();
         intent.setComponent(new ComponentName(MIUI_ACTION_POWERSAVE[0], MIUI_ACTION_POWERSAVE[1]));
-        intent.putExtra(MIUI_ACTION_POWER8SAVE_EXTRA_NAME, context.getPackageName());
-        intent.putExtra(MIUI_ACTION_POWER8SAVE_EXTRA_LABEL, SystemUtils.getApplicationName(context));
+        intent.putExtra(MIUI_ACTION_POWER_SAVE_EXTRA_NAME, context.getPackageName());
+        intent.putExtra(MIUI_ACTION_POWER_SAVE_EXTRA_LABEL, SystemUtils.getApplicationName(context));
         return intent;
     }
 
@@ -47,10 +47,15 @@ public class Xiaomi implements DeviceBase {
     public Intent getActionAutoStart(Context context) {
         Intent intent = ActionsUtils.createIntent();
         intent.setAction(MIUI_ACTION_AUTOSTART);
-        intent.putExtra(MIUI_ACTION_POWER8SAVE_EXTRA_NAME, context.getPackageName());
-        intent.putExtra(MIUI_ACTION_POWER8SAVE_EXTRA_LABEL, SystemUtils.getApplicationName(context));
+        intent.putExtra(MIUI_ACTION_POWER_SAVE_EXTRA_NAME, context.getPackageName());
+        intent.putExtra(MIUI_ACTION_POWER_SAVE_EXTRA_LABEL, SystemUtils.getApplicationName(context));
 
         return intent;
+    }
+
+    @Override
+    public Intent getActionNotification(Context context) {
+        return null;
     }
 /*
     // TODO CHECK IF GETPACKAGENAME IS NAME OF LIB OR APP

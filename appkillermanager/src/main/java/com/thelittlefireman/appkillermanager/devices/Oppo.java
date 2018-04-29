@@ -44,6 +44,11 @@ public class Oppo implements DeviceBase {
     public Intent getActionAutoStart(Context context) {
         return null;
     }
+
+    @Override
+    public Intent getActionNotification(Context context) {
+        return null;
+    }
 /*
     private ComponentName getComponentName(Context context){
         if(ActionsUtils.isPackageExist(context,p1)){

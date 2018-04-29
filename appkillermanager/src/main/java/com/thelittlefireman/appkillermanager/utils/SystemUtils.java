@@ -3,6 +3,7 @@ package com.thelittlefireman.appkillermanager.utils;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -10,7 +11,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class SystemUtils {
-    public static String getRomName() {
+
+    public static String getDefaultDebugInformation(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Display_id:").append(Build.DISPLAY);
+
+        stringBuilder.append("MODEL:").append(Build.MODEL);
+        stringBuilder.append("MANUFACTURER:").append(Build.MANUFACTURER);
+        stringBuilder.append("PRODUCT:").append(Build.PRODUCT);
+        return stringBuilder.toString();
+    }
+
+    public static String getEmuiRomName() {
         try {
             return SystemUtils.getSystemProperty("ro.build.version.emui");
         } catch (Exception e) {

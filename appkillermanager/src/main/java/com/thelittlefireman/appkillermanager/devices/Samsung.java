@@ -3,24 +3,31 @@ package com.thelittlefireman.appkillermanager.devices;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.os.Build;
 
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 
+import java.util.List;
+
 public class Samsung implements DeviceBase {
-
+    private static final String SAMSUNG_SYSTEMMANAGER_POWERSAVING_ACTION = "com.samsung.android.sm.ACTION_BATTERY";
+    private static final String SAMSUNG_SYSTEMMANAGER_NOTIFICATION_ACTION = "com.samsung.android.sm.ACTION_SM_NOTIFICATION_SETTING";
     // ANDROID 7.0
-    private static String p1 = "com.samsung.android.lool";
-    private static String p1c1 = "com.samsung.android.sm.ui.battery.BatteryActivity";
-
-    // ANDROID 5.0/5.1
-    private static String p2 ="com.samsung.android.sm";
-    private static String p2c1 ="com.samsung.android.sm.ui.battery.BatteryActivity";
+    private static final String SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V3 = "com.samsung.android.lool";
+    private static final String SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V3_ACTIVITY = "com.samsung.android.sm.ui.battery.BatteryActivity";
 
     // ANDROID 6.0
-    private static String p21 ="com.samsung.android.sm_cn";
-    private static String p21c1 ="com.samsung.android.sm.ui.battery.BatteryActivity";
+    private static final String SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V2 = "com.samsung.android.sm_cn";
+    private static final String SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V2_ACTIVITY = "com.samsung.android.sm.ui.battery.BatteryActivity";
+
+    // ANDROID 5.0/5.1
+    private static final String SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V1 = "com.samsung.android.sm";
+    private static final String SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V1_ACTIVITY = "com.samsung.android.sm.ui.battery.BatteryActivity";
+
+    private static final String SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1 = "com.samsung.memorymanager";
+    private static final String SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1_ACTIVITY = "com.samsung.memorymanager.RamActivity";
 
     @Override
     public boolean isThatRom() {
@@ -37,16 +44,23 @@ public class Samsung implements DeviceBase {
     @Override
     public Intent getActionPowerSaving(Context context) {
         Intent intent = ActionsUtils.createIntent();
-        intent.setComponent(getComponentName1());
-        if(ActionsUtils.isIntentAvailable(context,intent)){
+        intent.setAction(SAMSUNG_SYSTEMMANAGER_POWERSAVING_ACTION);
+        if (ActionsUtils.isIntentAvailable(context, intent)) {
             return intent;
         }
-        intent.setComponent(getComponentName2());
-        if (ActionsUtils.isIntentAvailable(context,intent)){
+        // reset
+        intent = ActionsUtils.createIntent();
+        intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V3, SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V3_ACTIVITY));
+        if (ActionsUtils.isIntentAvailable(context, intent)) {
             return intent;
         }
-        intent.setComponent(getComponentName21());
-        if (ActionsUtils.isIntentAvailable(context,intent)){
+
+        intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V2, SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V2_ACTIVITY));
+        if (ActionsUtils.isIntentAvailable(context, intent)) {
+            return intent;
+        }
+        intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V1, SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V1_ACTIVITY));
+        if (ActionsUtils.isIntentAvailable(context, intent)) {
             return intent;
         }
         return null;
@@ -54,16 +68,16 @@ public class Samsung implements DeviceBase {
 
     @Override
     public Intent getActionAutoStart(Context context) {
-        return null;
+        Intent intent = ActionsUtils.createIntent();
+        intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1, SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1_ACTIVITY));
+        return intent;
     }
 
-    private ComponentName getComponentName1(){
-        return new ComponentName(p1,p1c1);
-    }
-    private ComponentName getComponentName2(){
-        return new ComponentName(p2,p2c1);
-    }
-    private ComponentName getComponentName21(){
-        return new ComponentName(p21,p21c1);
+    @Override
+    public Intent getActionNotification(Context context) {
+        // FIXME : NOTWORKOING NEED PERMISSIONS SETTINGS OR SOMETHINGS ELSE
+        /*Intent intent = ActionsUtils.createIntent();
+        intent.setAction(SAMSUNG_SYSTEMMANAGER_NOTIFICATION_ACTION);*/
+        return null;
     }
 }

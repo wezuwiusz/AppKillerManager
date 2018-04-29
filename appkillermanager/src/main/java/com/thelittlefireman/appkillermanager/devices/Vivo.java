@@ -33,6 +33,11 @@ public class Vivo implements DeviceBase {
     public Intent getActionAutoStart(Context context) {
         return null;
     }
+
+    @Override
+    public Intent getActionNotification(Context context) {
+        return null;
+    }
 /*
     @Override
     public List<ComponentName> getAutoStartSettings(Context context) {

@@ -11,6 +11,7 @@ public class DevicesManager {
     private static List<DeviceBase> deviceBaseList = new ArrayList<>(Arrays.asList(
             new Xiaomi(),
             new Huawei(),
+            new Meizu(),
             new Samsung()));
 
     public static DeviceBase getDevice(){

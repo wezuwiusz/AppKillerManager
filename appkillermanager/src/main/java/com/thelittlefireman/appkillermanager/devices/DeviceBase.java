@@ -10,4 +10,6 @@ public interface DeviceBase {
     Manufacturer getDeviceManufacturer();
     Intent getActionPowerSaving(Context context);
     Intent getActionAutoStart(Context context);
+    Intent getActionNotification(Context context);
+    String getExtraDebugInformations(Context context);
 }

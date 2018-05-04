@@ -24,14 +24,9 @@ public enum KillerManager {
         POWERSAVING
     }
 
-    public void init(Context context) {
-        // Set up Crashlytics, disabled for debug builds
-        Crashlytics crashlyticsKit = new Crashlytics.Builder()
-                .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
-                .build();
-
-// Initialize Fabric with the debug-disabled crashlytics.
-        Fabric.with(context, crashlyticsKit);
+    private void init(Context context) {
+        HyperLog.initialize(context);
+        HyperLog.setLogLevel(Log.VERBOSE);
     }
 
 

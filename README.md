@@ -14,7 +14,12 @@ Android Custom Roms made sometimes your apps unfunctional due to :
 * Notification message do not appear
 * Your services is killed by power saving mode
 
-Rom concerned : Samsung, Huawei, Xiaomi, 
+Rom concerned :
+* Samsung
+* Huawei
+* Xiaomi
+* Meizu
+* Oppo
 
 ## Phone tested :
 (EasyMode) = Go directly to pacakge ?

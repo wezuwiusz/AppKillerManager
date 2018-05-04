@@ -6,6 +6,7 @@ public enum Manufacturer {
     OPPO("oppo"),
     HUAWEI("huawei"),
     MEIZU("meizu"),
+    ONEPLUS("oneplus"),
     VIVO("vivo");
 
     private final String name;

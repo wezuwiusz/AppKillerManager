@@ -1,6 +1,7 @@
 package com.thelittlefireman.appkillermanager.devices;
 
-import android.util.Log;
+import com.thelittlefireman.appkillermanager.utils.LogUtils;
+import com.thelittlefireman.appkillermanager.utils.SystemUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +11,7 @@ public class DevicesManager {
 
     private static List<DeviceBase> deviceBaseList = new ArrayList<>(Arrays.asList(
             new Xiaomi(),
+            new OnePlus(),
             new Huawei(),
             new Meizu(),
             new Samsung()));
@@ -22,8 +24,12 @@ public class DevicesManager {
             }
         }
         if(currentDeviceBase.size()>1){
-            // TODO : add more informations to debug : ANDROID VERSION, ROM , etc
-            Log.i(DevicesManager.class.getName(),"MORE THAN ONE CORRESPONDING");
+            String logDevices="";
+            for (DeviceBase deviceBase : currentDeviceBase) {
+                logDevices+=deviceBase.getDeviceManufacturer();
+            }
+            LogUtils.i(DevicesManager.class.getName(),"MORE THAN ONE CORRESPONDING:"+logDevices+"|"+
+                    SystemUtils.getDefaultDebugInformation());
         }
 
         if (currentDeviceBase.size()>0) {

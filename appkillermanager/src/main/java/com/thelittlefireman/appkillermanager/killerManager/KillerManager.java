@@ -4,8 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.core.CrashlyticsCore;
+import com.hypertrack.hyperlog.HyperLog;
 import com.thelittlefireman.appkillermanager.BuildConfig;
 import com.thelittlefireman.appkillermanager.devices.DeviceBase;
 import com.thelittlefireman.appkillermanager.devices.DevicesManager;
@@ -13,10 +12,7 @@ import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.LogUtils;
 import com.thelittlefireman.appkillermanager.utils.SystemUtils;
 
-import io.fabric.sdk.android.Fabric;
-
-public enum KillerManager {
-    INSTANCE;
+public class KillerManager {
 
     private enum ACTIONS {
         AUTOSTART,
@@ -24,13 +20,13 @@ public enum KillerManager {
         POWERSAVING
     }
 
-    private void init(Context context) {
+    private static void init(Context context) {
         HyperLog.initialize(context);
         HyperLog.setLogLevel(Log.VERBOSE);
     }
 
 
-    private void doAction(Context context, ACTIONS actions) {
+    private static void doAction(Context context, ACTIONS actions) {
         init(context);
         DeviceBase device = DevicesManager.getDevice();
         if (device != null) {
@@ -61,15 +57,20 @@ public enum KillerManager {
         }
     }
 
-    public void doActionAutoStart(Context context) {
+    public static void doActionAutoStart(Context context) {
+        try{
+
         doAction(context, ACTIONS.AUTOSTART);
+        }catch (Exception z){
+            z.printStackTrace();
+        }
     }
 
-    public void doActionNotification(Context context) {
+    public static void doActionNotification(Context context) {
         doAction(context, ACTIONS.NOTIFICATIONS);
     }
 
-    public void doActionPowerSaving(Context context) {
+    public static void doActionPowerSaving(Context context) {
         doAction(context, ACTIONS.POWERSAVING);
     }
 }

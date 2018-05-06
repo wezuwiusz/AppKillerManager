@@ -42,6 +42,11 @@ public class DefaultDevice implements DeviceBase {
     public Intent getActionNotification(Context context) {
         return null;
     }
+
+    @Override
+    public String getExtraDebugInformations(Context context) {
+        return null;
+    }
     /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
      PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
      boolean ignoringBatteryOptimizations = pm.isIgnoringBatteryOptimizations(context.getPackageName());

@@ -7,6 +7,9 @@ import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
 public class Vivo implements DeviceBase {
 
+    // Starting: Intent { cmp=com.vivo.permissionmanager/.activity.BgStartUpManagerActivity }
+    //java.lang.SecurityException: Permission Denial: starting Intent { flg=0x10000000 cmp=com.vivo.permissionmanager/.activity.BgStartUpManagerActivity } from null (pid=28141, uid=2000) not exported from uid 1000
+
     private final String p1 = "com.iqoo.secure";
     private final String p1c1 = "com.iqoo.secure.ui.phoneoptimize.AddWhiteListActivity";
     private final String p1c2 = "com.iqoo.secure.ui.phoneoptimize.BgStartUpManager";
@@ -36,6 +39,11 @@ public class Vivo implements DeviceBase {
 
     @Override
     public Intent getActionNotification(Context context) {
+        return null;
+    }
+
+    @Override
+    public String getExtraDebugInformations(Context context) {
         return null;
     }
 /*

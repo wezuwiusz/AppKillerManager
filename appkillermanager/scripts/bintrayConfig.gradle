@@ -8,7 +8,8 @@
    ./gradlew clean build install bintrayUpload -Ppublish=true -PjavadocFlag=true
 
 */
-
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
 // publish property is checked here first
 if (project.hasProperty('publish') && project.getProperty('publish')) {
   // Bintray Params

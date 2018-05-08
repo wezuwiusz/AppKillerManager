@@ -2,24 +2,34 @@
 [ ![Download](https://api.bintray.com/packages/thomas-goureau/maven/AppKillerManager/images/download.svg) ](https://bintray.com/thomas-goureau/maven/AppKillerManager/_latestVersion)
 # AppKillerManager
 
-Android library to handle flaky App killer manager (Xiaomi, Huawei, letv, ...) and prevent from : not showing notification, services not start at boot, etc 
+Android library to handle App killer manager or agressive power saving mode (Xiaomi, Huawei, letv, ...) and prevent from : not showing notification, services not start at boot, etc 
 
-If you want to help me do not hesitate to test on your phone and add issue if somethings not work properly
-
-Will be soon available on Jcenter
+This library will open the right settings of the user phone and prompt him to add your app to whitelist.
 
 Android Custom Roms made sometimes your apps unfunctional due to :
 
 * Your App is killed when it's not in foreground
 * Notification message do not appear
-* Your services is killed by power saving mode
+* Your services is killed by agressive power saving mode
 
-Rom concerned :
-* Samsung
-* Huawei
-* Xiaomi
-* Meizu
+###If you want to help me do not hesitate to test on your phone and add issue if somethings not work properly
+
+## Current Compatibility :
+
+* Samsung (<span style="color:green">TESTED</span>)
+* Huawei (<span style="color:green">TESTED</span>)
+* Xiaomi (<span style="color:green">TESTED</span>)
+* Meizu (<span style="color:red"> NOT TESTED</span>)
+* OnePlus (<span style="color:red">NOT TESTED</span>)
+
+### TODO
+Add :
 * Oppo
+* Letv
+* Vivo
+* Asus
+
+Add hability to customise dialog
 
 ## Phone tested :
 (EasyMode) = Go directly to pacakge ?
@@ -40,12 +50,33 @@ Android 6.0.1 | MIUI 8.0 | | ACTION miui.intent.action.OP_AUTO_START | INTENT "c
 ## Usage
 ### Step 1
 
-##### Gradle
+##### Add it on your Android app
 
 ```groovy
 dependencies {
     implementation 'com.thelittlefireman.appkillermanager:AppKillerManager:0.0.1'
 }
+```
+
+### Step 2
+
+User with a custom dialog:
+```Java
+
+```
+
+Or use it directly :
+```Java
+// Open the corresponding Power Saving Settings
+KillerManager.doActionPowerSaving(MyContext);
+```
+```Java
+// Open the corresponding Auto Start permission Settings
+KillerManager.doActionAutoStart(MyContext);
+```
+```Java
+// Open the corresponding Notification permission Settings
+KillerManager.doActionNotification(MyContext);
 ```
 
 ## Maintainers
@@ -55,11 +86,11 @@ dependencies {
   - Test on all devices
   - Add differents settings for autostartservice/notifications/permissions
   
-## HELPING INFORMATIONS :
+## DEBUG HELPING INFORMATIONS :
 
 Get the current activity name :
 
-```
+```shell
 $> adb shell
 $> dumpsys activity activities | grep mFocusedActivity
 ```

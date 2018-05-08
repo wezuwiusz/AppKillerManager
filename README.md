@@ -29,23 +29,9 @@ Add :
 * Vivo
 * Asus
 
-Add hability to customise dialog
+* Add hability to customise dialog
 
-## Phone tested :
-(EasyMode) = Go directly to pacakge ?
-
-PHONE | ANDROID OS | CUSTOM ROM | AutoStart(EasyMode) | PowerSavingMode(EasyMode) |
---- | --- | --- | --- | ---
-Huawei HONOR 4X | Android 4.4 | EMUI 3.0.1 | | OK (No)
-Huawei P9 LITE | Android 6.0 | EMUI 4.1 | | OK (No)
-Samsung | Android 7.0 | | N/A | OK
-Xiaomi Mi mix | Android 6.0.1 | MIUI 8.0 | OK (No) | OK (Yes)
-
-
-ANDROID OS | CUSTOM ROM | AutoStart EasyMode | AutoStart List | PowerSavingMode EasyMode | PowerSavingMode List
---- | --- | --- | --- | --- | ---
-Android 4.4 | EMUI 3.0.1 | | | ACTION huawei.intent.action.HSM_PROTECTED_APPS |
-Android 6.0.1 | MIUI 8.0 | | ACTION miui.intent.action.OP_AUTO_START | INTENT "com.miui.powerkeeper", "com.miui.powerkeeper.ui.HiddenAppsConfigActivity"  extras : package_name,package_level | ACTION miui.intent.action.POWER_HIDE_MODE_APP_LIST
+* Add screenshot and "settings path" of the intent action for all phones on ReadMe
 
 ## Usage
 ### Step 1
@@ -80,20 +66,37 @@ KillerManager.doActionNotification(MyContext);
 ```
 
 ## Maintainers
-[![thelittlefireman](https://avatars2.githubusercontent.com/u/5165783?s=40&v=4) thelittlefireman](https://github.com/thelittlefireman) 
+[thelittlefireman](https://github.com/thelittlefireman) 
 
 ## TODO : 
   - Test on all devices
   - Add differents settings for autostartservice/notifications/permissions
   
-## DEBUG HELPING INFORMATIONS :
+## DEBUG/HELPING INFORMATIONS :
 
-Get the current activity name :
+###Get the current activity name :
 
 ```shell
 $> adb shell
 $> dumpsys activity activities | grep mFocusedActivity
 ```
+
+### Phone tested :
+(EasyMode) = Go directly to pacakge ?
+
+PHONE | ANDROID OS | CUSTOM ROM | AutoStart(EasyMode) | PowerSavingMode(EasyMode) |
+--- | --- | --- | --- | ---
+Huawei HONOR 4X | Android 4.4 | EMUI 3.0.1 | | OK (No)
+Huawei P9 LITE | Android 6.0 | EMUI 4.1 | | OK (No)
+Samsung | Android 7.0 | | N/A | OK
+Xiaomi Mi mix | Android 6.0.1 | MIUI 8.0 | OK (No) | OK (Yes)
+
+
+ANDROID OS | CUSTOM ROM | AutoStart EasyMode | AutoStart List | PowerSavingMode EasyMode | PowerSavingMode List
+--- | --- | --- | --- | --- | ---
+Android 4.4 | EMUI 3.0.1 | | | ACTION huawei.intent.action.HSM_PROTECTED_APPS |
+Android 6.0.1 | MIUI 8.0 | | ACTION miui.intent.action.OP_AUTO_START | INTENT "com.miui.powerkeeper", "com.miui.powerkeeper.ui.HiddenAppsConfigActivity"  extras : package_name,package_level | ACTION miui.intent.action.POWER_HIDE_MODE_APP_LIST
+
 
 ## THANKS TO:
 Sylvain BORELLI

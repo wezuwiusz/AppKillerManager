@@ -7,7 +7,7 @@ import android.os.Build;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
 public class Oppo implements DeviceBase {
-
+    // TODO multiple intent in a same actions !
     /*
     * java.lang.SecurityException: Permission Denial: starting Intent { cmp=com.coloros.safecenter/.startupapp.StartupAppListActivity } from ProcessRecord{7eba0ba 27527:crb.call.follow.mycrm/u0a229} (pid=27527, uid=10229) requires oppo.permission.OPPO_COMPONENT_SAFE*/
     //coloros3.0

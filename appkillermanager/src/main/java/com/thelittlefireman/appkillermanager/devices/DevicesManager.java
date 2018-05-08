@@ -28,7 +28,7 @@ public class DevicesManager {
             for (DeviceBase deviceBase : currentDeviceBase) {
                 logDevices+=deviceBase.getDeviceManufacturer();
             }
-            LogUtils.i(DevicesManager.class.getName(),"MORE THAN ONE CORRESPONDING:"+logDevices+"|"+
+            LogUtils.e(DevicesManager.class.getName(),"MORE THAN ONE CORRESPONDING:"+logDevices+"|"+
                     SystemUtils.getDefaultDebugInformation());
         }
 

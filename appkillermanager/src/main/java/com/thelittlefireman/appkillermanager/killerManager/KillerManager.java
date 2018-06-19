@@ -13,10 +13,19 @@ import com.thelittlefireman.appkillermanager.utils.SystemUtils;
 
 public class KillerManager {
 
-    private enum ACTIONS {
-        AUTOSTART,
-        NOTIFICATIONS,
-        POWERSAVING
+    public enum Actions {
+        ACTION_AUTOSTART("ACTION_AUTOSTART"),
+        ACTION_NOTIFICATIONS("ACTION_NOTIFICATIONS"),
+        ACTION_POWERSAVING("ACTION_POWERSAVING");
+
+        private String mValue;
+        Actions(String value){
+            this.mValue = value;
+        }
+
+        public String toString(){
+            return this.mValue;
+        }
     }
 
     private static void init(Context context) {
@@ -28,7 +37,7 @@ public class KillerManager {
     }
 
 
-    private static void doAction(Context context, ACTIONS actions) {
+    public static void doAction(Context context, Actions actions) {
         // Avoid main app to crash when intent denied by using try catch
         try {
             init(context);
@@ -36,13 +45,13 @@ public class KillerManager {
             if (device != null) {
                 Intent intent = null;
                 switch (actions) {
-                    case AUTOSTART:
+                    case ACTION_AUTOSTART:
                         intent = device.getActionAutoStart(context);
                         break;
-                    case POWERSAVING:
+                    case ACTION_POWERSAVING:
                         intent = device.getActionPowerSaving(context);
                         break;
-                    case NOTIFICATIONS:
+                    case ACTION_NOTIFICATIONS:
                         intent = device.getActionNotification(context);
                         break;
                 }
@@ -50,7 +59,7 @@ public class KillerManager {
                     context.startActivity(intent);
                 } else {
                     LogUtils.e(KillerManager.class.getName(), "INTENT NOT FOUND :" +
-                            ActionsUtils.getExtrasDebugInformations(intent) + "ACTIONS \n" +
+                            ActionsUtils.getExtrasDebugInformations(intent) + "Actions \n" +
                             actions.name() + "SYSTEM UTILS \n" +
                             SystemUtils.getDefaultDebugInformation() + "DEVICE \n" +
                             device.getExtraDebugInformations(context));
@@ -65,14 +74,14 @@ public class KillerManager {
     }
 
     public static void doActionAutoStart(Context context) {
-        doAction(context, ACTIONS.AUTOSTART);
+        doAction(context, Actions.ACTION_AUTOSTART);
     }
 
     public static void doActionNotification(Context context) {
-        doAction(context, ACTIONS.NOTIFICATIONS);
+        doAction(context, Actions.ACTION_NOTIFICATIONS);
     }
 
     public static void doActionPowerSaving(Context context) {
-        doAction(context, ACTIONS.POWERSAVING);
+        doAction(context, Actions.ACTION_POWERSAVING);
     }
 }

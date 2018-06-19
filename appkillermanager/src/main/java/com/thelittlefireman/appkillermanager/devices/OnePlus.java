@@ -31,7 +31,7 @@ public class OnePlus implements DeviceBase {
         Intent intent = ActionsUtils.createIntent();
         intent.setComponent(new ComponentName("com.oneplus.security", "com.oneplus.security.chainlaunch.view" +
                 ".ChainLaunchAppListActivity"));
-        return null;
+        return intent;
     }
 
     @Override

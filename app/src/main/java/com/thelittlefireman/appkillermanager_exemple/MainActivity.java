@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
         powerSavingManagerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                KillerManager.doActionAutoStart(MainActivity.this);
+                KillerManager.doActionPowerSaving(MainActivity.this);
             }
         });
         autoStartManagerButton.setOnClickListener(new View.OnClickListener() {

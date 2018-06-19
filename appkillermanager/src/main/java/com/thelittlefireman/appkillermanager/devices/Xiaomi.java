@@ -57,6 +57,11 @@ public class Xiaomi implements DeviceBase {
     public Intent getActionNotification(Context context) {
         return null;
     }
+
+    @Override
+    public String getExtraDebugInformations(Context context) {
+        return null;
+    }
 /*
     // TODO CHECK IF GETPACKAGENAME IS NAME OF LIB OR APP
     @Override

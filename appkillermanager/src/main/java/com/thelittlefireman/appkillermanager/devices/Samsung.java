@@ -12,6 +12,7 @@ import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import java.util.List;
 
 public class Samsung implements DeviceBase {
+    // crash "com.samsung.android.lool","com.samsung.android.sm.ui.battery.AppSleepListActivity"
     private static final String SAMSUNG_SYSTEMMANAGER_POWERSAVING_ACTION = "com.samsung.android.sm.ACTION_BATTERY";
     private static final String SAMSUNG_SYSTEMMANAGER_NOTIFICATION_ACTION = "com.samsung.android.sm.ACTION_SM_NOTIFICATION_SETTING";
     // ANDROID 7.0
@@ -76,8 +77,13 @@ public class Samsung implements DeviceBase {
     @Override
     public Intent getActionNotification(Context context) {
         // FIXME : NOTWORKOING NEED PERMISSIONS SETTINGS OR SOMETHINGS ELSE
-        /*Intent intent = ActionsUtils.createIntent();
-        intent.setAction(SAMSUNG_SYSTEMMANAGER_NOTIFICATION_ACTION);*/
+        Intent intent = ActionsUtils.createIntent();
+        intent.setAction(SAMSUNG_SYSTEMMANAGER_NOTIFICATION_ACTION);
+        return null;
+    }
+
+    @Override
+    public String getExtraDebugInformations(Context context) {
         return null;
     }
 }

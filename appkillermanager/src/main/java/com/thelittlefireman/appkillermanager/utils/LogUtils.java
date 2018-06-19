@@ -2,12 +2,16 @@ package com.thelittlefireman.appkillermanager.utils;
 
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
+import com.hypertrack.hyperlog.HyperLog;
 
 public class LogUtils {
 
     public static void i(String tag, String message){
         Log.i(tag,message);
-        Crashlytics.log(message);
+        HyperLog.i(tag,message);
+    }
+    public static void e(String tag, String message){
+        Log.e(tag,message);
+        HyperLog.e(tag,message);
     }
 }

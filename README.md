@@ -48,7 +48,9 @@ dependencies {
 
 User with a custom dialog:
 ```Java
-
+    public void startDialog(KillerManager.Actions actions) {
+        new DialogKillerManagerBuilder().setContext(this).setAction(actions).show();
+    }
 ```
 
 Or use it directly :

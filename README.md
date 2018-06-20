@@ -71,6 +71,7 @@ KillerManager.doActionNotification(MyContext);
 ## TODO : 
   - Test on all devices
   - Add differents settings for autostartservice/notifications/permissions
+  - Add custom messages for more explaination on what user need to do on manufacturer "settings Activity"
   
 ## DEBUG/HELPING INFORMATIONS :
 

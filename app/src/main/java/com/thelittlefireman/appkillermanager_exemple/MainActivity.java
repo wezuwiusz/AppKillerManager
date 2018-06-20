@@ -2,10 +2,12 @@ package com.thelittlefireman.appkillermanager_exemple;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.view.View;
 import android.widget.Button;
 
 import com.thelittlefireman.appkillermanager.killerManager.KillerManager;
+import com.thelittlefireman.appkillermanager.ui.DialogKillerManagerBuilder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,6 +20,9 @@ public class MainActivity extends Activity {
     @BindView(R.id.notificationManagerButton)
     Button notificationManagerButton;
 
+    @BindView(R.id.idByDialog)
+    AppCompatCheckBox mAppCompatCheckBoxByDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,20 +31,38 @@ public class MainActivity extends Activity {
         powerSavingManagerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                KillerManager.doActionPowerSaving(MainActivity.this);
+                if (mAppCompatCheckBoxByDialog.isChecked()) {
+                    startDialog(KillerManager.Actions.ACTION_POWERSAVING);
+                } else {
+                    KillerManager.doActionPowerSaving(MainActivity.this);
+                }
             }
         });
         autoStartManagerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                KillerManager.doActionAutoStart(MainActivity.this);
+                if (mAppCompatCheckBoxByDialog.isChecked()) {
+                    startDialog(KillerManager.Actions.ACTION_AUTOSTART);
+                } else {
+                    KillerManager.doActionAutoStart(MainActivity.this);
+                }
             }
         });
         notificationManagerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                KillerManager.doActionNotification(MainActivity.this);
+                if (mAppCompatCheckBoxByDialog.isChecked()) {
+                    startDialog(KillerManager.Actions.ACTION_NOTIFICATIONS);
+                } else {
+                    KillerManager.doActionNotification(MainActivity.this);
+                }
             }
         });
+    }
+
+    public void startDialog(KillerManager.Actions actions) {
+
+        new DialogKillerManagerBuilder().setContext(this).setAction(actions).show();
+
     }
 }

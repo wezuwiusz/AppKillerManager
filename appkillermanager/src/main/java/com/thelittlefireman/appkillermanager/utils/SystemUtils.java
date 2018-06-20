@@ -1,9 +1,13 @@
 package com.thelittlefireman.appkillermanager.utils;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Process;
+import android.os.UserManager;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -13,13 +17,10 @@ import java.io.InputStreamReader;
 public class SystemUtils {
 
     public static String getDefaultDebugInformation(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Display_id:").append(Build.DISPLAY);
-
-        stringBuilder.append("MODEL:").append(Build.MODEL);
-        stringBuilder.append("MANUFACTURER:").append(Build.MANUFACTURER);
-        stringBuilder.append("PRODUCT:").append(Build.PRODUCT);
-        return stringBuilder.toString();
+        return "Display_id:" + Build.DISPLAY +
+                "MODEL:" + Build.MODEL +
+                "MANUFACTURER:" + Build.MANUFACTURER +
+                "PRODUCT:" + Build.PRODUCT;
     }
 
     public static String getEmuiRomName() {
@@ -51,7 +52,7 @@ public class SystemUtils {
         String line;
         BufferedReader input = null;
         try {
-            Process p = Runtime.getRuntime().exec("getprop " + propName);
+            java.lang.Process p = Runtime.getRuntime().exec("getprop " + propName);
             input = new BufferedReader(new InputStreamReader(p.getInputStream()), 1024);
             line = input.readLine();
             input.close();
@@ -68,5 +69,39 @@ public class SystemUtils {
             }
         }
         return line;
+    }
+
+    // INFO http://imsardine.simplbug.com/note/android/adb/commands/am-start.html
+    /**
+     * Open an Activity by using Application Manager System (prevent from crash permission exception)
+     *
+     * @param context current application Context
+     * @param packageName  pacakge name of the target application (exemple: com.huawei.systemmanager)
+     * @param activityPacakge activity name of the target application (exemple: .optimize.process.ProtectActivity)
+     */
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static void startActivityByAMSystem(Context context, String packageName, String activityPacakge)
+            throws IOException {
+        String cmd = "am start -n "+packageName+"/"+activityPacakge;
+        UserManager um = (UserManager)context.getSystemService(Context.USER_SERVICE);
+        cmd += " --user " +um.getSerialNumberForUser(Process.myUserHandle());
+        Runtime.getRuntime().exec(cmd);
+    }
+    /**
+     * Open an Action by using Application Manager System (prevent from crash permission exception)
+     *
+     * @param context current application Context
+     * @param packageName  pacakge name of the target application (exemple: com.huawei.systemmanager)
+     * @param activityPacakge activity name of the target application (exemple: .optimize.process.ProtectActivity)
+     */
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static void startActionByAMSystem(Context context, String intentAction)
+            throws IOException {
+        String cmd = "am start -a "+intentAction;
+        UserManager um = (UserManager)context.getSystemService(Context.USER_SERVICE);
+        cmd += " --user " +um.getSerialNumberForUser(Process.myUserHandle());
+        Runtime.getRuntime().exec(cmd);
     }
 }

@@ -79,7 +79,6 @@ public class DialogKillerManagerBuilder {
         return this;
     }
 
-
     public void show(){
         if(mContext==null){
             throw new NullPointerException("Context can't be null");
@@ -88,6 +87,7 @@ public class DialogKillerManagerBuilder {
             throw new NullPointerException("Action can't be null");
         }
 
+        // TODO CHANGE TO METERIAL DIALOG => MaterialDialog https://github.com/afollestad/material-dialogs
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setPositiveButton(R.string.dialog_button, new DialogInterface.OnClickListener() {
             @Override

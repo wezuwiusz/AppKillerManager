@@ -16,7 +16,8 @@ public class Vivo implements DeviceBase {
 
     private final String p2 = "com.vivo.permissionmanager";
     private final String p2c1 = "com.vivo.permissionmanager.activity.BgStartUpManagerActivity";
-
+   // "com.vivo.abe", "com.vivo.applicationbehaviorengine.ui.ExcessivePowerManagerActivity"
+    //com.iqoo.secure.MainGuideActivity ??
     @Override
     public boolean isThatRom() {
         return false;

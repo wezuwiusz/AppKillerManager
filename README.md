@@ -79,7 +79,20 @@ KillerManager.doActionNotification(MyContext);
 ```shell
 $> adb shell
 $> dumpsys activity activities | grep mFocusedActivity
+or to get more result
+$> dumpsys activity activities | grep Activity
 ```
+
+###Start an activity :
+
+```shell
+$> adb shell
+$> #by component name
+$> am start -n com.samsung.memorymanager/com.samsung.memorymanager.RamActivity  --user 0
+$> #by action
+$> am start -a com.exemple.Action --user 0
+```
+more information http://imsardine.simplbug.com/note/android/adb/commands/am-start.html
 
 ### Phone tested :
 (EasyMode) = Go directly to package (app) ?

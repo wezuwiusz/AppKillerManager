@@ -3,13 +3,10 @@ package com.thelittlefireman.appkillermanager.devices;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ResolveInfo;
 import android.os.Build;
 
-import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
-
-import java.util.List;
+import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
 public class Samsung implements DeviceBase {
     // crash "com.samsung.android.lool","com.samsung.android.sm.ui.battery.AppSleepListActivity"
@@ -70,6 +67,7 @@ public class Samsung implements DeviceBase {
     @Override
     public Intent getActionAutoStart(Context context) {
         Intent intent = ActionsUtils.createIntent();
+        // FIXME ITS NOT AUTOSTART ITS MEMORY MANAGER
         intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1, SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1_ACTIVITY));
         return intent;
     }

@@ -118,7 +118,7 @@ public class DialogKillerManagerBuilder {
         else if(contentMessage !=null && !contentMessage.isEmpty()){
             builder.setMessage(contentMessage);
         }else {
-            //TODO FAIRE EN FONCTION DU DEVICE MESSAGE CUSTOM
+            //TODO CUSTOM MESSAGE FOR SPECIFITQUE ACTIONS
             builder.setMessage(String.format(mContext.getString(R.string.dialog_huawei_notification),
                                              mContext.getString(
                                                      R.string.app_name)));

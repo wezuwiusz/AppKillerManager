@@ -21,11 +21,11 @@ Android Custom Roms made sometimes your apps unfunctional due to :
 * Xiaomi (<span style="color:green">TESTED</span>)
 * Meizu (<span style="color:red"> NOT TESTED</span>)
 * OnePlus (<span style="color:red">NOT TESTED</span>)
+* Letv (<span style="color:red">NOT TESTED</span>)
 
 ### TODO
 Add :
 * Oppo
-* Letv
 * Vivo
 * Asus
 
@@ -82,7 +82,7 @@ $> dumpsys activity activities | grep mFocusedActivity
 ```
 
 ### Phone tested :
-(EasyMode) = Go directly to pacakge ?
+(EasyMode) = Go directly to package (app) ?
 
 PHONE | ANDROID OS | CUSTOM ROM | AutoStart(EasyMode) | PowerSavingMode(EasyMode) |
 --- | --- | --- | --- | ---
@@ -90,6 +90,8 @@ Huawei HONOR 4X | Android 4.4 | EMUI 3.0.1 | | OK (No)
 Huawei P9 LITE | Android 6.0 | EMUI 4.1 | | OK (No)
 Samsung | Android 7.0 | | N/A | OK
 Xiaomi Mi mix | Android 6.0.1 | MIUI 8.0 | OK (No) | OK (Yes)
+
+//TODO TEST SAMSUNG 8.0.1, ASUS 7.1, Huawei Android 6.0.1
 
 
 ANDROID OS | CUSTOM ROM | AutoStart EasyMode | AutoStart List | PowerSavingMode EasyMode | PowerSavingMode List

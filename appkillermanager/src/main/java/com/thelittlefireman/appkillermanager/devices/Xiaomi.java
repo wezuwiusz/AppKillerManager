@@ -11,6 +11,8 @@ import com.thelittlefireman.appkillermanager.utils.SystemUtils;
 
 public class Xiaomi implements DeviceBase {
 
+
+    // TODO TEST new Intent().setComponent(ComponentName("com.miui.securitycenter", "com.miui.powercenter.PowerSettings"))
     private static final String MIUI_ACTION_PERMS = "miui.intent.action.APP_PERM_EDITOR";
     private static final String MIUI_ACTION_PERMS_EXTRA = "extra_pkgname";
 

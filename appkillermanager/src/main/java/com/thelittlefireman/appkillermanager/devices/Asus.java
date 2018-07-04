@@ -1,33 +1,46 @@
 package com.thelittlefireman.appkillermanager.devices;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 
+import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
 public class Asus implements DeviceBase {
 
-       /* new Intent().setComponent(new ComponentName("com.asus.mobilemanager", "com.asus.mobilemanager.entry" +
-            ".FunctionActivity")).setData(
-            Uri.parse("mobilemanager://function/entry/AutoStart"))*/
+    private static final String ASUS_PACAKGE_MOBILEMANAGER = "com.asus.mobilemanager";
+    private static final String ASUS_ACTIVITY_MOBILEMANAGER_FUNCTION_ACTIVITY = "com.asus.mobilemanager.entry.FunctionActivity";
+
     @Override
     public boolean isThatRom() {
-        return false;
+        return  Build.BRAND.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
+                Build.MANUFACTURER.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
+                Build.FINGERPRINT.toLowerCase().contains(getDeviceManufacturer().toString());
     }
 
     @Override
     public Manufacturer getDeviceManufacturer() {
-        return null;
+        return Manufacturer.ASUS;
     }
 
     @Override
     public Intent getActionPowerSaving(Context context) {
         return null;
+        // TODO tests new ComponentName("com.asus.powersaver", "com.asus.powersaver.PowerSaverSettings")
     }
 
     @Override
     public Intent getActionAutoStart(Context context) {
-        return null;
+        //TODO TEST ENABLE NOTICE "showNotice"
+        //         intent.putExtra("showNotice",true);
+        Intent intent = ActionsUtils.createIntent();
+        intent.setComponent(new ComponentName(ASUS_PACAKGE_MOBILEMANAGER, ASUS_ACTIVITY_MOBILEMANAGER_FUNCTION_ACTIVITY))
+              .setData(Uri.parse("mobilemanager://function/entry/AutoStart"));
+        return intent;
+        // TODO IF NOT WORKING TRY OPEN com.asus.mobilemanager.autostart.AutoStartActivity
     }
 
     @Override

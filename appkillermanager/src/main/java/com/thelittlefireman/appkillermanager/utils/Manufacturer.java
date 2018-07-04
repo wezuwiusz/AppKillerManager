@@ -8,6 +8,7 @@ public enum Manufacturer {
     MEIZU("meizu"),
     ONEPLUS("oneplus"),
     LETV("letv"),
+    ASUS("asus"),
     VIVO("vivo");
 
     private final String name;

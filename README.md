@@ -115,6 +115,16 @@ ANDROID OS | CUSTOM ROM | AutoStart EasyMode | AutoStart List | PowerSavingMode 
 Android 4.4 | EMUI 3.0.1 | | | ACTION huawei.intent.action.HSM_PROTECTED_APPS |
 Android 6.0.1 | MIUI 8.0 | | ACTION miui.intent.action.OP_AUTO_START | INTENT "com.miui.powerkeeper", "com.miui.powerkeeper.ui.HiddenAppsConfigActivity"  extras : package_name,package_level | ACTION miui.intent.action.POWER_HIDE_MODE_APP_LIST
 
+#### Related View :
+
+Tab of which activity is open when you call functions
+
+FUNCTIONS | Huawei | Samsung
+--- | --- |---
+Power Saving Settings | ![Huawei](IMG/huawei.png?raw=true "Huawei") |
+Auto Start permission Settings | |
+Notification permission Settings | |
+
 
 ## THANKS TO:
 Sylvain BORELLI

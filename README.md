@@ -121,7 +121,7 @@ Tab of which activity is open when you call functions
 
 FUNCTIONS | Huawei | Samsung
 --- | --- |---
-Power Saving Settings | ![Huawei](IMG/huawei.png?raw=true "Huawei") |
+Power Saving Settings | ![Huawei](IMG/huawei.png?raw=true "Huawei")<!-- .element height="130px" --> |
 Auto Start permission Settings | |
 Notification permission Settings | |
 

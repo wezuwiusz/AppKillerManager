@@ -29,7 +29,6 @@ public class Huawei implements DeviceBase {
     public boolean isThatRom() {
         return isEmotionUI_23() ||
                 isEmotionUI_3() ||
-                isEmotionUI_3() ||
                 isEmotionUI_301() ||
                 isEmotionUI_31() ||
                 isEmotionUI_41() ||

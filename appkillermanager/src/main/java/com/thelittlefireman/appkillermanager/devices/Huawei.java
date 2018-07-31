@@ -120,7 +120,7 @@ public class Huawei implements DeviceBase {
     }
 
     @Override
-    public int getHelpImage(Context context) {
+    public int getHelpImage() {
         return R.drawable.huawei;
     }
 

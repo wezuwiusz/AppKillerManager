@@ -48,4 +48,9 @@ public class Letv implements DeviceBase {
     public String getExtraDebugInformations(Context context) {
         return null;
     }
+
+    @Override
+    public int getHelpImage() {
+        return 0;
+    }
 }

@@ -47,6 +47,11 @@ public class Vivo implements DeviceBase {
     public String getExtraDebugInformations(Context context) {
         return null;
     }
+
+    @Override
+    public int getHelpImage() {
+        return 0;
+    }
 /*
     @Override
     public List<ComponentName> getAutoStartSettings(Context context) {

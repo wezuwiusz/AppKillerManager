@@ -58,6 +58,11 @@ public class Oppo implements DeviceBase {
     public String getExtraDebugInformations(Context context) {
         return null;
     }
+
+    @Override
+    public int getHelpImage() {
+        return 0;
+    }
 /*
     private ComponentName getComponentName(Context context){
         if(ActionsUtils.isPackageExist(context,p1)){

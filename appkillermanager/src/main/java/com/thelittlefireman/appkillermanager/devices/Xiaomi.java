@@ -64,6 +64,11 @@ public class Xiaomi implements DeviceBase {
     public String getExtraDebugInformations(Context context) {
         return null;
     }
+
+    @Override
+    public int getHelpImage() {
+        return 0;
+    }
 /*
     // TODO CHECK IF GETPACKAGENAME IS NAME OF LIB OR APP
     @Override

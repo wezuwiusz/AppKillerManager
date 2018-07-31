@@ -104,6 +104,11 @@ public class Meizu implements DeviceBase {
         return stringBuilder.toString();
     }
 
+    @Override
+    public int getHelpImage() {
+        return 0;
+    }
+
     private enum MEIZU_SECURITY_CENTER_VERSION {
         SEC_2_2, //Meizu security center : 2.2.0922, 2.2.0310;
         SEC_3_4, //Meizu security center : 3.4.0316;

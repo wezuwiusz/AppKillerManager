@@ -121,13 +121,14 @@ Tab of which activity is open when you call functions
 
 FUNCTIONS | Huawei | Samsung
 --- | --- |---
-Power Saving Settings | <img src="IMG/huawei.png" width="108" height="192"> |
+Power Saving Settings | <img src="IMG/huawei.png" width="108" height="192"> | <img src="IMG/samsung.png" width="432" height="192"> |
 Auto Start permission Settings | |
 Notification permission Settings | |
 
 
 ## THANKS TO:
 Sylvain BORELLI
+[dirkam](https://github.com/dirkam)
 
 ## SOURCES/HELPING TOOLS :
 [backgroundable-android](https://github.com/dirkam/backgroundable-android)

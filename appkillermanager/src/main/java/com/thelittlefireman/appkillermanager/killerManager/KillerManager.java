@@ -28,12 +28,19 @@ public class KillerManager {
         }
     }
 
+    private static DeviceBase sDevice;
+
+    public static DeviceBase getDevice() {
+        return sDevice;
+    }
+
     private static void init(Context context) {
         // log error into a distant request bin logs for helps to debug
         // please do no change the adress
         HyperLog.initialize(context);
         HyperLog.setLogLevel(Log.VERBOSE);
         HyperLog.setURL("API URL");
+        sDevice = DevicesManager.getDevice();
     }
 
 
@@ -41,18 +48,18 @@ public class KillerManager {
         // Avoid main app to crash when intent denied by using try catch
         try {
             init(context);
-            DeviceBase device = DevicesManager.getDevice();
-            if (device != null) {
+            sDevice = DevicesManager.getDevice();
+            if (sDevice != null) {
                 Intent intent = null;
                 switch (actions) {
                     case ACTION_AUTOSTART:
-                        intent = device.getActionAutoStart(context);
+                        intent = sDevice.getActionAutoStart(context);
                         break;
                     case ACTION_POWERSAVING:
-                        intent = device.getActionPowerSaving(context);
+                        intent = sDevice.getActionPowerSaving(context);
                         break;
                     case ACTION_NOTIFICATIONS:
-                        intent = device.getActionNotification(context);
+                        intent = sDevice.getActionNotification(context);
                         break;
                 }
                 if (intent != null && ActionsUtils.isIntentAvailable(context, intent)) {
@@ -62,7 +69,7 @@ public class KillerManager {
                             ActionsUtils.getExtrasDebugInformations(intent) + "Actions \n" +
                             actions.name() + "SYSTEM UTILS \n" +
                             SystemUtils.getDefaultDebugInformation() + "DEVICE \n" +
-                            device.getExtraDebugInformations(context));
+                            sDevice.getExtraDebugInformations(context));
                 }
             } else {
                /* LogUtils.e(KillerManager.class.getName(), "DEVICE NOT FOUND" + "SYSTEM UTILS \n" +

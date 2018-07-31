@@ -2,6 +2,7 @@ package com.thelittlefireman.appkillermanager.devices;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.DrawableRes;
 
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
@@ -12,4 +13,5 @@ public interface DeviceBase {
     Intent getActionAutoStart(Context context);
     Intent getActionNotification(Context context);
     String getExtraDebugInformations(Context context);
+    @DrawableRes int getHelpImage();
 }

@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
 
+import com.thelittlefireman.appkillermanager.R;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
@@ -116,6 +117,11 @@ public class Huawei implements DeviceBase {
         stringBuilder.append(HUAWEI_SYSTEMMANAGER_PACKAGE_NAME + HUAWEI_SYSTEMMANAGER_AUTO_START_V2).append(ActionsUtils.isIntentAvailable(context, new ComponentName(HUAWEI_SYSTEMMANAGER_PACKAGE_NAME, HUAWEI_SYSTEMMANAGER_AUTO_START_V2)));
         stringBuilder.append(HUAWEI_SYSTEMMANAGER_PACKAGE_NAME + HUAWEI_SYSTEMMANAGER_AUTO_START_V3).append(ActionsUtils.isIntentAvailable(context, new ComponentName(HUAWEI_SYSTEMMANAGER_PACKAGE_NAME, HUAWEI_SYSTEMMANAGER_AUTO_START_V3)));
         return stringBuilder.toString();
+    }
+
+    @Override
+    public int getHelpImage(Context context) {
+        return R.drawable.huawei;
     }
 
     private ComponentName getComponentNameAutoStart(Context context) {

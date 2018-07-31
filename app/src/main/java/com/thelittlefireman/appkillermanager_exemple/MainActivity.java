@@ -26,6 +26,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        KillerManager.init(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         powerSavingManagerButton.setOnClickListener(new View.OnClickListener() {

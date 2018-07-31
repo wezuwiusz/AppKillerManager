@@ -34,7 +34,7 @@ public class KillerManager {
         return sDevice;
     }
 
-    private static void init(Context context) {
+    public static void init(Context context) {
         // log error into a distant request bin logs for helps to debug
         // please do no change the adress
         HyperLog.initialize(context);

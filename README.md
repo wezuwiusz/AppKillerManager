@@ -2,7 +2,7 @@
 [ ![Download](https://api.bintray.com/packages/thomas-goureau/maven/AppKillerManager/images/download.svg) ](https://bintray.com/thomas-goureau/maven/AppKillerManager/_latestVersion)
 # AppKillerManager
 
-Android library to handle App killer manager or agressive power saving mode (Xiaomi, Huawei, letv, ...) and prevent from : not showing notification, services not start at boot, etc 
+Android library to handle App killer manager or agressive power saving mode (Xiaomi, Huawei, letv, ...) and prevent from : not showing notification, services not start at boot, etc
 
 This library will open the right settings of the user phone and prompt him to add your app to whitelist.
 
@@ -68,13 +68,13 @@ KillerManager.doActionNotification(MyContext);
 ```
 
 ## Maintainers
-[thelittlefireman](https://github.com/thelittlefireman) 
+[thelittlefireman](https://github.com/thelittlefireman)
 
-## TODO : 
+## TODO :
   - Test on all devices
   - Add differents settings for autostartservice/notifications/permissions
   - Add custom messages for more explaination on what user need to do on manufacturer "settings Activity"
-  
+  - Add custom image for each device and each languages
 ## DEBUG/HELPING INFORMATIONS :
 
 ###Get the current activity name :

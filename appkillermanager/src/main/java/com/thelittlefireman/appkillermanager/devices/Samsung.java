@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import com.thelittlefireman.appkillermanager.R;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
@@ -87,6 +88,6 @@ public class Samsung implements DeviceBase {
 
     @Override
     public int getHelpImage() {
-        return 0;
+        return R.drawable.samsung;
     }
 }

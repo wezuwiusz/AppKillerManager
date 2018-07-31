@@ -47,6 +47,8 @@ dependencies {
 ### Step 2
 
 User with a custom dialog:
+ <img src="IMG/screenshot_dialog.png" width="108" height="192">
+
 ```Java
     public void startDialog(KillerManager.Actions actions) {
         new DialogKillerManagerBuilder().setContext(this).setAction(actions).show();

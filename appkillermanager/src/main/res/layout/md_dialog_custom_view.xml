@@ -11,12 +11,13 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:clipToPadding="false"
+        android:layout_marginBottom="8dp"
         android:paddingBottom="@dimen/md_content_padding_bottom"
         android:paddingTop="@dimen/md_content_padding_top">
 
         <TextView
             android:id="@+id/md_content"
-            tools:text="Content"
+            tools:text="@string/dialog_huawei_notification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/md_content_padding_top"
@@ -28,9 +29,11 @@
 
     <ImageView
         android:id="@+id/md_imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"/>
+        tools:src="@drawable/huawei"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_weight="1"/>
 
     <CheckBox
         android:id="@+id/md_promptCheckbox"
@@ -38,6 +41,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:textColor="@android:color/darker_gray"
         android:layout_marginLeft="@dimen/md_notitle_vertical_padding"
         android:layout_marginRight="@dimen/md_notitle_vertical_padding"
         android:focusable="true"

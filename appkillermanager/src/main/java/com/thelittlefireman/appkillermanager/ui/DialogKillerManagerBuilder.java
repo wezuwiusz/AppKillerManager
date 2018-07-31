@@ -32,7 +32,7 @@ public class DialogKillerManagerBuilder {
 
     private KillerManager.Actions mAction;
 
-    private boolean enableDontShowAgain = false;
+    private boolean enableDontShowAgain = true;
 
     private String titleMessage;
     private String contentMessage;
@@ -152,6 +152,7 @@ public class DialogKillerManagerBuilder {
         }
 
         if(this.enableDontShowAgain) {
+            doNotShowAgainCheckBox.setVisibility(View.VISIBLE);
             doNotShowAgainCheckBox.setText(R.string.dialog_do_not_show_again);
             doNotShowAgainCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override

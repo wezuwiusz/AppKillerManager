@@ -1,7 +1,6 @@
 package com.thelittlefireman.appkillermanager.ui;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.thelittlefireman.appkillermanager.R;
-import com.thelittlefireman.appkillermanager.devices.DeviceBase;
 import com.thelittlefireman.appkillermanager.killerManager.KillerManager;
 import com.thelittlefireman.appkillermanager.utils.KillerManagerUtils;
 
@@ -96,6 +94,7 @@ public class DialogKillerManagerBuilder {
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(mContext);
         builder.positiveText(R.string.dialog_button)
+               .customView(R.layout.md_dialog_custom_view,false)
                .onPositive(new MaterialDialog.SingleButtonCallback() {
                    @Override
                    public void onClick(MaterialDialog dialog, DialogAction which) {

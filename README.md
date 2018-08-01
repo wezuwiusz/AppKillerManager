@@ -40,7 +40,7 @@ Add :
 
 ```groovy
 dependencies {
-    implementation 'com.thelittlefireman.appkillermanager:AppKillerManager:0.0.1'
+    implementation 'com.thelittlefireman.appkillermanager:AppKillerManager:2.0.0'
 }
 ```
 

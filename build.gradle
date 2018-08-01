@@ -18,8 +18,8 @@ buildscript {
 
         // Two necessary plugins
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
-        classpath "com.github.ben-manes:gradle-versions-plugin:0.17.0"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        classpath "com.github.ben-manes:gradle-versions-plugin:0.20.0"
     }
 }
 
@@ -44,8 +44,8 @@ task wrapper(type: Wrapper) {
 
 ext{
     // ValidateTor Library Info
-    libVersionCode = 1
-    libVersionName = '0.0.1'
+    libVersionCode = 2
+    libVersionName = '2.0.0'
     libPomUrl = 'https://github.com/thelittlefireman/AppKillerManager'
     libGithubRepo = 'thelittlefireman/AppKillerManager'
     libModuleName = 'AppKillerManager'

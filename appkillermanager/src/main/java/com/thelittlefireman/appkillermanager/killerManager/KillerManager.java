@@ -2,9 +2,7 @@ package com.thelittlefireman.appkillermanager.killerManager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
-import com.hypertrack.hyperlog.HyperLog;
 import com.thelittlefireman.appkillermanager.devices.DeviceBase;
 import com.thelittlefireman.appkillermanager.devices.DevicesManager;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
@@ -37,9 +35,9 @@ public class KillerManager {
     public static void init(Context context) {
         // log error into a distant request bin logs for helps to debug
         // please do no change the adress
-        HyperLog.initialize(context);
+        /*HyperLog.initialize(context);
         HyperLog.setLogLevel(Log.VERBOSE);
-        HyperLog.setURL("API URL");
+        HyperLog.setURL("API URL");*/
         sDevice = DevicesManager.getDevice();
     }
 

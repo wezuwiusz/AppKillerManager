@@ -77,13 +77,13 @@ public class SystemUtils {
      *
      * @param context current application Context
      * @param packageName  pacakge name of the target application (exemple: com.huawei.systemmanager)
-     * @param activityPacakge activity name of the target application (exemple: .optimize.process.ProtectActivity)
+     * @param activityPackage activity name of the target application (exemple: .optimize.process.ProtectActivity)
      */
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static void startActivityByAMSystem(Context context, String packageName, String activityPacakge)
+    public static void startActivityByAMSystem(Context context, String packageName, String activityPackage)
             throws IOException {
-        String cmd = "am start -n "+packageName+"/"+activityPacakge;
+        String cmd = "am start -n "+packageName+"/"+activityPackage;
         UserManager um = (UserManager)context.getSystemService(Context.USER_SERVICE);
         cmd += " --user " +um.getSerialNumberForUser(Process.myUserHandle());
         Runtime.getRuntime().exec(cmd);
@@ -92,8 +92,7 @@ public class SystemUtils {
      * Open an Action by using Application Manager System (prevent from crash permission exception)
      *
      * @param context current application Context
-     * @param packageName  pacakge name of the target application (exemple: com.huawei.systemmanager)
-     * @param activityPacakge activity name of the target application (exemple: .optimize.process.ProtectActivity)
+     * @param intentAction  action of the target application (exemple: com.huawei.systemmanager)
      */
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)

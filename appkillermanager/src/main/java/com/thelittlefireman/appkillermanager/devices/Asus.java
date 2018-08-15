@@ -9,10 +9,12 @@ import android.os.Build;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
-public class Asus implements DeviceBase {
+// TODO TESTS
+public class Asus extends DeviceAbstract {
 
     private static final String ASUS_PACAKGE_MOBILEMANAGER = "com.asus.mobilemanager";
     private static final String ASUS_ACTIVITY_MOBILEMANAGER_FUNCTION_ACTIVITY = "com.asus.mobilemanager.entry.FunctionActivity";
+    private static final String ASUS_ACTIVITY_MOBILEMANAGER_FUNCTION_AUTOSTART_ACTIVITY = "com.asus.mobilemanager.autostart.AutoStartActivity";
 
     @Override
     public boolean isThatRom() {
@@ -27,20 +29,34 @@ public class Asus implements DeviceBase {
     }
 
     @Override
+    public boolean isActionPowerSavingAvailable(Context context) {
+        return false;
+    }
+
+    @Override
+    public boolean isActionAutoStartAvailable(Context context) {
+        return true;
+    }
+
+    @Override
+    public boolean isActionNotificationAvailable(Context context) {
+        return false;
+    }
+
+    @Override
     public Intent getActionPowerSaving(Context context) {
-        return null;
-        // TODO tests new ComponentName("com.asus.powersaver", "com.asus.powersaver.PowerSaverSettings")
+        // FIX ME Investigate no solution to add to a white list or something
+        Intent intent = ActionsUtils.createIntent();
+        intent.setComponent(new ComponentName("com.asus.powersaver", "com.asus.powersaver.PowerSaverSettings"));
+        return intent;
     }
 
     @Override
     public Intent getActionAutoStart(Context context) {
-        //TODO TEST ENABLE NOTICE "showNotice"
-        //         intent.putExtra("showNotice",true);
         Intent intent = ActionsUtils.createIntent();
-        intent.setComponent(new ComponentName(ASUS_PACAKGE_MOBILEMANAGER, ASUS_ACTIVITY_MOBILEMANAGER_FUNCTION_ACTIVITY))
-              .setData(Uri.parse("mobilemanager://function/entry/AutoStart"));
+        intent.putExtra("showNotice",true);
+        intent.setComponent(new ComponentName(ASUS_PACAKGE_MOBILEMANAGER, ASUS_ACTIVITY_MOBILEMANAGER_FUNCTION_AUTOSTART_ACTIVITY));
         return intent;
-        // TODO IF NOT WORKING TRY OPEN com.asus.mobilemanager.autostart.AutoStartActivity
     }
 
     @Override

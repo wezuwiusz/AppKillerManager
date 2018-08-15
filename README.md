@@ -24,14 +24,13 @@ Android Custom Roms made sometimes your apps unfunctional due to :
 * Letv (<span style="color:red">NOT TESTED</span>)
 
 ### TODO
-Add :
+
 * Oppo
 * Vivo
-* Asus
 
-* Add hability to customise dialog
-
+* Add hability to customize dialog
 * Add screenshot and "settings path" of the intent action for all phones on ReadMe
+* Add a table of possiblities and function unavailable/ not necessary on each device
 
 ## Usage
 ### Step 1
@@ -110,22 +109,22 @@ Huawei P9 LITE | Android 6.0 | EMUI 4.1 | | OK (No)
 Samsung | Android 7.0 | | N/A | OK
 Xiaomi Mi mix | Android 6.0.1 | MIUI 8.0 | OK (No) | OK (Yes)
 
-//TODO TEST SAMSUNG 8.0.1, ASUS 7.1, Huawei Android 6.0.1
+//TODO TEST Huawei Android 6.0.1
 
 
 ANDROID OS | CUSTOM ROM | AutoStart EasyMode | AutoStart List | PowerSavingMode EasyMode | PowerSavingMode List
 --- | --- | --- | --- | --- | ---
-Android 4.4 | EMUI 3.0.1 | | | ACTION huawei.intent.action.HSM_PROTECTED_APPS |
+Android 4.4 | EMUI 3.0.1 | | | | ACTION huawei.intent.action.HSM_PROTECTED_APPS |
 Android 6.0.1 | MIUI 8.0 | | ACTION miui.intent.action.OP_AUTO_START | INTENT "com.miui.powerkeeper", "com.miui.powerkeeper.ui.HiddenAppsConfigActivity"  extras : package_name,package_level | ACTION miui.intent.action.POWER_HIDE_MODE_APP_LIST
 
 #### Related View :
 
 Tab of which activity is open when you call functions
 
-FUNCTIONS | Huawei | Samsung
+FUNCTIONS | Huawei | Samsung | Asus
 --- | --- |---
-Power Saving Settings | <img src="IMG/huawei.png" width="108" height="192"> | <img src="IMG/samsung.png" width="432" height="192"> |
-Auto Start permission Settings | |
+Power Saving Settings | <img src="IMG/huawei.png" width="108" height="192"> | <img src="IMG/samsung.png" width="432" height="192"> | NOT AVAILABLE : NO WHITELIST ! |
+Auto Start permission Settings | | |
 Notification permission Settings | |
 
 

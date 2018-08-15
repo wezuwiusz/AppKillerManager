@@ -8,7 +8,7 @@ import android.os.Build;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
-public class Letv implements DeviceBase {
+public class Letv extends DeviceAbstract {
     @Override
     public boolean isThatRom() {
         return Build.BRAND.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
@@ -22,11 +22,26 @@ public class Letv implements DeviceBase {
     }
 
     @Override
+    public boolean isActionPowerSavingAvailable(Context context) {
+        return true;
+    }
+
+    @Override
+    public boolean isActionAutoStartAvailable(Context context) {
+        return true;
+    }
+
+    @Override
+    public boolean isActionNotificationAvailable(Context context) {
+        return false;
+    }
+
+    @Override
     public Intent getActionPowerSaving(Context context) {
         Intent intent = ActionsUtils.createIntent();
         intent.setComponent(
                 new ComponentName("com.letv.android.letvsafe",
-                                  "com.letv.android.letvsafe.BackgroundAppManageActivity"));
+                        "com.letv.android.letvsafe.BackgroundAppManageActivity"));
         return intent;
     }
 
@@ -35,7 +50,7 @@ public class Letv implements DeviceBase {
         Intent intent = ActionsUtils.createIntent();
         intent.setComponent(
                 new ComponentName("com.letv.android.letvsafe",
-                                  "com.letv.android.letvsafe.AutobootManageActivity"));
+                        "com.letv.android.letvsafe.AutobootManageActivity"));
         return intent;
     }
 

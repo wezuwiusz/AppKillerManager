@@ -9,7 +9,7 @@ import com.thelittlefireman.appkillermanager.R;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
-public class Samsung implements DeviceBase {
+public class Samsung extends DeviceAbstract {
     // crash "com.samsung.android.lool","com.samsung.android.sm.ui.battery.AppSleepListActivity"
     private static final String SAMSUNG_SYSTEMMANAGER_POWERSAVING_ACTION = "com.samsung.android.sm.ACTION_BATTERY";
     private static final String SAMSUNG_SYSTEMMANAGER_NOTIFICATION_ACTION = "com.samsung.android.sm.ACTION_SM_NOTIFICATION_SETTING";
@@ -41,6 +41,21 @@ public class Samsung implements DeviceBase {
     }
 
     @Override
+    public boolean isActionPowerSavingAvailable(Context context) {
+        return true;
+    }
+
+    @Override
+    public boolean isActionAutoStartAvailable(Context context) {
+        return false;
+    }
+
+    @Override
+    public boolean isActionNotificationAvailable(Context context) {
+        return false;
+    }
+
+    @Override
     public Intent getActionPowerSaving(Context context) {
         Intent intent = ActionsUtils.createIntent();
         intent.setAction(SAMSUNG_SYSTEMMANAGER_POWERSAVING_ACTION);
@@ -65,17 +80,17 @@ public class Samsung implements DeviceBase {
         return null;
     }
 
+    // FIXME Currently not working : not available, ITS NOT AUTOSTART ITS MEMORY MANAGER
     @Override
     public Intent getActionAutoStart(Context context) {
         Intent intent = ActionsUtils.createIntent();
-        // FIXME ITS NOT AUTOSTART ITS MEMORY MANAGER
         intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1, SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1_ACTIVITY));
         return intent;
     }
 
+    // FIXME : NOTWORKOING NEED PERMISSIONS SETTINGS OR SOMETHINGS ELSE
     @Override
     public Intent getActionNotification(Context context) {
-        // FIXME : NOTWORKOING NEED PERMISSIONS SETTINGS OR SOMETHINGS ELSE
         Intent intent = ActionsUtils.createIntent();
         intent.setAction(SAMSUNG_SYSTEMMANAGER_NOTIFICATION_ACTION);
         return null;

@@ -6,7 +6,7 @@ import android.os.Build;
 
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
-public class Oppo implements DeviceBase {
+public class Oppo extends DeviceAbstract {
     // TODO multiple intent in a same actions need to be refractor!
     /*
     * java.lang.SecurityException: Permission Denial: starting Intent { cmp=com.coloros.safecenter/.startupapp.StartupAppListActivity } from ProcessRecord{7eba0ba 27527:crb.call.follow.mycrm/u0a229} (pid=27527, uid=10229) requires oppo.permission.OPPO_COMPONENT_SAFE*/
@@ -37,6 +37,21 @@ public class Oppo implements DeviceBase {
     @Override
     public Manufacturer getDeviceManufacturer() {
         return Manufacturer.OPPO;
+    }
+
+    @Override
+    public boolean isActionPowerSavingAvailable(Context context) {
+        return false;
+    }
+
+    @Override
+    public boolean isActionAutoStartAvailable(Context context) {
+        return false;
+    }
+
+    @Override
+    public boolean isActionNotificationAvailable(Context context) {
+        return false;
     }
 
     @Override

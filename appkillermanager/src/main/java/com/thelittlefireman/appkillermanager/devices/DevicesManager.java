@@ -9,7 +9,8 @@ import java.util.List;
 
 public class DevicesManager {
 
-    private static List<DeviceBase> deviceBaseList = new ArrayList<>(Arrays.asList(
+    private static List<DeviceAbstract> deviceBaseList = new ArrayList<>(Arrays.asList(
+            new Asus(),
             new Xiaomi(),
             new OnePlus(),
             new Huawei(),

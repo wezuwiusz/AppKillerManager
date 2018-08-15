@@ -11,7 +11,7 @@ import android.util.Log;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
-public class Meizu implements DeviceBase {
+public class Meizu extends DeviceAbstract {
 
     private static final String MEIZU_DEFAULT_ACTION_APPSPEC = "com.meizu.safe.security.SHOW_APPSEC";
     private static final String MEIZU_POWERSAVING_ACTION = "com.meizu.power.PowerAppKilledNotification";
@@ -32,6 +32,21 @@ public class Meizu implements DeviceBase {
     @Override
     public Manufacturer getDeviceManufacturer() {
         return Manufacturer.MEIZU;
+    }
+
+    @Override
+    public boolean isActionPowerSavingAvailable(Context context) {
+        return true;
+    }
+
+    @Override
+    public boolean isActionAutoStartAvailable(Context context) {
+        return true;
+    }
+
+    @Override
+    public boolean isActionNotificationAvailable(Context context) {
+        return true;
     }
 
     @Override
@@ -60,7 +75,7 @@ public class Meizu implements DeviceBase {
         return getDefaultSettingAction(context);
     }
 
-    public Intent getDefaultSettingAction(Context context) {
+    private Intent getDefaultSettingAction(Context context) {
         Intent intent = ActionsUtils.createIntent();
         intent.setAction(MEIZU_DEFAULT_ACTION_APPSPEC);
         intent.putExtra(MEIZU_DEFAULT_EXTRA_PACKAGE, context.getPackageName());

@@ -15,6 +15,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.thelittlefireman.appkillermanager.R;
 import com.thelittlefireman.appkillermanager.killerManager.KillerManager;
 import com.thelittlefireman.appkillermanager.utils.KillerManagerUtils;
+import com.thelittlefireman.appkillermanager.utils.LogUtils;
 
 public class DialogKillerManagerBuilder {
     private Context mContext;
@@ -84,12 +85,24 @@ public class DialogKillerManagerBuilder {
     }
 
     public void show() {
+
         MaterialDialog materialDialog;
         if (mContext == null) {
             throw new NullPointerException("Context can't be null");
         }
         if (mAction == null) {
             throw new NullPointerException("Action can't be null");
+        }
+        KillerManager.init(mContext);
+
+        if(KillerManager.isActionAvailable(mContext,mAction)){
+            LogUtils.i(this.getClass().getName(),"This action is not available for this device no need to show the dialog");
+            return;
+        }
+
+        if(KillerManager.getDevice() == null){
+            LogUtils.i(this.getClass().getName(),"Device not in the list no need to show the dialog");
+            return;
         }
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(mContext);
@@ -145,7 +158,7 @@ public class DialogKillerManagerBuilder {
         } else if (contentMessage != null && !contentMessage.isEmpty()) {
             contentTextView.setText(contentMessage);
         } else {
-            //TODO CUSTOM MESSAGE FOR SPECIFITQUE ACTIONS
+            //TODO CUSTOM MESSAGE FOR SPECIFITQUE ACTIONS AND SPECIFIC DEVICE
             contentTextView.setText(String.format(mContext.getString(R.string.dialog_huawei_notification),
                                           mContext.getString(
                                                   R.string.app_name)));

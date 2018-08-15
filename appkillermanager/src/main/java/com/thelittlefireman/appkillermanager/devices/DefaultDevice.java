@@ -6,7 +6,7 @@ import android.provider.Settings;
 
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
-public class DefaultDevice implements DeviceBase {
+public class DefaultDevice extends DeviceAbstract {
     @Override
     public boolean isThatRom() {
         return false;
@@ -15,6 +15,21 @@ public class DefaultDevice implements DeviceBase {
     @Override
     public Manufacturer getDeviceManufacturer() {
         return null;
+    }
+
+    @Override
+    public boolean isActionPowerSavingAvailable(Context context) {
+        return true;
+    }
+
+    @Override
+    public boolean isActionAutoStartAvailable(Context context) {
+        return false;
+    }
+
+    @Override
+    public boolean isActionNotificationAvailable(Context context) {
+        return false;
     }
 
     @Override

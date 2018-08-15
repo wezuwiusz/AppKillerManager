@@ -14,7 +14,7 @@ import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
 import static com.thelittlefireman.appkillermanager.utils.SystemUtils.getEmuiRomName;
 
-public class Huawei implements DeviceBase {
+public class Huawei extends DeviceAbstract {
 
     // TODO NOT SUR IT WORKS ON EMUI 5
     private static final String HUAWEI_ACTION_POWERSAVING = "huawei.intent.action.HSM_PROTECTED_APPS";
@@ -64,6 +64,21 @@ public class Huawei implements DeviceBase {
     }
 
     @Override
+    public boolean isActionPowerSavingAvailable(Context context) {
+        return true;
+    }
+
+    @Override
+    public boolean isActionAutoStartAvailable(Context context) {
+        return false;
+    }
+
+    @Override
+    public boolean isActionNotificationAvailable(Context context) {
+        return true;
+    }
+
+    @Override
     public Intent getActionPowerSaving(Context context) {
         Intent intent = ActionsUtils.createIntent();
         intent.setAction(HUAWEI_ACTION_POWERSAVING);
@@ -72,7 +87,9 @@ public class Huawei implements DeviceBase {
 
     @Override
     public Intent getActionAutoStart(Context context) {
-        Intent intent = ActionsUtils.createIntent();
+        // AUTOSTART not used in huawei
+        return null;
+        /*Intent intent = ActionsUtils.createIntent();
         intent.setAction(HUAWEI_ACTION_AUTOSTART);
         if (ActionsUtils.isIntentAvailable(context, intent)) {
             return intent;
@@ -80,7 +97,7 @@ public class Huawei implements DeviceBase {
             intent = ActionsUtils.createIntent();
             intent.setComponent(getComponentNameAutoStart(context));
             return intent;
-        }
+        }*/
     }
 
     @Override

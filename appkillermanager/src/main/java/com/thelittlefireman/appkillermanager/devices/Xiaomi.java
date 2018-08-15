@@ -9,7 +9,7 @@ import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 import com.thelittlefireman.appkillermanager.utils.SystemUtils;
 
-public class Xiaomi implements DeviceBase {
+public class Xiaomi extends DeviceAbstract {
 
 
     // TODO TEST new Intent().setComponent(ComponentName("com.miui.securitycenter", "com.miui.powercenter.PowerSettings"))
@@ -34,6 +34,21 @@ public class Xiaomi implements DeviceBase {
     @Override
     public Manufacturer getDeviceManufacturer() {
         return Manufacturer.XIAOMI;
+    }
+
+    @Override
+    public boolean isActionPowerSavingAvailable(Context context) {
+        return true;
+    }
+
+    @Override
+    public boolean isActionAutoStartAvailable(Context context) {
+        return true;
+    }
+
+    @Override
+    public boolean isActionNotificationAvailable(Context context) {
+        return false;
     }
 
     @Override

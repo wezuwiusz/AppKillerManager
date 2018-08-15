@@ -8,7 +8,7 @@ import android.os.Build;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
-public class OnePlus implements DeviceBase {
+public class OnePlus extends DeviceAbstract {
     @Override
     public boolean isThatRom() {
         return Build.BRAND.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
@@ -19,6 +19,21 @@ public class OnePlus implements DeviceBase {
     @Override
     public Manufacturer getDeviceManufacturer() {
         return Manufacturer.ONEPLUS;
+    }
+
+    @Override
+    public boolean isActionPowerSavingAvailable(Context context) {
+        return false;
+    }
+
+    @Override
+    public boolean isActionAutoStartAvailable(Context context) {
+        return true;
+    }
+
+    @Override
+    public boolean isActionNotificationAvailable(Context context) {
+        return false;
     }
 
     @Override

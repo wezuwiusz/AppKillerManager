@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
-public class Vivo implements DeviceBase {
+public class Vivo extends DeviceAbstract {
 // TODO multiple intent in a same actions !
     // Starting: Intent { cmp=com.vivo.permissionmanager/.activity.BgStartUpManagerActivity }
     //java.lang.SecurityException: Permission Denial: starting Intent { flg=0x10000000 cmp=com.vivo.permissionmanager/.activity.BgStartUpManagerActivity } from null (pid=28141, uid=2000) not exported from uid 1000
@@ -26,6 +26,21 @@ public class Vivo implements DeviceBase {
     @Override
     public Manufacturer getDeviceManufacturer() {
         return Manufacturer.VIVO;
+    }
+
+    @Override
+    public boolean isActionPowerSavingAvailable(Context context) {
+        return false;
+    }
+
+    @Override
+    public boolean isActionAutoStartAvailable(Context context) {
+        return false;
+    }
+
+    @Override
+    public boolean isActionNotificationAvailable(Context context) {
+        return false;
     }
 
     @Override

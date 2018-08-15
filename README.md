@@ -2,7 +2,7 @@
 [ ![Download](https://api.bintray.com/packages/thomas-goureau/maven/AppKillerManager/images/download.svg) ](https://bintray.com/thomas-goureau/maven/AppKillerManager/_latestVersion)
 # AppKillerManager
 
-Android library to handle App killer manager or agressive power saving mode (Xiaomi, Huawei, letv, ...) and prevent from : not showing notification, services not start at boot, etc
+Android library to handle App killer manager, agressive power saving mode or battery optimization (Xiaomi, Huawei, letv, ...) and prevent from : not showing notification, services not start at boot, etc
 
 This library will open the right settings of the user phone and prompt him to add your app to whitelist.
 

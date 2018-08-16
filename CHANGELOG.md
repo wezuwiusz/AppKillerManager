@@ -3,6 +3,7 @@
 * Fix #2 Huawei PLK-L01, KillerManager.doActionAutoStart() not opens activity
 * Fix Dialog ui is shown when is not needed
 * ADD Asus compatibility
+* ADD HTC compatibility
 * Fix exemple app
 
 ### V2.0.0

@@ -56,6 +56,11 @@ public class Samsung extends DeviceAbstract {
     }
 
     @Override
+    public boolean needToUseAlongwithActionDoseMode(){
+        return true;
+    }
+
+    @Override
     public Intent getActionPowerSaving(Context context) {
         Intent intent = ActionsUtils.createIntent();
         intent.setAction(SAMSUNG_SYSTEMMANAGER_POWERSAVING_ACTION);

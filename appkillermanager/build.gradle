@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: "com.github.ben-manes.versions"
 
 android {
     compileSdkVersion 27
@@ -27,7 +28,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.hypertrack:hyperlog:0.0.9'
+    implementation 'com.hypertrack:hyperlog:0.0.10'
     implementation 'com.android.support:support-annotations:27.1.1'
 
     // UI
@@ -39,8 +40,19 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
 
-
+dependencyUpdates.resolutionStrategy {
+    componentSelection { rules ->
+        rules.all { ComponentSelection selection ->
+            boolean rejected = ['alpha', 'beta', 'rc', 'cr', 'm'].any { qualifier ->
+                selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
+            }
+            if (rejected) {
+                selection.reject('Release candidate')
+            }
+        }
+    }
 }
 
 // applied specifically at the bottom

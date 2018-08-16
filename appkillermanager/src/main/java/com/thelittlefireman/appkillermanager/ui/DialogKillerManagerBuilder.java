@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.thelittlefireman.appkillermanager.R;
-import com.thelittlefireman.appkillermanager.killerManager.KillerManager;
+import com.thelittlefireman.appkillermanager.managers.KillerManager;
 import com.thelittlefireman.appkillermanager.utils.KillerManagerUtils;
 import com.thelittlefireman.appkillermanager.utils.LogUtils;
 

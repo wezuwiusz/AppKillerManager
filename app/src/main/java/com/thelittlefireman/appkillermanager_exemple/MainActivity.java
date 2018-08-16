@@ -6,7 +6,7 @@ import android.support.v7.widget.AppCompatCheckBox;
 import android.view.View;
 import android.widget.Button;
 
-import com.thelittlefireman.appkillermanager.killerManager.KillerManager;
+import com.thelittlefireman.appkillermanager.managers.KillerManager;
 import com.thelittlefireman.appkillermanager.ui.DialogKillerManagerBuilder;
 
 import butterknife.BindView;

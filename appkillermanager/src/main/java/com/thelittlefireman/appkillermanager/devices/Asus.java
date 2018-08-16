@@ -3,7 +3,6 @@ package com.thelittlefireman.appkillermanager.devices;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
@@ -30,7 +29,7 @@ public class Asus extends DeviceAbstract {
 
     @Override
     public boolean isActionPowerSavingAvailable(Context context) {
-        return false;
+        return super.isActionDozeModeNotNecessary(context);
     }
 
     @Override
@@ -45,8 +44,9 @@ public class Asus extends DeviceAbstract {
 
     @Override
     public Intent getActionPowerSaving(Context context) {
-        // TODO JUST NEED TO USE THE REGULAR BATTERY NON OPTIMISATION PERMISSION =)
-        return null;
+        // Juste need to use the regular battery non optimization
+        // PERMISSION =)
+        return super.getActionDozeMode(context);
     }
 
     @Override

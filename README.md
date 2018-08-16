@@ -22,6 +22,8 @@ Android Custom Roms made sometimes your apps unfunctional due to :
 * Meizu (<span style="color:red"> NOT TESTED</span>)
 * OnePlus (<span style="color:red">NOT TESTED</span>)
 * Letv (<span style="color:red">NOT TESTED</span>)
+* HTC (<span style="color:red">NOT TESTED</span>)
+* Asus (<span style="color:red">NOT TESTED</span>)
 
 ### TODO
 
@@ -39,7 +41,7 @@ Android Custom Roms made sometimes your apps unfunctional due to :
 
 ```groovy
 dependencies {
-    implementation 'com.thelittlefireman:AppKillerManager:2.0.0'
+    implementation 'com.thelittlefireman:AppKillerManager:2.1.0'
 }
 ```
 

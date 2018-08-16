@@ -3,7 +3,7 @@ package com.thelittlefireman.appkillermanager.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.thelittlefireman.appkillermanager.killerManager.KillerManager;
+import com.thelittlefireman.appkillermanager.managers.KillerManager;
 
 import static android.content.Context.MODE_PRIVATE;
 

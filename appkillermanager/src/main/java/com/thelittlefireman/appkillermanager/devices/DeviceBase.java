@@ -12,10 +12,19 @@ public interface DeviceBase {
     boolean isActionPowerSavingAvailable(Context context);
     boolean isActionAutoStartAvailable(Context context);
     boolean isActionNotificationAvailable(Context context);
+    boolean needToUseAlongwithActionDoseMode();
     Intent getActionPowerSaving(Context context);
     Intent getActionAutoStart(Context context);
     // FIXME IS IT REALY NEEDED ? ==> REPLACE BY OTHER FUNCTION ?
     Intent getActionNotification(Context context);
     String getExtraDebugInformations(Context context);
+
+    /**
+     * Function common in all devices
+     * @param context the current context
+     * @return the Intent to open the doze mode settings
+     */
+    Intent getActionDozeMode(Context context);
+    boolean isActionDozeModeNotNecessary(Context context);
     @DrawableRes int getHelpImage();
 }

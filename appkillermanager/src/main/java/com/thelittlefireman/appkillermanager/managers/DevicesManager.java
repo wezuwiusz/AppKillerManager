@@ -10,6 +10,7 @@ import com.thelittlefireman.appkillermanager.devices.Meizu;
 import com.thelittlefireman.appkillermanager.devices.OnePlus;
 import com.thelittlefireman.appkillermanager.devices.Samsung;
 import com.thelittlefireman.appkillermanager.devices.Xiaomi;
+import com.thelittlefireman.appkillermanager.devices.ZTE;
 import com.thelittlefireman.appkillermanager.utils.LogUtils;
 import com.thelittlefireman.appkillermanager.utils.SystemUtils;
 
@@ -25,9 +26,10 @@ public class DevicesManager {
             new Letv(),
             new Meizu(),
             new OnePlus(),
-            new Xiaomi(),
             new HTC(),
-            new Samsung()));
+            new Samsung(),
+            new Xiaomi(),
+            new ZTE()));
 
     public static DeviceBase getDevice(){
         List<DeviceBase> currentDeviceBase =new ArrayList<>();

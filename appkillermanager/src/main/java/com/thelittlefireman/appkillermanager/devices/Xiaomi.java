@@ -81,7 +81,7 @@ public class Xiaomi extends DeviceAbstract {
     }
 
     @Override
-    public int getHelpImage() {
+    public int getHelpImagePowerSaving() {
         return 0;
     }
 /*

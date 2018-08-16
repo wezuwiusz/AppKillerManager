@@ -4,6 +4,7 @@
 * Fix Dialog ui is shown when is not needed
 * ADD Asus compatibility
 * ADD HTC compatibility
+* ADD ZTE compatibility
 * Fix exemple app
 
 ### V2.0.0

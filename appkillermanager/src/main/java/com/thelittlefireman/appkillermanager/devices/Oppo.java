@@ -75,7 +75,7 @@ public class Oppo extends DeviceAbstract {
     }
 
     @Override
-    public int getHelpImage() {
+    public int getHelpImagePowerSaving() {
         return 0;
     }
 /*

@@ -39,13 +39,13 @@ public class Asus extends DeviceAbstract {
 
     @Override
     public boolean isActionNotificationAvailable(Context context) {
-        return false;
+        return true;
     }
 
     @Override
     public Intent getActionPowerSaving(Context context) {
         // Juste need to use the regular battery non optimization
-        // PERMISSION =)
+        // permission =)
         return super.getActionDozeMode(context);
     }
 
@@ -59,7 +59,11 @@ public class Asus extends DeviceAbstract {
 
     @Override
     public Intent getActionNotification(Context context) {
-        return null;
+        // Need to clic on notifications items
+        Intent intent = ActionsUtils.createIntent();
+        intent.putExtra("showNotice",true);
+        intent.setComponent(new ComponentName(ASUS_PACAKGE_MOBILEMANAGER, ASUS_ACTIVITY_MOBILEMANAGER_FUNCTION_ACTIVITY));
+        return intent;
     }
 
     @Override
@@ -68,7 +72,7 @@ public class Asus extends DeviceAbstract {
     }
 
     @Override
-    public int getHelpImage() {
+    public int getHelpImagePowerSaving() {
         return 0;
     }
 }

@@ -59,11 +59,12 @@ public class HTC extends DeviceAbstract {
 
     @Override
     public String getExtraDebugInformations(Context context) {
+        // TODO
         return null;
     }
 
     @Override
-    public int getHelpImage() {
+    public int getHelpImagePowerSaving() {
         return 0;
     }
 

@@ -26,5 +26,5 @@ public interface DeviceBase {
      */
     Intent getActionDozeMode(Context context);
     boolean isActionDozeModeNotNecessary(Context context);
-    @DrawableRes int getHelpImage();
+    @DrawableRes int getHelpImagePowerSaving();
 }

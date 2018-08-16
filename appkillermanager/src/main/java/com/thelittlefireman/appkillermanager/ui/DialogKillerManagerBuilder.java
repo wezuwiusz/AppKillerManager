@@ -95,26 +95,26 @@ public class DialogKillerManagerBuilder {
         }
         KillerManager.init(mContext);
 
-        if(KillerManager.isActionAvailable(mContext,mAction)){
-            LogUtils.i(this.getClass().getName(),"This action is not available for this device no need to show the dialog");
+        if (!KillerManager.isActionAvailable(mContext, mAction)) {
+            LogUtils.i(this.getClass().getName(), "This action is not available for this device no need to show the dialog");
             return;
         }
 
-        if(KillerManager.getDevice() == null){
-            LogUtils.i(this.getClass().getName(),"Device not in the list no need to show the dialog");
+        if (KillerManager.getDevice() == null) {
+            LogUtils.i(this.getClass().getName(), "Device not in the list no need to show the dialog");
             return;
         }
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(mContext);
         builder.positiveText(R.string.dialog_button)
-               .customView(R.layout.md_dialog_custom_view,false)
-               .onPositive(new MaterialDialog.SingleButtonCallback() {
-                   @Override
-                   public void onClick(MaterialDialog dialog, DialogAction which) {
-                       KillerManager.doAction(mContext, mAction);
-                   }
-               })
-               .negativeText(android.R.string.cancel);
+                .customView(R.layout.md_dialog_custom_view, false)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(MaterialDialog dialog, DialogAction which) {
+                        KillerManager.doAction(mContext, mAction);
+                    }
+                })
+                .negativeText(android.R.string.cancel);
 
         if (iconRes != -1) {
             builder.iconRes(iconRes);
@@ -127,17 +127,17 @@ public class DialogKillerManagerBuilder {
         } else if (titleMessage != null && !titleMessage.isEmpty()) {
             builder.title(titleMessage);
         } else {
-            builder.title(R.string.dialog_title_huawei_notification);
+            builder.title(mContext.getString(R.string.dialog_title_notification, KillerManager.getDevice().getDeviceManufacturer().toString()));
         }
 
         if (this.enableDontShowAgain) {
             builder.checkBoxPromptRes(R.string.dialog_do_not_show_again, false,
-                                      new CompoundButton.OnCheckedChangeListener() {
-                                          @Override
-                                          public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                              KillerManagerUtils.setDontShowAgain(mContext, mAction, isChecked);
-                                          }
-                                      });
+                    new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            KillerManagerUtils.setDontShowAgain(mContext, mAction, isChecked);
+                        }
+                    });
         }
 
         if (!(enableDontShowAgain && KillerManagerUtils.isDontShowAgain(mContext, mAction))) {
@@ -160,11 +160,11 @@ public class DialogKillerManagerBuilder {
         } else {
             //TODO CUSTOM MESSAGE FOR SPECIFITQUE ACTIONS AND SPECIFIC DEVICE
             contentTextView.setText(String.format(mContext.getString(R.string.dialog_huawei_notification),
-                                          mContext.getString(
-                                                  R.string.app_name)));
+                    mContext.getString(
+                            R.string.app_name)));
         }
 
-        if(this.enableDontShowAgain) {
+        if (this.enableDontShowAgain) {
             doNotShowAgainCheckBox.setVisibility(View.VISIBLE);
             doNotShowAgainCheckBox.setText(R.string.dialog_do_not_show_again);
             doNotShowAgainCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -175,8 +175,19 @@ public class DialogKillerManagerBuilder {
             });
         }
 
-        int helpImageRes = KillerManager.getDevice().getHelpImage();
-        if(helpImageRes!=0){
+        //TODO add other specific images
+        int helpImageRes = 0;
+        switch (mAction) {
+            case ACTION_AUTOSTART:
+                break;
+            case ACTION_POWERSAVING:
+                helpImageRes = KillerManager.getDevice().getHelpImagePowerSaving();
+                break;
+            case ACTION_NOTIFICATIONS:
+                break;
+        }
+
+        if (helpImageRes != 0) {
             helpImageView.setImageResource(helpImageRes);
         }
     }

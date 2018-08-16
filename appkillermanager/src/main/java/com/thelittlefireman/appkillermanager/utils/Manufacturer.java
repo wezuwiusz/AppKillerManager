@@ -10,6 +10,7 @@ public enum Manufacturer {
     LETV("letv"),
     ASUS("asus"),
     HTC("htc"),
+    ZTE("zte"),
     VIVO("vivo");
 
     private final String name;

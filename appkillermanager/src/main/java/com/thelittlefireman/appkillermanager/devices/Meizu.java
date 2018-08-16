@@ -120,7 +120,7 @@ public class Meizu extends DeviceAbstract {
     }
 
     @Override
-    public int getHelpImage() {
+    public int getHelpImagePowerSaving() {
         return 0;
     }
 

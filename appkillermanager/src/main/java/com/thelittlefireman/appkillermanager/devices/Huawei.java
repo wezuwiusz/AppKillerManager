@@ -137,8 +137,8 @@ public class Huawei extends DeviceAbstract {
     }
 
     @Override
-    public int getHelpImage() {
-        return R.drawable.huawei;
+    public int getHelpImagePowerSaving() {
+        return R.drawable.huawei_powersaving;
     }
 
     private ComponentName getComponentNameAutoStart(Context context) {

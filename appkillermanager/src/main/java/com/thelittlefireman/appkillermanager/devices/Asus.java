@@ -45,10 +45,8 @@ public class Asus extends DeviceAbstract {
 
     @Override
     public Intent getActionPowerSaving(Context context) {
-        // FIX ME Investigate no solution to add to a white list or something
-        Intent intent = ActionsUtils.createIntent();
-        intent.setComponent(new ComponentName("com.asus.powersaver", "com.asus.powersaver.PowerSaverSettings"));
-        return intent;
+        // TODO JUST NEED TO USE THE REGULAR BATTERY NON OPTIMISATION PERMISSION =)
+        return null;
     }
 
     @Override

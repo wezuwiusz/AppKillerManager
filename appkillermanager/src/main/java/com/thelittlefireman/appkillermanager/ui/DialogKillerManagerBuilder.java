@@ -179,11 +179,13 @@ public class DialogKillerManagerBuilder {
         int helpImageRes = 0;
         switch (mAction) {
             case ACTION_AUTOSTART:
+                helpImageRes = KillerManager.getDevice().getHelpImageAutoStart();
                 break;
             case ACTION_POWERSAVING:
                 helpImageRes = KillerManager.getDevice().getHelpImagePowerSaving();
                 break;
             case ACTION_NOTIFICATIONS:
+                helpImageRes = KillerManager.getDevice().getHelpImageNotification();
                 break;
         }
 

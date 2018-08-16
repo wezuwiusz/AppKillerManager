@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.PowerManager;
 import android.provider.Settings;
+import android.support.annotation.DrawableRes;
 
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.LogUtils;
@@ -15,6 +16,24 @@ public abstract class DeviceAbstract implements DeviceBase {
     @Override
     public boolean needToUseAlongwithActionDoseMode(){
         return false;
+    }
+
+    @Override
+    @DrawableRes
+    public int getHelpImageAutoStart(){
+        return 0;
+    }
+
+    @Override
+    @DrawableRes
+    public int getHelpImageNotification(){
+        return 0;
+    }
+
+    @DrawableRes
+    @Override
+    public int getHelpImagePowerSaving() {
+        return 0;
     }
 
     @Override
@@ -46,5 +65,4 @@ public abstract class DeviceAbstract implements DeviceBase {
         }
         return null;
     }
-
 }

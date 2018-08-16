@@ -4,7 +4,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.DrawableRes;
 
+import com.thelittlefireman.appkillermanager.R;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
@@ -72,7 +74,14 @@ public class Asus extends DeviceAbstract {
     }
 
     @Override
-    public int getHelpImagePowerSaving() {
-        return 0;
+    @DrawableRes
+    public int getHelpImageAutoStart(){
+        return R.drawable.asus_autostart;
+    }
+
+    @Override
+    @DrawableRes
+    public int getHelpImageNotification(){
+        return R.drawable.asus_notification;
     }
 }

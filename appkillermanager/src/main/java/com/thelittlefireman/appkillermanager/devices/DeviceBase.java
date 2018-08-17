@@ -17,6 +17,7 @@ public interface DeviceBase {
     Intent getActionAutoStart(Context context);
     // FIXME IS IT REALY NEEDED ? ==> REPLACE BY OTHER FUNCTION ?
     Intent getActionNotification(Context context);
+    // TODO ADD FOR MEMORY OPTIMIZATION : https://github.com/00aj99/CRomAppWhitelist
     String getExtraDebugInformations(Context context);
 
     /**

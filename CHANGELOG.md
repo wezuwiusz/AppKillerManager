@@ -8,6 +8,8 @@
 * ADD HTC compatibility
 * ADD ZTE compatibility
 * Fix exemple app
+* Add oneplus informations
+* Javadoc
 
 ### V2.0.0
 

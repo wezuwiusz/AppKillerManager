@@ -42,7 +42,11 @@ public class Samsung extends DeviceAbstract {
 
     @Override
     public boolean isActionPowerSavingAvailable(Context context) {
-        return true;
+        // SmartManager is not available before lollipop version
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -56,7 +60,7 @@ public class Samsung extends DeviceAbstract {
     }
 
     @Override
-    public boolean needToUseAlongwithActionDoseMode(){
+    public boolean needToUseAlongwithActionDoseMode() {
         return true;
     }
 
@@ -69,16 +73,19 @@ public class Samsung extends DeviceAbstract {
         }
         // reset
         intent = ActionsUtils.createIntent();
-        intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V3, SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V3_ACTIVITY));
+        intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V3,
+                                              SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V3_ACTIVITY));
         if (ActionsUtils.isIntentAvailable(context, intent)) {
             return intent;
         }
 
-        intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V2, SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V2_ACTIVITY));
+        intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V2,
+                                              SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V2_ACTIVITY));
         if (ActionsUtils.isIntentAvailable(context, intent)) {
             return intent;
         }
-        intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V1, SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V1_ACTIVITY));
+        intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V1,
+                                              SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V1_ACTIVITY));
         if (ActionsUtils.isIntentAvailable(context, intent)) {
             return intent;
         }
@@ -89,7 +96,8 @@ public class Samsung extends DeviceAbstract {
     @Override
     public Intent getActionAutoStart(Context context) {
         Intent intent = ActionsUtils.createIntent();
-        intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1, SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1_ACTIVITY));
+        intent.setComponent(new ComponentName(SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1,
+                                              SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1_ACTIVITY));
         return intent;
     }
 

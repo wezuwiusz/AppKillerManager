@@ -13,7 +13,7 @@ public class Samsung extends DeviceAbstract {
     // crash "com.samsung.android.lool","com.samsung.android.sm.ui.battery.AppSleepListActivity"
     private static final String SAMSUNG_SYSTEMMANAGER_POWERSAVING_ACTION = "com.samsung.android.sm.ACTION_BATTERY";
     private static final String SAMSUNG_SYSTEMMANAGER_NOTIFICATION_ACTION = "com.samsung.android.sm.ACTION_SM_NOTIFICATION_SETTING";
-    // ANDROID 7.0
+    // ANDROID 7.0/8.0
     private static final String SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V3 = "com.samsung.android.lool";
     private static final String SAMSUNG_SYSTEMMANAGER_POWERSAVING_PACKAGE_V3_ACTIVITY = "com.samsung.android.sm.ui.battery.BatteryActivity";
 

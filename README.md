@@ -44,7 +44,7 @@ Android Custom Roms made sometimes your apps unfunctional due to :
 
 ```groovy
 dependencies {
-    implementation 'com.thelittlefireman:AppKillerManager:2.1.0'
+    implementation 'com.thelittlefireman:AppKillerManager:2.1.1'
 }
 ```
 

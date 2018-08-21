@@ -1,3 +1,7 @@
+### V2.1.1
+
+* Fix #3 Galaxy Nexus: KillerManager.doActionPowerSaving() do not opens activity
+
 ### V2.1.0
 
 * Fix #2 Huawei PLK-L01, KillerManager.doActionAutoStart() not opens activity

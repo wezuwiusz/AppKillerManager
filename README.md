@@ -135,7 +135,10 @@ Notification permission Settings | |
 
 ## THANKS TO:
 Sylvain BORELLI
+
 [dirkam](https://github.com/dirkam)
+
+[henrichg](https://github.com/henrichg)
 
 ## SOURCES/HELPING TOOLS :
 [backgroundable-android](https://github.com/dirkam/backgroundable-android)

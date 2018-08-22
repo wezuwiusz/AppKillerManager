@@ -74,6 +74,16 @@ KillerManager.doActionAutoStart(MyContext);
 KillerManager.doActionNotification(MyContext);
 ```
 
+### Working phone & related views :
+
+Tab of which activity is open when you call functions
+
+FUNCTIONS | Huawei | Samsung (<5.0) | Samsung (>5.0) | Asus | Xiaomi | Letv | ZTE | Meizu | HTC | OnePlus
+--- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
+Power Saving Settings | <img src="IMG/huawei.png" width="108" height="192"> | N/A | <img src="IMG/samsung.png" width="432" height="192"> | NOT AVAILABLE : NO WHITELIST ! |
+Auto Start permission Settings | N/A | N/A | N/A | N/A |
+Notification permission Settings | N/A | N/A | N/A | N/A |
+
 ## Maintainers
 [thelittlefireman](https://github.com/thelittlefireman)
 
@@ -111,27 +121,17 @@ PHONE | ANDROID OS | CUSTOM ROM | AutoStart(EasyMode) | PowerSavingMode(EasyMode
 --- | --- | --- | --- | ---
 Huawei HONOR 4X | Android 4.4 | EMUI 3.0.1 | | OK (No)
 Huawei P9 LITE | Android 6.0 | EMUI 4.1 | | OK (No)
-Samsung | Android 7.0 | | N/A | OK
+Samsung S7 edge | Android 7.0 | | N/A | OK
+Samsung Xcover | Android 5.1 | | N/A | OK
+Samsung S4 mini | Android 4.4 | | N/A | N/A
 Xiaomi Mi mix | Android 6.0.1 | MIUI 8.0 | OK (No) | OK (Yes)
-
-//TODO TEST Huawei Android 6.0.1
 
 
 ANDROID OS | CUSTOM ROM | AutoStart EasyMode | AutoStart List | PowerSavingMode EasyMode | PowerSavingMode List
 --- | --- | --- | --- | --- | ---
 Android 4.4 | EMUI 3.0.1 | | | | ACTION huawei.intent.action.HSM_PROTECTED_APPS |
+Android 6.0.1 | EMUI 4.1 | | | | ACTION huawei.intent.action.HSM_PROTECTED_APPS |
 Android 6.0.1 | MIUI 8.0 | | ACTION miui.intent.action.OP_AUTO_START | INTENT "com.miui.powerkeeper", "com.miui.powerkeeper.ui.HiddenAppsConfigActivity"  extras : package_name,package_level | ACTION miui.intent.action.POWER_HIDE_MODE_APP_LIST
-
-#### Related View :
-
-Tab of which activity is open when you call functions
-
-FUNCTIONS | Huawei | Samsung | Asus
---- | --- |---
-Power Saving Settings | <img src="IMG/huawei.png" width="108" height="192"> | <img src="IMG/samsung.png" width="432" height="192"> | NOT AVAILABLE : NO WHITELIST ! |
-Auto Start permission Settings | | |
-Notification permission Settings | |
-
 
 ## THANKS TO:
 Sylvain BORELLI

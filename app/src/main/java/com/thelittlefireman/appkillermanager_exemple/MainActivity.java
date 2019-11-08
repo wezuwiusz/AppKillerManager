@@ -1,6 +1,7 @@
 package com.thelittlefireman.appkillermanager_exemple;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.View;
@@ -23,8 +24,11 @@ public class MainActivity extends Activity {
     @BindView(R.id.idByDialog)
     AppCompatCheckBox mAppCompatCheckBoxByDialog;
 
+    @BindView(R.id.goToInstructonsActivityButton)
+    Button goToInstructonsActivityButton;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         KillerManager.init(this);
         setContentView(R.layout.activity_main);
@@ -57,6 +61,15 @@ public class MainActivity extends Activity {
                 } else {
                     KillerManager.doActionNotification(MainActivity.this);
                 }
+            }
+        });
+
+        final MainActivity self = this;
+        goToInstructonsActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(self, InstructionsActivity.class);
+                self.startActivity(intent);
             }
         });
     }

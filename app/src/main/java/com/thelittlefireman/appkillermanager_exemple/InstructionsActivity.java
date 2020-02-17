@@ -41,7 +41,6 @@ public class InstructionsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        KillerManager.init(this);
         setContentView(R.layout.activity_instructions);
         ButterKnife.bind(this);
 
@@ -60,7 +59,7 @@ public class InstructionsActivity extends AppCompatActivity {
                             public void onSuccess(@NonNull ResponseWrapper responseWrapper) {
                                 Instructions instructions = new Instructions(responseWrapper);
                                 if ( ! instructions.isHasException()){
-                                    //LogUtils.i(TAG,instructions.getName() + instructions.getUser_solution());
+                                    LogUtils.i(TAG,instructions.getName() + instructions.getUser_solution());
                                     //Do your stuff here
                                 }
                             }
@@ -109,7 +108,14 @@ public class InstructionsActivity extends AppCompatActivity {
 
     public void startDialog(KillerManager.Actions actions) {
 
-        new DialogKillerManagerBuilder().setContext(this).setAction(actions).show();
+        try {
+            new DialogKillerManagerBuilder(this)
+                    .setAction(actions).show();
+        } catch (DialogKillerManagerBuilder.UnAvailableActionException e) {
+            e.printStackTrace();
+        } catch (DialogKillerManagerBuilder.UnSupportedDeviceException e) {
+            e.printStackTrace();
+        }
 
     }
 }

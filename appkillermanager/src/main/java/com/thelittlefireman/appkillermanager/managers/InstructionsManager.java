@@ -1,9 +1,8 @@
 package com.thelittlefireman.appkillermanager.managers;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.thelittlefireman.appkillermanager.utils.Instructions;
-import com.thelittlefireman.appkillermanager.utils.LogUtils;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

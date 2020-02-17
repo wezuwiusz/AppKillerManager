@@ -1,6 +1,6 @@
 package com.thelittlefireman.appkillermanager.managers;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.thelittlefireman.appkillermanager.utils.LogUtils;
 

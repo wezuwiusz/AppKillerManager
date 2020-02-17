@@ -4,6 +4,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatCheckBox;
+import androidx.constraintlayout.widget.Guideline;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,29 +22,29 @@ import com.thelittlefireman.appkillermanager.utils.LogUtils;
 
 import java.io.IOException;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class InstructionsActivity extends AppCompatActivity {
     private static String TAG = "InstructionsActivity";
 
-    @BindView(R.id.instructionsManagerButton)
     Button instructionsManagerButton;
-    @BindView(R.id.viewInstructionsButton)
     Button viewInstructionsButton;
-    @BindView(R.id.viewerLayout)
     LinearLayout vieweLayout;
-    @BindView(R.id.manufactureName)
     EditText manufactureName;
 
 
+    private Guideline guideline2;
+    private LinearLayout viewerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
-        ButterKnife.bind(this);
 
+        instructionsManagerButton = findViewById(R.id.instructionsManagerButton);
+        viewInstructionsButton = findViewById(R.id.viewInstructionsButton);
+        guideline2 = (Guideline) findViewById(R.id.guideline2);
+        viewerLayout = (LinearLayout) findViewById(R.id.viewerLayout);
+        manufactureName = findViewById(R.id.manufactureName);
         instructionsManagerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

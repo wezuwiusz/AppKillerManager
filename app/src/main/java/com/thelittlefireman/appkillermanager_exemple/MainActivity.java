@@ -12,34 +12,37 @@ import android.widget.TextView;
 import com.thelittlefireman.appkillermanager.managers.KillerManager;
 import com.thelittlefireman.appkillermanager.ui.DialogKillerManagerBuilder;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+//import butterknife.BindView;
+//import butterknife.ButterKnife;
 
 public class MainActivity extends Activity {
-    @BindView(R.id.device_name)
     TextView deviceName;
-    @BindView(R.id.is_device_supported)
     TextView isDeviceSupported;
-    @BindView(R.id.powerSavingManagerButton)
     Button powerSavingManagerButton;
-    @BindView(R.id.autoStartManagerButton)
     Button autoStartManagerButton;
-    @BindView(R.id.notificationManagerButton)
     Button notificationManagerButton;
-
-    @BindView(R.id.idByDialog)
     AppCompatCheckBox mAppCompatCheckBoxByDialog;
-
-    @BindView(R.id.goToInstructonsActivityButton)
     Button goToInstructonsActivityButton;
 
     KillerManager.Actions currentAction = null;
+
+
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+
+        deviceName = (TextView) findViewById(R.id.device_name);
+        isDeviceSupported = (TextView) findViewById(R.id.is_device_supported);
+        powerSavingManagerButton = findViewById(R.id.powerSavingManagerButton);
+        autoStartManagerButton = findViewById(R.id.autoStartManagerButton);
+        notificationManagerButton = findViewById(R.id.notificationManagerButton);
+        mAppCompatCheckBoxByDialog = (AppCompatCheckBox) findViewById(R.id.idByDialog);
+        goToInstructonsActivityButton = findViewById(R.id.goToInstructonsActivityButton);
+
+
+        //ButterKnife.bind(this);
         powerSavingManagerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -9,6 +9,8 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class KillerManagerUtils {
     private static final String DONT_SHOW_AGAIN = "DONT_SHOW_AGAIN";
+    private static final String IS_DONE         = "IS_DONE_";
+
     private static SharedPreferences getSharedPreferences(Context mContext){
         return mContext.getSharedPreferences("KillerManager", MODE_PRIVATE);
     }
@@ -56,6 +58,19 @@ public class KillerManagerUtils {
         }
         return false;
     }
+
+    public static void updateIsActionDone( Context context, KillerManager.Actions action, boolean b) {
+        final SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+        editor.putBoolean(IS_DONE+action.toString(), b);
+        editor.apply();
+    }
+
+
+    public static boolean isActionDone( Context context, KillerManager.Actions action) {
+        final SharedPreferences prfs = getSharedPreferences(context);
+        return prfs.getBoolean(IS_DONE+action.toString(), false);
+    }
+
 
 
 }

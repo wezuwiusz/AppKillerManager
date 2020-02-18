@@ -8,6 +8,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -81,6 +83,36 @@ public class InstructionsManager {
             manufacturerName = DevicesManager.getDevice().getDeviceManufacturer().name();
         }
         getManufacturerInstructions(manufacturerName);
+    }
+
+    public String getDKMAUrl() {
+        String url = "https://dontkillmyapp.com/";
+        String manufacturerName = null;
+        if (DevicesManager.getDevice() != null) {
+            manufacturerName = DevicesManager.getDevice().getDeviceManufacturer().name();
+        }
+
+        String[] array = new String[]{
+                "huawei",
+                "samsung",
+                "oneplus",
+                "xiaomi",
+                "meizu",
+                "asus",
+                "wiko",
+                "lenovo",
+                "oppo",
+                "nokia",
+                "sony",
+                "google",
+                "htc"
+        };
+
+        ArrayList<String> manufacturerList = new ArrayList<String>(Arrays.asList(array));
+        if (manufacturerName != null && manufacturerList.contains(manufacturerName.toLowerCase()) ){
+            url = url + manufacturerName.toLowerCase();
+        }
+        return url;
     }
 
     // Don't use this directly, It is written For testing multiple manufacturers in the same device,

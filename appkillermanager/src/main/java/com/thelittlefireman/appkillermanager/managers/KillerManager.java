@@ -62,6 +62,15 @@ public class KillerManager {
         return actionAvailable;
     }
 
+    public static boolean isAnyActionAvailable(Context context){
+        for (Actions action : Actions.values()){
+            if (isActionAvailable(context, action)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean isDeviceSupported(){
         return  DevicesManager.getDevice() != null;
     }

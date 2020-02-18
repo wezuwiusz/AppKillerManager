@@ -26,6 +26,15 @@ public class KillerManagerUtils {
         editor.apply();
     }
 
+
+    public static void setAllDontShowAgain(Context mContext, boolean enable){
+        final SharedPreferences.Editor editor = getSharedPreferences(mContext).edit();
+        for ( KillerManager.Actions action : KillerManager.Actions.values()){
+            editor.putBoolean(DONT_SHOW_AGAIN+action.toString(),enable);
+        }
+        editor.apply();
+    }
+
     public static boolean isDontShowAgain(Context mContext, KillerManager.Actions action){
         return getSharedPreferences(mContext).getBoolean(DONT_SHOW_AGAIN+action.toString(),false);
     }

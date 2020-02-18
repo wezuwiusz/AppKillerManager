@@ -29,4 +29,24 @@ public class KillerManagerUtils {
     public static boolean isDontShowAgain(Context mContext, KillerManager.Actions action){
         return getSharedPreferences(mContext).getBoolean(DONT_SHOW_AGAIN+action.toString(),false);
     }
+
+    public static boolean isAllDontShowAgain(Context context){
+        for ( KillerManager.Actions action : KillerManager.Actions.values()){
+            if ( ! isDontShowAgain(context, action)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isAnyDontShowAgain(Context context){
+        for ( KillerManager.Actions action : KillerManager.Actions.values()){
+            if ( isDontShowAgain(context, action)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }

@@ -98,8 +98,11 @@ public class MainActivity extends Activity {
             }
         });
 
-        deviceName.setText( "Device name: " .concat(KillerManager.getDevice().getDeviceManufacturer().toString()) );
-        isDeviceSupported.setText( "Is supported: ".concat(String.valueOf( KillerManager.isDeviceSupported()) ) );
+
+        if (KillerManager.isDeviceSupported()) {
+            isDeviceSupported.setText( "Is supported: true");
+            deviceName.setText( "Device name: " .concat(KillerManager.getDevice().getDeviceManufacturer().toString()) );
+        }
 
     }
 

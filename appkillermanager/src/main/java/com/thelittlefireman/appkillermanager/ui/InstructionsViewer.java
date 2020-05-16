@@ -2,6 +2,7 @@ package com.thelittlefireman.appkillermanager.ui;
 
 import android.app.Activity;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
@@ -12,8 +13,6 @@ import com.thelittlefireman.appkillermanager.managers.InstructionsManager;
 import com.thelittlefireman.appkillermanager.managers.ResponseWrapper;
 import com.thelittlefireman.appkillermanager.utils.Encoding;
 import com.thelittlefireman.appkillermanager.utils.Instructions;
-
-import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 

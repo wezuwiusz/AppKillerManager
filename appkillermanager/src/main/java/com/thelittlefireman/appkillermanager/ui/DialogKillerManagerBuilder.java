@@ -17,8 +17,6 @@ import com.thelittlefireman.appkillermanager.managers.KillerManager;
 import com.thelittlefireman.appkillermanager.utils.KillerManagerUtils;
 import com.thelittlefireman.appkillermanager.utils.LogUtils;
 
-import org.jetbrains.annotations.NotNull;
-
 public class DialogKillerManagerBuilder {
     private Context mContext;
     
@@ -157,7 +155,7 @@ public class DialogKillerManagerBuilder {
                 .customView(R.layout.md_dialog_custom_view, false)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onClick(@NotNull MaterialDialog dialog, @NotNull DialogAction which) {
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         try {
                             if (mAction == KillerManager.Actions.ACTION_AUTOSTART){
                                 if (mContext != null) {

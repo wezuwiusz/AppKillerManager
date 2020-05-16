@@ -1,11 +1,9 @@
 package com.thelittlefireman.appkillermanager.managers;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.thelittlefireman.appkillermanager.utils.Instructions;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,7 +37,7 @@ public class InstructionsManager {
     }
 
     public interface OnFailed {
-        void onFailed( @Nullable CallWrapper callWrapper, @Nullable ResponseWrapper responseWrapper, @Nullable IOException e);
+        void onFailed(@Nullable CallWrapper callWrapper, @Nullable ResponseWrapper responseWrapper, @Nullable IOException e);
     }
 
     public InstructionsManager(OnSuccess onSuccess, OnFailed onFailed) {
@@ -130,7 +128,7 @@ public class InstructionsManager {
 
                 .enqueue(new Callback() {
                     @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
 
                         onFailedCall(onFailed, call, null, e);
                     }

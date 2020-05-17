@@ -18,7 +18,7 @@ class Vivo : Device {
     override val isThatRom: Boolean
         get() = false
 
-    override val deviceManufacturer: Manufacturer
+    override val manufacturer: Manufacturer
         get() = Manufacturer.VIVO
 
     /*

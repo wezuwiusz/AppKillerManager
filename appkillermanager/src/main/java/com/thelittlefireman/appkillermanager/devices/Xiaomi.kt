@@ -28,14 +28,14 @@ class Xiaomi : Device {
         private const val MIUI_ACTION_POWER_SAVE_EXTRA_LABEL = "package_label"
     }
 
-    override val deviceManufacturer: Manufacturer
+    override val manufacturer: Manufacturer
         get() = Manufacturer.XIAOMI
 
     override val isThatRom: Boolean
         get() {
-            return Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-                    Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-                    Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
+            return Build.BRAND.equals(manufacturer.toString(), ignoreCase = true) ||
+                    Build.MANUFACTURER.equals(manufacturer.toString(), ignoreCase = true) ||
+                    Build.FINGERPRINT.contains(manufacturer.toString(), ignoreCase = true)
         }
 
     override fun isActionPowerSavingAvailable(context: Context) = true

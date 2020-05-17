@@ -34,19 +34,15 @@ class Samsung : Device {
         get() = R.drawable.samsung
 
     override val isThatRom: Boolean
-        get() = Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-                Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-                Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
+        get() = Build.BRAND.equals(manufacturer.toString(), ignoreCase = true) ||
+                Build.MANUFACTURER.equals(manufacturer.toString(), ignoreCase = true) ||
+                Build.FINGERPRINT.contains(manufacturer.toString(), ignoreCase = true)
 
-    override val deviceManufacturer: Manufacturer
+    override val manufacturer: Manufacturer
         get() = Manufacturer.SAMSUNG
 
     // SmartManager is not available before lollipop version
     override fun isActionPowerSavingAvailable(context: Context) = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-
-    override fun isActionAutoStartAvailable(context: Context) = false
-
-    override fun isActionNotificationAvailable(context: Context) = false
 
     override fun needToUseAlongWithActionDoseMode() = true
 

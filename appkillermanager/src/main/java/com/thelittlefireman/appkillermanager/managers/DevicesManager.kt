@@ -20,16 +20,16 @@ object DevicesManager {
 
     @JvmStatic
     fun getDevice(): Device? {
-        val currentDeviceBase = devices.filter { it.isThatRom }
+        val currentDevice = devices.filter { it.isThatRom }
 
-        if (currentDeviceBase.size > 1) {
-            val logDevices = currentDeviceBase.joinToString(", ") {
-                it.deviceManufacturer.toString()
+        if (currentDevice.size > 1) {
+            val logDevices = currentDevice.joinToString(", ") {
+                it.manufacturer.toString()
             }
 
             Timber.w("More than one corresponding device: %s. Debug info: %s", logDevices, SystemUtils.getDefaultDebugInformation())
         }
 
-        return currentDeviceBase.firstOrNull()
+        return currentDevice.firstOrNull()
     }
 }

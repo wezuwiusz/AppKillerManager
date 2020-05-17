@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatCheckBox;
 
 import com.thelittlefireman.appkillermanager.managers.KillerManager;
+import com.thelittlefireman.appkillermanager.managers.NoActionFoundException;
 import com.thelittlefireman.appkillermanager.ui.DialogKillerManagerBuilder;
 
 import timber.log.Timber;
@@ -21,7 +22,7 @@ public class MainActivity extends Activity {
     Button notificationManagerButton;
     AppCompatCheckBox mAppCompatCheckBoxByDialog;
 
-    KillerManager.Actions currentAction = null;
+    KillerManager.Action currentAction = null;
 
 
 
@@ -44,13 +45,13 @@ public class MainActivity extends Activity {
         powerSavingManagerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentAction = KillerManager.Actions.ACTION_POWERSAVING;
+                currentAction = KillerManager.Action.ACTION_POWER_SAVING;
                 if (mAppCompatCheckBoxByDialog.isChecked()) {
                     startDialog(currentAction);
                 } else {
                     try {
                         KillerManager.doActionPowerSaving(MainActivity.this);
-                    } catch (KillerManager.NoActionFoundException e) {
+                    } catch (NoActionFoundException e) {
                         Timber.e(e);
                     }
                 }
@@ -59,13 +60,13 @@ public class MainActivity extends Activity {
         autoStartManagerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentAction = KillerManager.Actions.ACTION_AUTOSTART;
+                currentAction = KillerManager.Action.ACTION_AUTO_START;
                 if (mAppCompatCheckBoxByDialog.isChecked()) {
                     startDialog(currentAction);
                 } else {
                     try {
                         KillerManager.doActionAutoStart(MainActivity.this);
-                    } catch (KillerManager.NoActionFoundException e) {
+                    } catch (NoActionFoundException e) {
                         Timber.e(e);
                     }
                 }
@@ -74,13 +75,13 @@ public class MainActivity extends Activity {
         notificationManagerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentAction = KillerManager.Actions.ACTION_NOTIFICATIONS;
+                currentAction = KillerManager.Action.ACTION_NOTIFICATIONS;
                 if (mAppCompatCheckBoxByDialog.isChecked()) {
                     startDialog(currentAction);
                 } else {
                     try {
                         KillerManager.doActionNotification(MainActivity.this);
-                    } catch (KillerManager.NoActionFoundException e) {
+                    } catch (NoActionFoundException e) {
                         Timber.e(e);
                     }
                 }
@@ -89,15 +90,15 @@ public class MainActivity extends Activity {
 
         if (KillerManager.isDeviceSupported()) {
             isDeviceSupported.setText("Is supported: true");
-            deviceName.setText("Device name: ".concat(KillerManager.getDevice().getDeviceManufacturer().toString()));
+            deviceName.setText("Device name: ".concat(KillerManager.getDevice().getManufacturer().toString()));
         }
 
     }
 
-    public void startDialog(KillerManager.Actions actions) {
+    public void startDialog(KillerManager.Action action) {
 
         try {
-            new DialogKillerManagerBuilder(this).setAction(actions).show();
+            new DialogKillerManagerBuilder(this).setAction(action).show();
 
         } catch (DialogKillerManagerBuilder.UnAvailableActionException e) {
             Timber.e(e);
@@ -111,17 +112,15 @@ public class MainActivity extends Activity {
     public void onResume() {
 
         super.onResume();
-        if (currentAction == KillerManager.Actions.ACTION_AUTOSTART) {
+        if (currentAction == KillerManager.Action.ACTION_AUTO_START) {
             // may show dalog to ask the user about the result of action
             // and store the result in preference
-        } else if (currentAction == KillerManager.Actions.ACTION_NOTIFICATIONS) {
+        } else if (currentAction == KillerManager.Action.ACTION_NOTIFICATIONS) {
 
-        } else if (currentAction == KillerManager.Actions.ACTION_POWERSAVING) {
+        } else if (currentAction == KillerManager.Action.ACTION_POWER_SAVING) {
 
         }
         // dont forget to nullify current action
         currentAction = null;
     }
-
-
 }

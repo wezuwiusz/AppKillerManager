@@ -15,6 +15,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.thelittlefireman.appkillermanager.R;
 import com.thelittlefireman.appkillermanager.managers.KillerManager;
+import com.thelittlefireman.appkillermanager.managers.NoActionFoundException;
 import com.thelittlefireman.appkillermanager.utils.KillerManagerUtils;
 
 import timber.log.Timber;
@@ -30,7 +31,7 @@ public class DialogKillerManagerBuilder {
     private OnNoActionFoundException onNoActionFoundException;
     private UnAvailableActionException unAvailableActionException;
     private UnSupportedDeviceException onUnSupportedDevice;
-    private KillerManager.Actions mAction;
+    private KillerManager.Action mAction;
     private boolean enableDontShowAgain = true;
     private String titleMessage;
     private String contentMessage;
@@ -56,7 +57,7 @@ public class DialogKillerManagerBuilder {
         mContext = context;
     }
 
-    public DialogKillerManagerBuilder setAction(KillerManager.Actions action) {
+    public DialogKillerManagerBuilder setAction(KillerManager.Action action) {
         mAction = action;
         return this;
     }
@@ -129,20 +130,20 @@ public class DialogKillerManagerBuilder {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         try {
-                            if (mAction == KillerManager.Actions.ACTION_AUTOSTART) {
+                            if (mAction == KillerManager.Action.ACTION_AUTO_START) {
                                 if (mContext != null) {
                                     KillerManager.doActionAutoStart(mContext);
                                 }
-                            } else if (mAction == KillerManager.Actions.ACTION_NOTIFICATIONS) {
+                            } else if (mAction == KillerManager.Action.ACTION_NOTIFICATIONS) {
                                 if (mContext != null) {
                                     KillerManager.doActionNotification(mContext);
                                 }
-                            } else if (mAction == KillerManager.Actions.ACTION_POWERSAVING) {
+                            } else if (mAction == KillerManager.Action.ACTION_POWER_SAVING) {
                                 if (mContext != null) {
                                     KillerManager.doActionPowerSaving(mContext);
                                 }
                             }
-                        } catch (KillerManager.NoActionFoundException e) {
+                        } catch (NoActionFoundException e) {
                             if (onNoActionFoundException != null) {
                                 onNoActionFoundException.onNoActionFound(e);
                             } else {
@@ -166,7 +167,7 @@ public class DialogKillerManagerBuilder {
             builder.title(titleMessage);
         } else {
             if (mContext != null) {
-                builder.title(mContext.getString(R.string.dialog_title_notification, KillerManager.getDevice().getDeviceManufacturer().toString()));
+                builder.title(mContext.getString(R.string.dialog_title_notification, KillerManager.getDevice().getManufacturer().toString()));
             }
         }
 
@@ -256,10 +257,10 @@ public class DialogKillerManagerBuilder {
         //TODO add other specific images
         int helpImageRes = 0;
         switch (mAction) {
-            case ACTION_AUTOSTART:
+            case ACTION_AUTO_START:
                 helpImageRes = KillerManager.getDevice().getHelpImageAutoStart();
                 break;
-            case ACTION_POWERSAVING:
+            case ACTION_POWER_SAVING:
                 helpImageRes = KillerManager.getDevice().getHelpImagePowerSaving();
                 break;
             case ACTION_NOTIFICATIONS:
@@ -281,7 +282,7 @@ public class DialogKillerManagerBuilder {
     }
 
     public interface OnNoActionFoundException {
-        void onNoActionFound(KillerManager.NoActionFoundException e);
+        void onNoActionFound(NoActionFoundException e);
 
         void onNoActionFound();
     }

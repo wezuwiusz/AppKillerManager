@@ -22,7 +22,7 @@ public class KillerManagerUtils {
      * @param action
      * @param enable
      */
-    public static void setDontShowAgain(Context mContext, KillerManager.Actions action, boolean enable) {
+    public static void setDontShowAgain(Context mContext, KillerManager.Action action, boolean enable) {
         final SharedPreferences.Editor editor = getSharedPreferences(mContext).edit();
         editor.putBoolean(DONT_SHOW_AGAIN + action.toString(), enable);
         editor.apply();
@@ -31,18 +31,18 @@ public class KillerManagerUtils {
 
     public static void setAllDontShowAgain(Context mContext, boolean enable) {
         final SharedPreferences.Editor editor = getSharedPreferences(mContext).edit();
-        for (KillerManager.Actions action : KillerManager.Actions.values()) {
+        for (KillerManager.Action action : KillerManager.Action.values()) {
             editor.putBoolean(DONT_SHOW_AGAIN + action.toString(), enable);
         }
         editor.apply();
     }
 
-    public static boolean isDontShowAgain(Context mContext, KillerManager.Actions action) {
+    public static boolean isDontShowAgain(Context mContext, KillerManager.Action action) {
         return getSharedPreferences(mContext).getBoolean(DONT_SHOW_AGAIN + action.toString(), false);
     }
 
     public static boolean isAllDontShowAgain(Context context) {
-        for (KillerManager.Actions action : KillerManager.Actions.values()) {
+        for (KillerManager.Action action : KillerManager.Action.values()) {
             if (!isDontShowAgain(context, action)) {
                 return false;
             }
@@ -51,7 +51,7 @@ public class KillerManagerUtils {
     }
 
     public static boolean isAnyDontShowAgain(Context context) {
-        for (KillerManager.Actions action : KillerManager.Actions.values()) {
+        for (KillerManager.Action action : KillerManager.Action.values()) {
             if (isDontShowAgain(context, action)) {
                 return true;
             }
@@ -59,14 +59,14 @@ public class KillerManagerUtils {
         return false;
     }
 
-    public static void updateIsActionDone(Context context, KillerManager.Actions action, boolean b) {
+    public static void updateIsActionDone(Context context, KillerManager.Action action, boolean b) {
         final SharedPreferences.Editor editor = getSharedPreferences(context).edit();
         editor.putBoolean(IS_DONE + action.toString(), b);
         editor.apply();
     }
 
 
-    public static boolean isActionDone(Context context, KillerManager.Actions action) {
+    public static boolean isActionDone(Context context, KillerManager.Action action) {
         final SharedPreferences prfs = getSharedPreferences(context);
         return prfs.getBoolean(IS_DONE + action.toString(), false);
     }

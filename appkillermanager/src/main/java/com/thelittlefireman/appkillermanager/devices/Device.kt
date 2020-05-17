@@ -9,7 +9,7 @@ interface Device {
 
     val isThatRom: Boolean
 
-    val deviceManufacturer: Manufacturer
+    val manufacturer: Manufacturer
 
     @get:DrawableRes
     val helpImagePowerSaving: Int

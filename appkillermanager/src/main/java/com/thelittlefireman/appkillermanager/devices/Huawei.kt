@@ -33,11 +33,11 @@ class Huawei : Device {
                 "EmotionUI_3.0.1".equals(getEmuiRomName(), ignoreCase = true) ||
                 "EmotionUI_3.1".equals(getEmuiRomName(), ignoreCase = true) ||
                 "EmotionUI_4.1".equals(getEmuiRomName(), ignoreCase = true) ||
-                Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-                Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-                Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
+                Build.BRAND.equals(manufacturer.toString(), ignoreCase = true) ||
+                Build.MANUFACTURER.equals(manufacturer.toString(), ignoreCase = true) ||
+                Build.FINGERPRINT.contains(manufacturer.toString(), ignoreCase = true)
 
-    override val deviceManufacturer: Manufacturer
+    override val manufacturer: Manufacturer
         get() = Manufacturer.HUAWEI
 
     override val helpImagePowerSaving: Int

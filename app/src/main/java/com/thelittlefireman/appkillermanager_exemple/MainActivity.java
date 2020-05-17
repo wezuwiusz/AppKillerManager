@@ -24,9 +24,9 @@ public class MainActivity extends Activity {
     Button autoStartManagerButton;
     Button notificationManagerButton;
     AppCompatCheckBox mAppCompatCheckBoxByDialog;
-    Button goToInstructonsActivityButton;
 
     KillerManager.Actions currentAction = null;
+
 
 
     @Override
@@ -42,7 +42,6 @@ public class MainActivity extends Activity {
         autoStartManagerButton = findViewById(R.id.autoStartManagerButton);
         notificationManagerButton = findViewById(R.id.notificationManagerButton);
         mAppCompatCheckBoxByDialog = (AppCompatCheckBox) findViewById(R.id.idByDialog);
-        goToInstructonsActivityButton = findViewById(R.id.goToInstructonsActivityButton);
 
 
         //ButterKnife.bind(this);
@@ -56,7 +55,7 @@ public class MainActivity extends Activity {
                     try {
                         KillerManager.doActionPowerSaving(MainActivity.this);
                     } catch (KillerManager.NoActionFoundException e) {
-                        e.printStackTrace();
+                        Timber.e(e);
                     }
                 }
             }
@@ -71,7 +70,7 @@ public class MainActivity extends Activity {
                     try {
                         KillerManager.doActionAutoStart(MainActivity.this);
                     } catch (KillerManager.NoActionFoundException e) {
-                        e.printStackTrace();
+                        Timber.e(e);
                     }
                 }
             }
@@ -86,21 +85,11 @@ public class MainActivity extends Activity {
                     try {
                         KillerManager.doActionNotification(MainActivity.this);
                     } catch (KillerManager.NoActionFoundException e) {
-                        e.printStackTrace();
+                        Timber.e(e);
                     }
                 }
             }
         });
-
-        final MainActivity self = this;
-        goToInstructonsActivityButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(self, InstructionsActivity.class);
-                self.startActivity(intent);
-            }
-        });
-
 
         if (KillerManager.isDeviceSupported()) {
             isDeviceSupported.setText("Is supported: true");
@@ -115,9 +104,9 @@ public class MainActivity extends Activity {
             new DialogKillerManagerBuilder(this).setAction(actions).show();
 
         } catch (DialogKillerManagerBuilder.UnAvailableActionException e) {
-            e.printStackTrace();
+            Timber.e(e);
         } catch (DialogKillerManagerBuilder.UnSupportedDeviceException e) {
-            e.printStackTrace();
+            Timber.e(e);
         }
 
     }

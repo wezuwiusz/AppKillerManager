@@ -148,7 +148,7 @@ public class DialogKillerManagerBuilder {
                             } else {
                                 dialog.dismiss();
                             }
-                            e.printStackTrace();
+                            Timber.e(e);
                         }
                     }
                 })

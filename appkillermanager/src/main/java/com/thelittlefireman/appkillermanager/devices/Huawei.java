@@ -12,6 +12,8 @@ import com.thelittlefireman.appkillermanager.R;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
+import timber.log.Timber;
+
 import static com.thelittlefireman.appkillermanager.utils.SystemUtils.getEmuiRomName;
 
 public class Huawei extends DeviceAbstract {
@@ -69,7 +71,7 @@ public class Huawei extends DeviceAbstract {
                 thirdPartFirtDigit = Integer.valueOf(versionTmp[2].substring(0, 1));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Timber.e(e);
         }
         if (versionNum >= 330) {
             if (versionNum >= 500) {
@@ -163,7 +165,7 @@ public class Huawei extends DeviceAbstract {
             info = manager.getPackageInfo(HUAWEI_SYSTEMMANAGER_PACKAGE_NAME, 0);
             versionStr = info.versionName;
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            Timber.e(e);
         }
 
         stringBuilder.append("HuaweiSystemManagerPackageVersion:").append(versionStr);

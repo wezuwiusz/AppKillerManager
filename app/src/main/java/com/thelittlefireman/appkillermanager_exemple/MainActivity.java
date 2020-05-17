@@ -1,5 +1,6 @@
 package com.thelittlefireman.appkillermanager_exemple;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,9 +13,13 @@ import com.thelittlefireman.appkillermanager.AppKillerManager;
 import com.thelittlefireman.appkillermanager.exceptions.NoActionFoundException;
 import com.thelittlefireman.appkillermanager.ui.DialogKillerManagerBuilder;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import timber.log.Timber;
 
 public class MainActivity extends Activity {
+    TextView logs;
     TextView deviceName;
     TextView isDeviceSupported;
     Button powerSavingManagerButton;
@@ -25,20 +30,27 @@ public class MainActivity extends Activity {
     AppKillerManager.Action currentAction = null;
 
 
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        logs = findViewById(R.id.logs);
         Timber.plant(new Timber.DebugTree());
+        Timber.plant(new Timber.Tree() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            protected void log(int priority, @Nullable String tag, @NotNull String message, @Nullable Throwable t) {
+                logs.setText(tag + ": " + message + "\n" + logs.getText());
+            }
+        });
 
-        deviceName = (TextView) findViewById(R.id.device_name);
-        isDeviceSupported = (TextView) findViewById(R.id.is_device_supported);
+        deviceName = findViewById(R.id.device_name);
+        isDeviceSupported = findViewById(R.id.is_device_supported);
         powerSavingManagerButton = findViewById(R.id.powerSavingManagerButton);
         autoStartManagerButton = findViewById(R.id.autoStartManagerButton);
         notificationManagerButton = findViewById(R.id.notificationManagerButton);
-        mAppCompatCheckBoxByDialog = (AppCompatCheckBox) findViewById(R.id.idByDialog);
+        mAppCompatCheckBoxByDialog = findViewById(R.id.idByDialog);
 
 
         //ButterKnife.bind(this);

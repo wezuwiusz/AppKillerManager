@@ -7,28 +7,33 @@ import android.net.Uri
 import android.os.Build
 import android.os.PowerManager
 import android.provider.Settings
-import androidx.annotation.DrawableRes
 import com.thelittlefireman.appkillermanager.R
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils
 import com.thelittlefireman.appkillermanager.utils.Manufacturer
 import timber.log.Timber
 
 // TODO TESTS
-class Asus : Device() {
+class Asus : Device {
 
     companion object {
-        private const val ASUS_PACAKGE_MOBILE_MANAGER = "com.asus.mobilemanager"
+        private const val ASUS_PACKAGE_MOBILE_MANAGER = "com.asus.mobilemanager"
         private const val ASUS_ACTIVITY_MOBILE_MANAGER_FUNCTION_ACTIVITY = "com.asus.mobilemanager.entry.FunctionActivity"
         private const val ASUS_ACTIVITY_MOBILE_MANAGER_FUNCTION_AUTO_START_ACTIVITY = "com.asus.mobilemanager.autostart.AutoStartActivity"
     }
 
-    override fun isThatRom(): Boolean {
-        return Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
+    override val isThatRom: Boolean
+        get() = Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
                 Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
                 Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
-    }
 
-    override fun getDeviceManufacturer() = Manufacturer.ASUS
+    override val deviceManufacturer: Manufacturer
+        get() = Manufacturer.ASUS
+
+    override val helpImageAutoStart: Int
+        get() = R.drawable.asus_autostart
+
+    override val helpImageNotification: Int
+        get() = R.drawable.asus_notification
 
     override fun isActionPowerSavingAvailable(context: Context): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -63,20 +68,12 @@ class Asus : Device() {
 
     override fun getActionAutoStart(context: Context): Intent = ActionsUtils.createIntent().apply {
         putExtra("showNotice", true)
-        component = ComponentName(ASUS_PACAKGE_MOBILE_MANAGER, ASUS_ACTIVITY_MOBILE_MANAGER_FUNCTION_AUTO_START_ACTIVITY)
+        component = ComponentName(ASUS_PACKAGE_MOBILE_MANAGER, ASUS_ACTIVITY_MOBILE_MANAGER_FUNCTION_AUTO_START_ACTIVITY)
     }
 
     // Need to click on notifications items
     override fun getActionNotification(context: Context): Intent = ActionsUtils.createIntent().apply {
         putExtra("showNotice", true)
-        component = ComponentName(ASUS_PACAKGE_MOBILE_MANAGER, ASUS_ACTIVITY_MOBILE_MANAGER_FUNCTION_ACTIVITY)
+        component = ComponentName(ASUS_PACKAGE_MOBILE_MANAGER, ASUS_ACTIVITY_MOBILE_MANAGER_FUNCTION_ACTIVITY)
     }
-
-    override fun getExtraDebugInformations(context: Context) = null
-
-    @DrawableRes
-    override fun getHelpImageAutoStart() = R.drawable.asus_autostart
-
-    @DrawableRes
-    override fun getHelpImageNotification() = R.drawable.asus_notification
 }

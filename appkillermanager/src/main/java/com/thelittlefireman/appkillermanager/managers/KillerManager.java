@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import androidx.annotation.Nullable;
 
-import com.thelittlefireman.appkillermanager.devices.DeviceBase;
+import com.thelittlefireman.appkillermanager.devices.Device;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.SystemUtils;
 
@@ -13,12 +13,12 @@ import timber.log.Timber;
 
 public class KillerManager {
 
-    public static DeviceBase getDevice() {
+    public static Device getDevice() {
         return DevicesManager.getDevice();
     }
 
     public static boolean isActionAvailable(Context context, Actions actions) {
-        DeviceBase sDevice = DevicesManager.getDevice();
+        Device sDevice = DevicesManager.getDevice();
         boolean actionAvailable = false;
         if (sDevice != null) {
             switch (actions) {
@@ -60,7 +60,7 @@ public class KillerManager {
      */
     @Nullable
     private static Intent getIntentFromAction(Context context, Actions actions) {
-        DeviceBase sDevice = DevicesManager.getDevice();
+        Device sDevice = DevicesManager.getDevice();
         if (sDevice != null) {
             Intent intent = null;
             switch (actions) {
@@ -82,7 +82,7 @@ public class KillerManager {
                         ActionsUtils.getExtrasDebugInformations(intent) + "Actions \n" +
                         actions.name() + "SYSTEM UTILS \n" +
                         SystemUtils.getDefaultDebugInformation() + "DEVICE \n" +
-                        sDevice.getExtraDebugInformations(context));
+                        sDevice.getExtraDebugInfo(context));
                 // Intent not found action failed
                 return null;
             }

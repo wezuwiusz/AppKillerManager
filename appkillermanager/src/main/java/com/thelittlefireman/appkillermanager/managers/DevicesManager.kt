@@ -19,7 +19,7 @@ object DevicesManager {
     )
 
     @JvmStatic
-    fun getDevice(): DeviceBase? {
+    fun getDevice(): Device? {
         val currentDeviceBase = devices.filter { it.isThatRom }
 
         if (currentDeviceBase.size > 1) {

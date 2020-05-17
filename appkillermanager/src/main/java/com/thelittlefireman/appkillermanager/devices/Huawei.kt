@@ -11,7 +11,7 @@ import com.thelittlefireman.appkillermanager.utils.Manufacturer
 import com.thelittlefireman.appkillermanager.utils.SystemUtils.getEmuiRomName
 import timber.log.Timber
 
-class Huawei : Device() {
+class Huawei : Device {
 
     companion object {
         // TODO NOT SUR IT WORKS ON EMUI 5
@@ -25,23 +25,25 @@ class Huawei : Device() {
         private const val HUAWEI_SYSTEM_MANAGER_AUTO_START_V3 = "com.huawei.permissionmanager.ui.MainActivity"
     }
 
-    //com.huawei.systemmanager/com.huawei.notificationmanager.ui.NotificationManagmentActivity // huawei.intent.action.NOTIFICATIONMANAGER
-    override fun isThatRom() = "EmotionUI_2.3".equals(getEmuiRomName(), ignoreCase = true) ||
-            Build.DISPLAY.contains("emui2.3", ignoreCase = true) ||
-            "EMUI 2.3".equals(getEmuiRomName(), ignoreCase = true) ||
-            "EmotionUI_3.0".equals(getEmuiRomName(), ignoreCase = true) ||
-            "EmotionUI_3.0.1".equals(getEmuiRomName(), ignoreCase = true) ||
-            "EmotionUI_3.1".equals(getEmuiRomName(), ignoreCase = true) ||
-            "EmotionUI_4.1".equals(getEmuiRomName(), ignoreCase = true) ||
-            Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-            Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-            Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
+    override val isThatRom: Boolean
+        get() = "EmotionUI_2.3".equals(getEmuiRomName(), ignoreCase = true) ||
+                Build.DISPLAY.contains("emui2.3", ignoreCase = true) ||
+                "EMUI 2.3".equals(getEmuiRomName(), ignoreCase = true) ||
+                "EmotionUI_3.0".equals(getEmuiRomName(), ignoreCase = true) ||
+                "EmotionUI_3.0.1".equals(getEmuiRomName(), ignoreCase = true) ||
+                "EmotionUI_3.1".equals(getEmuiRomName(), ignoreCase = true) ||
+                "EmotionUI_4.1".equals(getEmuiRomName(), ignoreCase = true) ||
+                Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
+                Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
+                Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
 
-    override fun getDeviceManufacturer() = Manufacturer.HUAWEI
+    override val deviceManufacturer: Manufacturer
+        get() = Manufacturer.HUAWEI
+
+    override val helpImagePowerSaving: Int
+        get() = R.drawable.huawei_powersaving
 
     override fun isActionPowerSavingAvailable(context: Context) = true
-
-    override fun isActionAutoStartAvailable(context: Context) = false
 
     override fun isActionNotificationAvailable(context: Context) = true
 
@@ -53,9 +55,8 @@ class Huawei : Device() {
         action = HUAWEI_ACTION_NOTIFICATION
     }
 
-    override fun getActionAutoStart(context: Context): Intent? {
-        // AUTOSTART not used in huawei
-        return null
+    // AUTOSTART not used in huawei
+//    override fun getActionAutoStart(context: Context): Intent? {
         /*Intent intent = ActionsUtils.createIntent();
         intent.setAction(HUAWEI_ACTION_AUTOSTART);
         if (ActionsUtils.isIntentAvailable(context, intent)) {
@@ -65,7 +66,7 @@ class Huawei : Device() {
             intent.setComponent(getComponentNameAutoStart(context));
             return intent;
         }*/
-    }
+//    }
 
 //    private fun getComponentNameAutoStart(context: Context): ComponentName {
 //        val mVersion = getHuaweiSystemManagerVersion(context)
@@ -78,7 +79,7 @@ class Huawei : Device() {
 //        }
 //    }
 
-    override fun getExtraDebugInformations(context: Context): String {
+    override fun getExtraDebugInfo(context: Context): String {
         val stringBuilder = StringBuilder()
         stringBuilder.append("ROM_VERSION").append(getEmuiRomName())
         stringBuilder.append("HuaweiSystemManagerVersionMethod:").append(getHuaweiSystemManagerVersion(context))
@@ -140,6 +141,4 @@ class Huawei : Device() {
         }
         return version
     }
-
-    override fun getHelpImagePowerSaving() = R.drawable.huawei_powersaving
 }

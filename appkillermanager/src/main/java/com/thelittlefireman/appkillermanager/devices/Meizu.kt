@@ -3,14 +3,13 @@ package com.thelittlefireman.appkillermanager.devices
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils
 import com.thelittlefireman.appkillermanager.utils.Manufacturer
 import timber.log.Timber
 
-class Meizu : Device() {
+class Meizu : Device {
 
     companion object {
         private const val MEIZU_DEFAULT_ACTION_APPSPEC = "com.meizu.safe.security.SHOW_APPSEC"
@@ -34,11 +33,13 @@ class Meizu : Device() {
         //Meizu security center : 4.1.10;
     }
 
-    override fun isThatRom() = Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-            Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-            Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
+    override val isThatRom: Boolean
+        get() = Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
+                Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
+                Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
 
-    override fun getDeviceManufacturer() = Manufacturer.MEIZU
+    override val deviceManufacturer: Manufacturer
+        get() = Manufacturer.MEIZU
 
     override fun isActionPowerSavingAvailable(context: Context) = true
 
@@ -80,7 +81,7 @@ class Meizu : Device() {
         }
     }
 
-    override fun getExtraDebugInformations(context: Context): String {
+    override fun getExtraDebugInfo(context: Context): String {
         val stringBuilder = StringBuilder()
         stringBuilder.append("MeizuSecVersionMethod:").append(getMeizuSecVersion(context))
 

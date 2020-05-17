@@ -1,9 +1,8 @@
 package com.thelittlefireman.appkillermanager.devices
 
-import android.content.Context
 import com.thelittlefireman.appkillermanager.utils.Manufacturer
 
-class Vivo : Device() {
+class Vivo : Device {
 
     // TODO multiple intent in a same actions !
     // Starting: Intent { cmp=com.vivo.permissionmanager/.activity.BgStartUpManagerActivity }
@@ -16,23 +15,11 @@ class Vivo : Device() {
 
     // "com.vivo.abe", "com.vivo.applicationbehaviorengine.ui.ExcessivePowerManagerActivity"
     //com.iqoo.secure.MainGuideActivity ??
-    override fun isThatRom() = false
+    override val isThatRom: Boolean
+        get() = false
 
-    override fun getDeviceManufacturer() = Manufacturer.VIVO
-
-    override fun isActionPowerSavingAvailable(context: Context) = false
-
-    override fun isActionAutoStartAvailable(context: Context) = false
-
-    override fun isActionNotificationAvailable(context: Context) = false
-
-    override fun getActionPowerSaving(context: Context) = null
-
-    override fun getActionAutoStart(context: Context) = null
-
-    override fun getActionNotification(context: Context) = null
-
-    override fun getExtraDebugInformations(context: Context) = null
+    override val deviceManufacturer: Manufacturer
+        get() = Manufacturer.VIVO
 
     /*
        @Override

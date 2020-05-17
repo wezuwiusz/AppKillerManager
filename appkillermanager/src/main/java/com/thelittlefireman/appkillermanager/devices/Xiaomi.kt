@@ -8,7 +8,7 @@ import com.thelittlefireman.appkillermanager.utils.ActionsUtils
 import com.thelittlefireman.appkillermanager.utils.Manufacturer
 import com.thelittlefireman.appkillermanager.utils.SystemUtils
 
-class Xiaomi : Device() {
+class Xiaomi : Device {
 
     companion object {
         // TODO TEST new Intent().setComponent(ComponentName("com.miui.securitycenter", "com.miui.powercenter.PowerSettings"))
@@ -28,13 +28,21 @@ class Xiaomi : Device() {
         private const val MIUI_ACTION_POWER_SAVE_EXTRA_LABEL = "package_label"
     }
 
-    override fun getDeviceManufacturer() = Manufacturer.XIAOMI
+    override val deviceManufacturer: Manufacturer
+        get() = Manufacturer.XIAOMI
 
-    override fun isThatRom() = Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-            Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-            Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
+    override val isThatRom: Boolean
+        get() {
+            return Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
+                    Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
+                    Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
+        }
 
-    override fun getActionAutoStart(context: Context): Intent = ActionsUtils.createIntent().apply {
+    override fun isActionPowerSavingAvailable(context: Context) = true
+
+    override fun isActionAutoStartAvailable(context: Context) = true
+
+    override fun getActionAutoStart(context: Context): Intent? = ActionsUtils.createIntent().apply {
         action = MIUI_ACTION_AUTO_START
         putExtra(MIUI_ACTION_POWER_SAVE_EXTRA_NAME, context.packageName)
         putExtra(MIUI_ACTION_POWER_SAVE_EXTRA_LABEL, SystemUtils.getApplicationName(context))
@@ -45,18 +53,6 @@ class Xiaomi : Device() {
         putExtra(MIUI_ACTION_POWER_SAVE_EXTRA_NAME, context.packageName)
         putExtra(MIUI_ACTION_POWER_SAVE_EXTRA_LABEL, SystemUtils.getApplicationName(context))
     }
-
-    override fun isActionPowerSavingAvailable(context: Context) = true
-
-    override fun isActionAutoStartAvailable(context: Context) = true
-
-    override fun isActionNotificationAvailable(context: Context) = false
-
-    override fun getActionNotification(context: Context) = null
-
-    override fun getExtraDebugInformations(context: Context) = null
-
-    override fun getHelpImagePowerSaving() = 0
 
     /*
     // TODO CHECK IF GETPACKAGENAME IS NAME OF LIB OR APP

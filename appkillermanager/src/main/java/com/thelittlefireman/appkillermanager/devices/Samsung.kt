@@ -8,7 +8,7 @@ import com.thelittlefireman.appkillermanager.R
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils
 import com.thelittlefireman.appkillermanager.utils.Manufacturer
 
-class Samsung : Device() {
+class Samsung : Device {
 
     companion object {
         // crash "com.samsung.android.lool","com.samsung.android.sm.ui.battery.AppSleepListActivity"
@@ -30,11 +30,16 @@ class Samsung : Device() {
         private const val SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1_ACTIVITY = "com.samsung.memorymanager.RamActivity"
     }
 
-    override fun isThatRom() = Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-            Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-            Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
+    override val helpImagePowerSaving: Int
+        get() = R.drawable.samsung
 
-    override fun getDeviceManufacturer() = Manufacturer.SAMSUNG
+    override val isThatRom: Boolean
+        get() = Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
+                Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
+                Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
+
+    override val deviceManufacturer: Manufacturer
+        get() = Manufacturer.SAMSUNG
 
     // SmartManager is not available before lollipop version
     override fun isActionPowerSavingAvailable(context: Context) = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
@@ -76,8 +81,4 @@ class Samsung : Device() {
     override fun getActionNotification(context: Context): Intent = ActionsUtils.createIntent().apply {
         action = SAMSUNG_SYSTEMMANAGER_NOTIFICATION_ACTION
     }
-
-    override fun getExtraDebugInformations(context: Context) = null
-
-    override fun getHelpImagePowerSaving() = R.drawable.samsung
 }

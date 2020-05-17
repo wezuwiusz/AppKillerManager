@@ -1,10 +1,9 @@
 package com.thelittlefireman.appkillermanager.devices
 
-import android.content.Context
 import android.os.Build
 import com.thelittlefireman.appkillermanager.utils.Manufacturer
 
-class Oppo : Device() {
+class Oppo : Device {
 
     companion object {
         // TODO multiple intent in a same actions need to be refractor!
@@ -25,25 +24,14 @@ class Oppo : Device() {
         private const val p2c1 = "com.oppo.safe.permission.startup.StartupAppListActivity"
     }
 
-    override fun isThatRom() = Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-            Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
-            Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
+    override val isThatRom: Boolean
+        get() = Build.BRAND.equals(deviceManufacturer.toString(), ignoreCase = true) ||
+                Build.MANUFACTURER.equals(deviceManufacturer.toString(), ignoreCase = true) ||
+                Build.FINGERPRINT.contains(deviceManufacturer.toString(), ignoreCase = true)
 
-    override fun getDeviceManufacturer() = Manufacturer.OPPO
+    override val deviceManufacturer: Manufacturer
+        get() = Manufacturer.OPPO
 
-    override fun isActionPowerSavingAvailable(context: Context) = false
-
-    override fun isActionAutoStartAvailable(context: Context) = false
-
-    override fun isActionNotificationAvailable(context: Context) = false
-
-    override fun getActionPowerSaving(context: Context) = null
-
-    override fun getActionAutoStart(context: Context) = null
-
-    override fun getActionNotification(context: Context) = null
-
-    override fun getExtraDebugInformations(context: Context) = null
 /*
     private ComponentName getComponentName(Context context){
         if(ActionsUtils.isPackageExist(context,p1)){

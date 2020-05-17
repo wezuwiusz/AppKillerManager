@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.util.Log;
 
 import com.thelittlefireman.appkillermanager.R;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
@@ -54,7 +53,7 @@ public class Huawei extends DeviceAbstract {
         try {
             PackageManager manager = context.getPackageManager();
             PackageInfo info = manager.getPackageInfo(HUAWEI_SYSTEMMANAGER_PACKAGE_NAME, 0);
-            Log.i(Huawei.class.getName(), "manager info = " + info.toString());
+            Timber.tag(Huawei.class.getName()).i("manager info = %s", info.toString());
             String versionStr = info.versionName;
             String[] versionTmp = versionStr.split("\\.");
             if (versionTmp.length >= 2) {
@@ -68,7 +67,7 @@ public class Huawei extends DeviceAbstract {
 
             }
             if (versionTmp.length >= 3) {
-                thirdPartFirtDigit = Integer.valueOf(versionTmp[2].substring(0, 1));
+                thirdPartFirtDigit = Integer.parseInt(versionTmp[2].substring(0, 1));
             }
         } catch (Exception e) {
             Timber.e(e);

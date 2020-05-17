@@ -16,7 +16,7 @@ import timber.log.Timber;
 public abstract class DeviceAbstract implements DeviceBase {
 
     @Override
-    public boolean needToUseAlongwithActionDoseMode() {
+    public boolean needToUseAlongWithActionDoseMode() {
         return false;
     }
 
@@ -61,8 +61,7 @@ public abstract class DeviceAbstract implements DeviceBase {
                 dozeIntent.setData(Uri.parse("package:" + context.getPackageName()));
                 return dozeIntent;
             } else {
-                Timber.tag(this.getClass().getName()).i("getActionDozeMode" + "App is already enable to ignore doze " +
-                        "battery optimization");
+                Timber.tag(this.getClass().getName()).i("getActionDozeMode: App is already enable to ignore doze battery optimization");
             }
         }
         return null;

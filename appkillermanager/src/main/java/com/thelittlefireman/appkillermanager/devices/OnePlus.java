@@ -18,7 +18,7 @@ public class OnePlus extends DeviceAbstract {
 
     // This is mandatory for new oneplus version android 8
     @Override
-    public boolean needToUseAlongwithActionDoseMode() {
+    public boolean needToUseAlongWithActionDoseMode() {
         return true;
     }
 
@@ -50,8 +50,7 @@ public class OnePlus extends DeviceAbstract {
     @Override
     public Intent getActionAutoStart(Context context) {
         Intent intent = ActionsUtils.createIntent();
-        intent.setComponent(new ComponentName("com.oneplus.security", "com.oneplus.security.chainlaunch.view" +
-                ".ChainLaunchAppListActivity"));
+        intent.setComponent(new ComponentName("com.oneplus.security", "com.oneplus.security.chainlaunch.view.ChainLaunchAppListActivity"));
         return intent;
     }
 

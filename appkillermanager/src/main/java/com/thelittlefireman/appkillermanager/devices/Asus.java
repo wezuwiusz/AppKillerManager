@@ -62,7 +62,7 @@ public class Asus extends DeviceAbstract {
 
     @Override
     public Intent getActionNotification(Context context) {
-        // Need to clic on notifications items
+        // Need to click on notifications items
         Intent intent = ActionsUtils.createIntent();
         intent.putExtra("showNotice", true);
         intent.setComponent(new ComponentName(ASUS_PACAKGE_MOBILEMANAGER, ASUS_ACTIVITY_MOBILEMANAGER_FUNCTION_ACTIVITY));

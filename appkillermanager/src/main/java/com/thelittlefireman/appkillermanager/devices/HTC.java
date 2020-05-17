@@ -69,7 +69,7 @@ public class HTC extends DeviceAbstract {
     }
 
     @Override
-    public boolean needToUseAlongwithActionDoseMode() {
+    public boolean needToUseAlongWithActionDoseMode() {
         return true;
     }
 }

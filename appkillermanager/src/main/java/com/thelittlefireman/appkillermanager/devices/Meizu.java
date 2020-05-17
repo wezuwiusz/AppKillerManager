@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.util.Log;
 
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
@@ -133,12 +132,12 @@ public class Meizu extends DeviceAbstract {
             PackageManager manager = context.getPackageManager();
             PackageInfo info = manager.getPackageInfo(MEIZU_DEFAULT_PACKAGE, 0);
             String versionStr = info.versionName; //2.2.0922;
-            Log.i("Meizu security center :", versionStr);
+            Timber.i(versionStr);
             if (versionStr.startsWith("2")) {
                 v = MEIZU_SECURITY_CENTER_VERSION.SEC_2_2;
             } else if (versionStr.startsWith("3")) {
                 int d = Integer.parseInt(versionStr.substring(2, 3));
-                Log.i("Meizu security center :", "d: " + d);
+                Timber.i("d: %s", d);
                 if (d <= 4) {
                     v = MEIZU_SECURITY_CENTER_VERSION.SEC_3_4;
                 } else if (d < 7) {

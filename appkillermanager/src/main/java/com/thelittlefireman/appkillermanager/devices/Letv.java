@@ -39,18 +39,14 @@ public class Letv extends DeviceAbstract {
     @Override
     public Intent getActionPowerSaving(Context context) {
         Intent intent = ActionsUtils.createIntent();
-        intent.setComponent(
-                new ComponentName("com.letv.android.letvsafe",
-                        "com.letv.android.letvsafe.BackgroundAppManageActivity"));
+        intent.setComponent(new ComponentName("com.letv.android.letvsafe", "com.letv.android.letvsafe.BackgroundAppManageActivity"));
         return intent;
     }
 
     @Override
     public Intent getActionAutoStart(Context context) {
         Intent intent = ActionsUtils.createIntent();
-        intent.setComponent(
-                new ComponentName("com.letv.android.letvsafe",
-                        "com.letv.android.letvsafe.AutobootManageActivity"));
+        intent.setComponent(new ComponentName("com.letv.android.letvsafe", "com.letv.android.letvsafe.AutobootManageActivity"));
         return intent;
     }
 

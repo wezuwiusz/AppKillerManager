@@ -2,8 +2,6 @@ package com.thelittlefireman.appkillermanager.managers;
 
 import androidx.annotation.NonNull;
 
-import com.thelittlefireman.appkillermanager.utils.LogUtils;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,6 +11,7 @@ import java.io.Reader;
 
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import timber.log.Timber;
 
 public class ResponseWrapper {
 
@@ -102,7 +101,7 @@ public class ResponseWrapper {
         try {
             body_text = responsebody.string();
         } catch (IOException e) {
-            LogUtils.e("", "105" + e.getMessage());
+            Timber.e(e, "105%s", e.getMessage());
             return null;
         }
 
@@ -110,7 +109,7 @@ public class ResponseWrapper {
             return new JSONObject(body_text);
         } catch (JSONException e) {
 
-            LogUtils.e("", "113" + e.getMessage());
+            Timber.e(e, "113%s", e.getMessage());
             return null;
         }
     }

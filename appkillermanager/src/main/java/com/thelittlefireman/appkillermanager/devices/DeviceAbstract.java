@@ -10,7 +10,8 @@ import android.provider.Settings;
 import androidx.annotation.DrawableRes;
 
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
-import com.thelittlefireman.appkillermanager.utils.LogUtils;
+
+import timber.log.Timber;
 
 public abstract class DeviceAbstract implements DeviceBase {
 
@@ -60,7 +61,7 @@ public abstract class DeviceAbstract implements DeviceBase {
                 dozeIntent.setData(Uri.parse("package:" + context.getPackageName()));
                 return dozeIntent;
             } else {
-                LogUtils.i(this.getClass().getName(), "getActionDozeMode" + "App is already enable to ignore doze " +
+                Timber.tag(this.getClass().getName()).i("getActionDozeMode" + "App is already enable to ignore doze " +
                         "battery optimization");
             }
         }

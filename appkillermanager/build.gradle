@@ -28,8 +28,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.hypertrack:hyperlog:0.0.10'
+    implementation 'com.jakewharton.timber:timber:4.7.1'
     implementation 'androidx.annotation:annotation:1.1.0'
 
     // UI

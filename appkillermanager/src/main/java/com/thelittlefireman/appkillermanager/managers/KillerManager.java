@@ -7,8 +7,9 @@ import androidx.annotation.Nullable;
 
 import com.thelittlefireman.appkillermanager.devices.DeviceBase;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
-import com.thelittlefireman.appkillermanager.utils.LogUtils;
 import com.thelittlefireman.appkillermanager.utils.SystemUtils;
+
+import timber.log.Timber;
 
 public class KillerManager {
 
@@ -77,7 +78,7 @@ public class KillerManager {
                 // Intent found action succeed
                 return intent;
             } else {
-                LogUtils.e(KillerManager.class.getName(), "INTENT NOT FOUND :" +
+                Timber.tag(KillerManager.class.getName()).e("INTENT NOT FOUND :" +
                         ActionsUtils.getExtrasDebugInformations(intent) + "Actions \n" +
                         actions.name() + "SYSTEM UTILS \n" +
                         SystemUtils.getDefaultDebugInformation() + "DEVICE \n" +
@@ -110,18 +111,18 @@ public class KillerManager {
 
         } catch (Exception e) {
             // Exception handle action failed
-            LogUtils.e(KillerManager.class.getName(), e.getMessage());
+            Timber.tag(KillerManager.class.getName()).e(e);
             throw new NoActionFoundException();
         }
     }
 
-    /**
-     * Execute the action
-     *
-     * @param activity the current activity
-     * @param actions  the wanted action to execute
-     *//*
-    private static void doAction(Activity activity, Actions actions, Integer code) throws NoActionFoundException {
+//    /**
+//     * Execute the action
+//     *
+//     * @param activity the current activity
+//     * @param actions  the wanted action to execute
+//     */
+    /*private static void doAction(Activity activity, Actions actions, Integer code) throws NoActionFoundException {
         // Avoid main app to crash when intent denied by using try catch
         try {
             Intent intent = getIntentFromAction(activity, actions);

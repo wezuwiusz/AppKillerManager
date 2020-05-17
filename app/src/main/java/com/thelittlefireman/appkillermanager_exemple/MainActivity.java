@@ -12,6 +12,8 @@ import androidx.appcompat.widget.AppCompatCheckBox;
 import com.thelittlefireman.appkillermanager.managers.KillerManager;
 import com.thelittlefireman.appkillermanager.ui.DialogKillerManagerBuilder;
 
+import timber.log.Timber;
+
 //import butterknife.BindView;
 //import butterknife.ButterKnife;
 
@@ -31,6 +33,8 @@ public class MainActivity extends Activity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Timber.plant(new Timber.DebugTree());
 
         deviceName = (TextView) findViewById(R.id.device_name);
         isDeviceSupported = (TextView) findViewById(R.id.is_device_supported);

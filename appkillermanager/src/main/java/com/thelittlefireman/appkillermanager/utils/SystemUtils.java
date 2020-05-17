@@ -15,6 +15,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import timber.log.Timber;
+
 public class SystemUtils {
 
     public static String getDefaultDebugInformation() {
@@ -59,14 +61,14 @@ public class SystemUtils {
             line = input.readLine();
             input.close();
         } catch (IOException ex) {
-            Log.e(SystemUtils.class.getClass().getName(), "Unable to read system property " + propName, ex);
+            Timber.e(ex, "Unable to read system property %s", propName);
             return null;
         } finally {
             if (input != null) {
                 try {
                     input.close();
                 } catch (IOException e) {
-                    Log.e(SystemUtils.class.getClass().getName(), "Exception while closing InputStream", e);
+                    Timber.e(e, "Exception while closing InputStream");
                 }
             }
         }

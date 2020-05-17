@@ -11,12 +11,13 @@ import com.thelittlefireman.appkillermanager.devices.OnePlus;
 import com.thelittlefireman.appkillermanager.devices.Samsung;
 import com.thelittlefireman.appkillermanager.devices.Xiaomi;
 import com.thelittlefireman.appkillermanager.devices.ZTE;
-import com.thelittlefireman.appkillermanager.utils.LogUtils;
 import com.thelittlefireman.appkillermanager.utils.SystemUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import timber.log.Timber;
 
 public class DevicesManager {
 
@@ -39,11 +40,11 @@ public class DevicesManager {
             }
         }
         if (currentDeviceBase.size() > 1) {
-            String logDevices = "";
+            StringBuilder logDevices = new StringBuilder();
             for (DeviceBase deviceBase : currentDeviceBase) {
-                logDevices += deviceBase.getDeviceManufacturer();
+                logDevices.append(deviceBase.getDeviceManufacturer());
             }
-            LogUtils.e(DevicesManager.class.getName(), "MORE THAN ONE CORRESPONDING:" + logDevices + "|" +
+            Timber.tag(DevicesManager.class.getName()).e("MORE THAN ONE CORRESPONDING:" + logDevices + "|" +
                     SystemUtils.getDefaultDebugInformation());
         }
 

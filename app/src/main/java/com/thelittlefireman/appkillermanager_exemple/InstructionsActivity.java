@@ -19,10 +19,10 @@ import com.thelittlefireman.appkillermanager.managers.ResponseWrapper;
 import com.thelittlefireman.appkillermanager.ui.DialogKillerManagerBuilder;
 import com.thelittlefireman.appkillermanager.ui.InstructionsViewer;
 import com.thelittlefireman.appkillermanager.utils.Instructions;
-import com.thelittlefireman.appkillermanager.utils.LogUtils;
 
 import java.io.IOException;
 
+import timber.log.Timber;
 
 public class InstructionsActivity extends AppCompatActivity {
     private static String TAG = "InstructionsActivity";
@@ -53,7 +53,7 @@ public class InstructionsActivity extends AppCompatActivity {
                         .setOnStart(new InstructionsManager.OnStart() {
                             @Override
                             public void onStart() {
-                                LogUtils.i(TAG, "Start getting manufacturer instructions");
+                                Timber.tag(TAG).i("Start getting manufacturer instructions");
                             }
                         })
                         .setOnSuccess(new InstructionsManager.OnSuccess() {
@@ -61,7 +61,7 @@ public class InstructionsActivity extends AppCompatActivity {
                             public void onSuccess(@NonNull ResponseWrapper responseWrapper) {
                                 Instructions instructions = new Instructions(responseWrapper);
                                 if (!instructions.isHasException()) {
-                                    LogUtils.i(TAG, instructions.getName() + instructions.getUser_solution());
+                                    Timber.tag(TAG).i("%s%s", instructions.getName(), instructions.getUser_solution());
                                     //Do your stuff here
                                 }
                             }
@@ -69,7 +69,7 @@ public class InstructionsActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(@NonNull Instructions instructions) {
                                 if (!instructions.isHasException()) {
-                                    LogUtils.i(TAG, instructions.getName() + instructions.getUser_solution());
+                                    Timber.tag(TAG).i("%s%s", instructions.getName(), instructions.getUser_solution());
                                     //Do your stuff here
                                 }
                             }
@@ -79,11 +79,11 @@ public class InstructionsActivity extends AppCompatActivity {
                             public void onFailed(CallWrapper callWrapper,
                                                  ResponseWrapper responseWrapper,
                                                  IOException e) {
-                                LogUtils.i(TAG, "Is Call cancelled?" + callWrapper.isCanceled());
-                                LogUtils.i(TAG, "Is Call Executed?" + callWrapper.isExecuted());
-                                LogUtils.i(TAG, "Response message" + responseWrapper.getMessage());
-                                LogUtils.i(TAG, "Is successfull ?" + responseWrapper.isSuccessful());
-                                LogUtils.i(TAG, "Is redirect ?" + responseWrapper.isRedirect());
+                                Timber.tag(TAG).i("Is Call cancelled? %s", callWrapper.isCanceled());
+                                Timber.tag(TAG).i("Is Call Executed? %s", callWrapper.isExecuted());
+                                Timber.tag(TAG).i("Response message %s", responseWrapper.getMessage());
+                                Timber.tag(TAG).i("Is successfull? %s", responseWrapper.isSuccessful());
+                                Timber.tag(TAG).i("Is redirect? %s", responseWrapper.isRedirect());
                             }
                         })
                         .getManufacturerInstructions();

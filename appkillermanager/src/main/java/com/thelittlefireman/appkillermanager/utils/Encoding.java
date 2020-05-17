@@ -1,8 +1,13 @@
 package com.thelittlefireman.appkillermanager.utils;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+@RequiresApi(api = Build.VERSION_CODES.KITKAT)
 public class Encoding {
     /**
      * Seven-bit ASCII, a.k.a. ISO646-US, a.k.a. the Basic Latin block of the

@@ -16,7 +16,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.thelittlefireman.appkillermanager.R;
 import com.thelittlefireman.appkillermanager.managers.KillerManager;
 import com.thelittlefireman.appkillermanager.utils.KillerManagerUtils;
-import com.thelittlefireman.appkillermanager.utils.LogUtils;
+
+import timber.log.Timber;
 
 public class DialogKillerManagerBuilder {
     private Context mContext;
@@ -204,11 +205,11 @@ public class DialogKillerManagerBuilder {
     public void show() throws NullPointerException, UnAvailableActionException, UnSupportedDeviceException {
         build();
         if (!KillerManager.isDeviceSupported()) {
-            LogUtils.i(this.getClass().getName(), "Device not in the list no need to show the dialog");
+            Timber.tag(this.getClass().getName()).i("Device not in the list no need to show the dialog");
             throw new UnSupportedDeviceException();
         }
         if (!isActionAvailable()) {
-            LogUtils.i(this.getClass().getName(), "This action is not available for this device no need to show the dialog");
+            Timber.tag(this.getClass().getName()).i("This action is not available for this device no need to show the dialog");
             throw new UnAvailableActionException("This action is not available for this device no need to show the dialog");
         }
 

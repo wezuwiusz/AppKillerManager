@@ -8,6 +8,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import timber.log.Timber;
+
 public class Instructions {
     String name = "";
     JSONArray manufacturer = new JSONArray();
@@ -25,7 +27,7 @@ public class Instructions {
         String body = null;
         try {
             body = responseWrapper.getResponseBodyAsString();
-            LogUtils.i("instructions", "27");
+            Timber.tag("instructions").i("27");
             JSONObject json = new JSONObject(body);
 
             if (!json.isNull("name")) {

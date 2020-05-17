@@ -2,7 +2,7 @@ package com.thelittlefireman.appkillermanager.managers
 
 import android.content.Context
 import android.content.Intent
-import com.thelittlefireman.appkillermanager.devices.Device
+import com.thelittlefireman.appkillermanager.devices.*
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils
 import com.thelittlefireman.appkillermanager.utils.SystemUtils
 import timber.log.Timber
@@ -15,16 +15,38 @@ object KillerManager {
         ACTION_NOTIFICATIONS
     }
 
-    @JvmStatic
-    val device: Device?
-        get() = DevicesManager.getDevice()
+    private val devices = listOf(
+            Asus(),
+            Huawei(),
+            Letv(),
+            Meizu(),
+            OnePlus(),
+            HTC(),
+            Samsung(),
+            Xiaomi(),
+            ZTE()
+    )
 
     @JvmStatic
-    val isDeviceSupported: Boolean
-        get() = DevicesManager.getDevice() != null
+    fun isDeviceSupported() = getDevice() != null
 
     @JvmStatic
-    fun isActionAvailable(context: Context, action: Action?) = DevicesManager.getDevice()?.let {
+    fun getDevice(): Device? {
+        val currentDevice = devices.filter { it.isThatRom }
+
+        if (currentDevice.size > 1) {
+            val logDevices = currentDevice.joinToString(", ") {
+                it.manufacturer.toString()
+            }
+
+            Timber.w("More than one corresponding device: %s. Debug info: %s", logDevices, SystemUtils.getDefaultDebugInformation())
+        }
+
+        return currentDevice.firstOrNull()
+    }
+
+    @JvmStatic
+    fun isActionAvailable(context: Context, action: Action?) = getDevice()?.let {
         when (action) {
             Action.ACTION_AUTO_START -> it.isActionAutoStartAvailable(context)
             Action.ACTION_POWER_SAVING -> it.isActionPowerSavingAvailable(context)
@@ -84,7 +106,7 @@ object KillerManager {
      * @return the intent
      */
     private fun getIntentFromAction(context: Context, action: Action): Intent? {
-        val sDevice = DevicesManager.getDevice()
+        val sDevice = getDevice()
         return if (sDevice != null) {
             val intent = when (action) {
                 Action.ACTION_AUTO_START -> sDevice.getActionAutoStart(context)

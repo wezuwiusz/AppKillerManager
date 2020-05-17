@@ -14,8 +14,8 @@ import androidx.annotation.StringRes;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.thelittlefireman.appkillermanager.R;
-import com.thelittlefireman.appkillermanager.managers.KillerManager;
-import com.thelittlefireman.appkillermanager.managers.NoActionFoundException;
+import com.thelittlefireman.appkillermanager.AppKillerManager;
+import com.thelittlefireman.appkillermanager.exceptions.NoActionFoundException;
 import com.thelittlefireman.appkillermanager.utils.KillerManagerUtils;
 
 import timber.log.Timber;
@@ -31,7 +31,7 @@ public class DialogKillerManagerBuilder {
     private OnNoActionFoundException onNoActionFoundException;
     private UnAvailableActionException unAvailableActionException;
     private UnSupportedDeviceException onUnSupportedDevice;
-    private KillerManager.Action mAction;
+    private AppKillerManager.Action mAction;
     private boolean enableDontShowAgain = true;
     private String titleMessage;
     private String contentMessage;
@@ -57,7 +57,7 @@ public class DialogKillerManagerBuilder {
         mContext = context;
     }
 
-    public DialogKillerManagerBuilder setAction(KillerManager.Action action) {
+    public DialogKillerManagerBuilder setAction(AppKillerManager.Action action) {
         mAction = action;
         return this;
     }
@@ -130,17 +130,17 @@ public class DialogKillerManagerBuilder {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         try {
-                            if (mAction == KillerManager.Action.ACTION_AUTO_START) {
+                            if (mAction == AppKillerManager.Action.ACTION_AUTO_START) {
                                 if (mContext != null) {
-                                    KillerManager.doActionAutoStart(mContext);
+                                    AppKillerManager.doActionAutoStart(mContext);
                                 }
-                            } else if (mAction == KillerManager.Action.ACTION_NOTIFICATIONS) {
+                            } else if (mAction == AppKillerManager.Action.ACTION_NOTIFICATIONS) {
                                 if (mContext != null) {
-                                    KillerManager.doActionNotification(mContext);
+                                    AppKillerManager.doActionNotification(mContext);
                                 }
-                            } else if (mAction == KillerManager.Action.ACTION_POWER_SAVING) {
+                            } else if (mAction == AppKillerManager.Action.ACTION_POWER_SAVING) {
                                 if (mContext != null) {
-                                    KillerManager.doActionPowerSaving(mContext);
+                                    AppKillerManager.doActionPowerSaving(mContext);
                                 }
                             }
                         } catch (NoActionFoundException e) {
@@ -167,7 +167,7 @@ public class DialogKillerManagerBuilder {
             builder.title(titleMessage);
         } else {
             if (mContext != null) {
-                builder.title(mContext.getString(R.string.dialog_title_notification, KillerManager.getDevice().getManufacturer().toString()));
+                builder.title(mContext.getString(R.string.dialog_title_notification, AppKillerManager.getDevice().getManufacturer().toString()));
             }
         }
 
@@ -186,7 +186,7 @@ public class DialogKillerManagerBuilder {
 
     private boolean isActionAvailable() {
         if (mContext != null) {
-            return KillerManager.isActionAvailable(mContext, mAction);
+            return AppKillerManager.isActionAvailable(mContext, mAction);
         }
         return false;
     }
@@ -205,7 +205,7 @@ public class DialogKillerManagerBuilder {
 
     public void show() throws NullPointerException, UnAvailableActionException, UnSupportedDeviceException {
         build();
-        if (!KillerManager.isDeviceSupported()) {
+        if (!AppKillerManager.isDeviceSupported()) {
             Timber.tag(this.getClass().getName()).i("Device not in the list no need to show the dialog");
             throw new UnSupportedDeviceException();
         }
@@ -258,13 +258,13 @@ public class DialogKillerManagerBuilder {
         int helpImageRes = 0;
         switch (mAction) {
             case ACTION_AUTO_START:
-                helpImageRes = KillerManager.getDevice().getHelpImageAutoStart();
+                helpImageRes = AppKillerManager.getDevice().getHelpImageAutoStart();
                 break;
             case ACTION_POWER_SAVING:
-                helpImageRes = KillerManager.getDevice().getHelpImagePowerSaving();
+                helpImageRes = AppKillerManager.getDevice().getHelpImagePowerSaving();
                 break;
             case ACTION_NOTIFICATIONS:
-                helpImageRes = KillerManager.getDevice().getHelpImageNotification();
+                helpImageRes = AppKillerManager.getDevice().getHelpImageNotification();
                 break;
         }
 

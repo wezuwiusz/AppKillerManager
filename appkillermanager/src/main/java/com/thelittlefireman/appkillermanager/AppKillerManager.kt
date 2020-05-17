@@ -1,13 +1,14 @@
-package com.thelittlefireman.appkillermanager.managers
+package com.thelittlefireman.appkillermanager
 
 import android.content.Context
 import android.content.Intent
 import com.thelittlefireman.appkillermanager.devices.*
+import com.thelittlefireman.appkillermanager.exceptions.NoActionFoundException
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils
 import com.thelittlefireman.appkillermanager.utils.SystemUtils
 import timber.log.Timber
 
-object KillerManager {
+object AppKillerManager {
 
     enum class Action {
         ACTION_AUTO_START,

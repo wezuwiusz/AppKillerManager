@@ -8,7 +8,7 @@ import android.os.Build;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
-public class HTC extends DeviceAbstract {
+public class HTC extends Device {
 
     private static final String HTC_PITROAD_PACKAGE_NAME = "com.htc.pitroad";
     private static final String HTC_PITROAD_POWERSAVING = " com.htc.pitroad.landingpage.activity.LandingPageActivity";

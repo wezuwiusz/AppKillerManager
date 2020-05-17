@@ -8,7 +8,7 @@ import android.os.Build;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
-public class OnePlus extends DeviceAbstract {
+public class OnePlus extends Device {
     @Override
     public boolean isThatRom() {
         return Build.BRAND.equalsIgnoreCase(getDeviceManufacturer().toString()) ||

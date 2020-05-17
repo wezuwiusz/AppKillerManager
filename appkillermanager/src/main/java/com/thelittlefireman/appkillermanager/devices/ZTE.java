@@ -8,7 +8,7 @@ import android.os.Build;
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils;
 import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
-public class ZTE extends DeviceAbstract {
+public class ZTE extends Device {
 
     private static final String ZTE_HEARTYSERVICE_PACKAGE_NAME = "com.zte.heartyservice";
     private static final String ZTE_HEARTYSERVICE_AUTOSTART_ACTIVITY = "com.zte.heartyservice.autorun.AppAutoRunManager";

@@ -30,16 +30,6 @@ public interface DeviceBase {
     // TODO ADD FOR MEMORY OPTIMIZATION : https://github.com/00aj99/CRomAppWhitelist
     String getExtraDebugInformations(Context context);
 
-    /**
-     * Function common in all devices
-     *
-     * @param context the current context
-     * @return the Intent to open the doze mode settings
-     */
-    Intent getActionDozeMode(Context context);
-
-    boolean isActionDozeModeNotNecessary(Context context);
-
     @DrawableRes
     int getHelpImagePowerSaving();
 

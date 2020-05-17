@@ -12,7 +12,7 @@ import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
 import timber.log.Timber;
 
-public class Meizu extends DeviceAbstract {
+public class Meizu extends Device {
 
     private static final String MEIZU_DEFAULT_ACTION_APPSPEC = "com.meizu.safe.security.SHOW_APPSEC";
     private static final String MEIZU_POWERSAVING_ACTION = "com.meizu.power.PowerAppKilledNotification";

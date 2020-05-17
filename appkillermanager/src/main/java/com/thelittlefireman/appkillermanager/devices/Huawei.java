@@ -15,7 +15,7 @@ import timber.log.Timber;
 
 import static com.thelittlefireman.appkillermanager.utils.SystemUtils.getEmuiRomName;
 
-public class Huawei extends DeviceAbstract {
+public class Huawei extends Device {
 
     // TODO NOT SUR IT WORKS ON EMUI 5
     private static final String HUAWEI_ACTION_POWERSAVING = "huawei.intent.action.HSM_PROTECTED_APPS";

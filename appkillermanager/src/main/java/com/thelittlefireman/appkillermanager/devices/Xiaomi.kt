@@ -8,7 +8,7 @@ import com.thelittlefireman.appkillermanager.utils.ActionsUtils
 import com.thelittlefireman.appkillermanager.utils.Manufacturer
 import com.thelittlefireman.appkillermanager.utils.SystemUtils
 
-class Xiaomi : DeviceAbstract() {
+class Xiaomi : Device() {
 
     companion object {
         // TODO TEST new Intent().setComponent(ComponentName("com.miui.securitycenter", "com.miui.powercenter.PowerSettings"))

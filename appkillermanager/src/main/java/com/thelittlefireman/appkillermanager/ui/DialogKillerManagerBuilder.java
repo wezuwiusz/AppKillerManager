@@ -1,14 +1,15 @@
 package com.thelittlefireman.appkillermanager.ui;
 
 import android.content.Context;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -22,32 +23,26 @@ public class DialogKillerManagerBuilder {
     
     /*private Activity mActivity;
     private Integer returnCode;*/
-    
+
     private MaterialDialog materialDialog;
     private MaterialDialog.Builder builder;
     private OnNoActionFoundException onNoActionFoundException;
     private UnAvailableActionException unAvailableActionException;
     private UnSupportedDeviceException onUnSupportedDevice;
+    private KillerManager.Actions mAction;
+    private boolean enableDontShowAgain = true;
+    private String titleMessage;
+    private String contentMessage;
+    @DrawableRes
+    private int iconRes;
 
-    public interface OnNoActionFoundException {
-        void onNoActionFound(KillerManager.NoActionFoundException e);
-        void onNoActionFound();
-    }
-
-    public static class UnAvailableActionException extends Exception {
-        UnAvailableActionException() {
-        }
-
-        UnAvailableActionException(String message) {
-            super(message);
-        }
-    }
-
-
-    public static class  UnSupportedDeviceException extends Exception {
-
-    }
-
+    /*public DialogKillerManagerBuilder(Activity activity, Integer returnCode) {
+        this();
+        this.mActivity = activity;
+        this.returnCode = returnCode;
+    }*/
+    @StringRes
+    private int titleResMessage, contentResMessage;
 
     private DialogKillerManagerBuilder() {
         contentResMessage = -1;
@@ -59,35 +54,6 @@ public class DialogKillerManagerBuilder {
         this();
         mContext = context;
     }
-    
-    /*public DialogKillerManagerBuilder(Activity activity, Integer returnCode) {
-        this();
-        this.mActivity = activity;
-        this.returnCode = returnCode;
-    }*/
-
-    private KillerManager.Actions mAction;
-
-    private boolean enableDontShowAgain = true;
-
-    private String titleMessage;
-    private String contentMessage;
-
-    @DrawableRes
-    private int iconRes;
-
-    @StringRes
-    private int titleResMessage, contentResMessage;
-
-    /*public DialogKillerManagerBuilder setContext(Context context) {
-        mContext = context;
-        return this;
-    }
-
-    public void setActivity(Activity mActivity, @NonNull Integer returnCode) {
-        this.mActivity   = mActivity;
-        this.returnCode = returnCode;
-    }*/
 
     public DialogKillerManagerBuilder setAction(KillerManager.Actions action) {
         mAction = action;
@@ -99,15 +65,20 @@ public class DialogKillerManagerBuilder {
         return this;
     }
 
-    public DialogKillerManagerBuilder setDontShowAgain(boolean enable) {
-        this.enableDontShowAgain = enable;
-        return this;
-    }
-
     public DialogKillerManagerBuilder setTitleMessage(@NonNull String titleMessage) {
         this.titleMessage = titleMessage;
         return this;
     }
+
+    /*public DialogKillerManagerBuilder setContext(Context context) {
+        mContext = context;
+        return this;
+    }
+
+    public void setActivity(Activity mActivity, @NonNull Integer returnCode) {
+        this.mActivity   = mActivity;
+        this.returnCode = returnCode;
+    }*/
 
     public DialogKillerManagerBuilder setContentMessage(@NonNull String contentMessage) {
         this.contentMessage = contentMessage;
@@ -139,41 +110,41 @@ public class DialogKillerManagerBuilder {
         return this;
     }
 
-    public void build() throws NullPointerException{
+    public void build() throws NullPointerException {
         //MaterialDialog materialDialog;
-        if (mContext == null ) {
+        if (mContext == null) {
             throw new NullPointerException("Context && mActivity can't be null at the same time");
         }
         if (mAction == null) {
             throw new NullPointerException("Action can't be null");
         }
-        
+
         builder = new MaterialDialog.Builder(mContext);
 
-        
+
         builder.positiveText(R.string.dialog_button)
                 .customView(R.layout.md_dialog_custom_view, false)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         try {
-                            if (mAction == KillerManager.Actions.ACTION_AUTOSTART){
+                            if (mAction == KillerManager.Actions.ACTION_AUTOSTART) {
                                 if (mContext != null) {
                                     KillerManager.doActionAutoStart(mContext);
                                 }
-                            }else if (mAction == KillerManager.Actions.ACTION_NOTIFICATIONS){
+                            } else if (mAction == KillerManager.Actions.ACTION_NOTIFICATIONS) {
                                 if (mContext != null) {
                                     KillerManager.doActionNotification(mContext);
                                 }
-                            }else if (mAction == KillerManager.Actions.ACTION_POWERSAVING){
+                            } else if (mAction == KillerManager.Actions.ACTION_POWERSAVING) {
                                 if (mContext != null) {
                                     KillerManager.doActionPowerSaving(mContext);
                                 }
                             }
                         } catch (KillerManager.NoActionFoundException e) {
-                            if (onNoActionFoundException != null){
+                            if (onNoActionFoundException != null) {
                                 onNoActionFoundException.onNoActionFound(e);
-                            }else{
+                            } else {
                                 dialog.dismiss();
                             }
                             e.printStackTrace();
@@ -211,29 +182,34 @@ public class DialogKillerManagerBuilder {
         }
     }
 
-    private boolean isActionAvailable(){
+    private boolean isActionAvailable() {
         if (mContext != null) {
-            return  KillerManager.isActionAvailable(mContext, mAction);
+            return KillerManager.isActionAvailable(mContext, mAction);
         }
         return false;
     }
 
-    private boolean isDontShowAgain(){
-        if(mContext != null){
-           return KillerManagerUtils.isDontShowAgain(mContext, mAction);
+    private boolean isDontShowAgain() {
+        if (mContext != null) {
+            return KillerManagerUtils.isDontShowAgain(mContext, mAction);
         }
         return false;
+    }
+
+    public DialogKillerManagerBuilder setDontShowAgain(boolean enable) {
+        this.enableDontShowAgain = enable;
+        return this;
     }
 
     public void show() throws NullPointerException, UnAvailableActionException, UnSupportedDeviceException {
         build();
-        if (! KillerManager.isDeviceSupported()) {
+        if (!KillerManager.isDeviceSupported()) {
             LogUtils.i(this.getClass().getName(), "Device not in the list no need to show the dialog");
             throw new UnSupportedDeviceException();
         }
         if (!isActionAvailable()) {
             LogUtils.i(this.getClass().getName(), "This action is not available for this device no need to show the dialog");
-            throw  new UnAvailableActionException("This action is not available for this device no need to show the dialog");
+            throw new UnAvailableActionException("This action is not available for this device no need to show the dialog");
         }
 
         if (!(enableDontShowAgain && isDontShowAgain())) {
@@ -301,5 +277,24 @@ public class DialogKillerManagerBuilder {
 
     public MaterialDialog.Builder getBuilder() {
         return builder;
+    }
+
+    public interface OnNoActionFoundException {
+        void onNoActionFound(KillerManager.NoActionFoundException e);
+
+        void onNoActionFound();
+    }
+
+    public static class UnAvailableActionException extends Exception {
+        UnAvailableActionException() {
+        }
+
+        UnAvailableActionException(String message) {
+            super(message);
+        }
+    }
+
+    public static class UnSupportedDeviceException extends Exception {
+
     }
 }

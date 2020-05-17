@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+
 import androidx.annotation.DrawableRes;
 
 import com.thelittlefireman.appkillermanager.R;
@@ -19,7 +20,7 @@ public class Asus extends DeviceAbstract {
 
     @Override
     public boolean isThatRom() {
-        return  Build.BRAND.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
+        return Build.BRAND.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
                 Build.MANUFACTURER.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
                 Build.FINGERPRINT.toLowerCase().contains(getDeviceManufacturer().toString());
     }
@@ -54,7 +55,7 @@ public class Asus extends DeviceAbstract {
     @Override
     public Intent getActionAutoStart(Context context) {
         Intent intent = ActionsUtils.createIntent();
-        intent.putExtra("showNotice",true);
+        intent.putExtra("showNotice", true);
         intent.setComponent(new ComponentName(ASUS_PACAKGE_MOBILEMANAGER, ASUS_ACTIVITY_MOBILEMANAGER_FUNCTION_AUTOSTART_ACTIVITY));
         return intent;
     }
@@ -63,7 +64,7 @@ public class Asus extends DeviceAbstract {
     public Intent getActionNotification(Context context) {
         // Need to clic on notifications items
         Intent intent = ActionsUtils.createIntent();
-        intent.putExtra("showNotice",true);
+        intent.putExtra("showNotice", true);
         intent.setComponent(new ComponentName(ASUS_PACAKGE_MOBILEMANAGER, ASUS_ACTIVITY_MOBILEMANAGER_FUNCTION_ACTIVITY));
         return intent;
     }
@@ -75,13 +76,13 @@ public class Asus extends DeviceAbstract {
 
     @Override
     @DrawableRes
-    public int getHelpImageAutoStart(){
+    public int getHelpImageAutoStart() {
         return R.drawable.asus_autostart;
     }
 
     @Override
     @DrawableRes
-    public int getHelpImageNotification(){
+    public int getHelpImageNotification() {
         return R.drawable.asus_notification;
     }
 }

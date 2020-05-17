@@ -21,7 +21,7 @@ public class ResponseWrapper {
 
     public ResponseWrapper(okhttp3.Response response) {
         this.response = response;
-        if (response != null){
+        if (response != null) {
             responsebody = response.body();
         }
     }
@@ -32,14 +32,14 @@ public class ResponseWrapper {
 
 
     public String getResponseBodyAsString() throws IOException {
-        String res = new String("");
-        if (response == null){
+        String res = "";
+        if (response == null) {
             return res;
         }
         //ResponseBody body = response.body();//.byteStream();
-        if ( responsebody != null) {
+        if (responsebody != null) {
             return responsebody.string();
-        }else{
+        } else {
             return res;
         }
     }
@@ -52,14 +52,14 @@ public class ResponseWrapper {
             }
         };
 
-        if (response == null){
+        if (response == null) {
             return res;
         }
 
         //ResponseBody body = response.body();//.byteStream();
-        if ( responsebody != null) {
+        if (responsebody != null) {
             return responsebody.byteStream();
-        }else{
+        } else {
             return res;
         }
     }
@@ -78,31 +78,31 @@ public class ResponseWrapper {
 
             }
         };
-        if (response == null){
+        if (response == null) {
             return res;
         }
 
         //ResponseBody body = response.body();//.byteStream();
-        if ( responsebody != null) {
+        if (responsebody != null) {
             return responsebody.charStream();
-        }else{
+        } else {
             return res;
         }
     }
 
-    public JSONObject getResponseAsJson(){
-        if (response == null){
-            return  null;
+    public JSONObject getResponseAsJson() {
+        if (response == null) {
+            return null;
         }
-        if ( responsebody == null){
+        if (responsebody == null) {
             return null;
         }
 
-        String body_text ;
+        String body_text;
         try {
             body_text = responsebody.string();
         } catch (IOException e) {
-            LogUtils.e("", "105"+e.getMessage());
+            LogUtils.e("", "105" + e.getMessage());
             return null;
         }
 
@@ -110,24 +110,24 @@ public class ResponseWrapper {
             return new JSONObject(body_text);
         } catch (JSONException e) {
 
-            LogUtils.e("", "113"+ e.getMessage());
+            LogUtils.e("", "113" + e.getMessage());
             return null;
         }
     }
 
-    public boolean isSuccessful(){
+    public boolean isSuccessful() {
         return response.isSuccessful();
     }
 
-    public boolean isRedirect(){
+    public boolean isRedirect() {
         return response.isRedirect();
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return response.message();
     }
 
-    public int getCode(){
+    public int getCode() {
         return response.code();
     }
 }

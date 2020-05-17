@@ -43,7 +43,7 @@ public class HTC extends DeviceAbstract {
     @Override
     public Intent getActionPowerSaving(Context context) {
         Intent intent = ActionsUtils.createIntent();
-        intent.setComponent(new ComponentName(HTC_PITROAD_PACKAGE_NAME,HTC_PITROAD_POWERSAVING));
+        intent.setComponent(new ComponentName(HTC_PITROAD_PACKAGE_NAME, HTC_PITROAD_POWERSAVING));
         return intent;
     }
 
@@ -69,7 +69,7 @@ public class HTC extends DeviceAbstract {
     }
 
     @Override
-    public boolean needToUseAlongwithActionDoseMode(){
+    public boolean needToUseAlongwithActionDoseMode() {
         return true;
     }
 }

@@ -18,7 +18,7 @@ public class OnePlus extends DeviceAbstract {
 
     // This is mandatory for new oneplus version android 8
     @Override
-    public boolean needToUseAlongwithActionDoseMode(){
+    public boolean needToUseAlongwithActionDoseMode() {
         return true;
     }
 

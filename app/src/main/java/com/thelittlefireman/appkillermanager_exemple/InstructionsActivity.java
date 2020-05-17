@@ -3,15 +3,14 @@ package com.thelittlefireman.appkillermanager_exemple;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatCheckBox;
-import androidx.constraintlayout.widget.Guideline;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.Guideline;
 
 import com.thelittlefireman.appkillermanager.managers.CallWrapper;
 import com.thelittlefireman.appkillermanager.managers.InstructionsManager;
@@ -61,16 +60,16 @@ public class InstructionsActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(@NonNull ResponseWrapper responseWrapper) {
                                 Instructions instructions = new Instructions(responseWrapper);
-                                if ( ! instructions.isHasException()){
-                                    LogUtils.i(TAG,instructions.getName() + instructions.getUser_solution());
+                                if (!instructions.isHasException()) {
+                                    LogUtils.i(TAG, instructions.getName() + instructions.getUser_solution());
                                     //Do your stuff here
                                 }
                             }
 
                             @Override
                             public void onSuccess(@NonNull Instructions instructions) {
-                                if ( ! instructions.isHasException()){
-                                    LogUtils.i(TAG,instructions.getName() + instructions.getUser_solution());
+                                if (!instructions.isHasException()) {
+                                    LogUtils.i(TAG, instructions.getName() + instructions.getUser_solution());
                                     //Do your stuff here
                                 }
                             }
@@ -95,12 +94,11 @@ public class InstructionsActivity extends AppCompatActivity {
         viewInstructionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (manufactureName.getText().toString().equals("")){
+                if (manufactureName.getText().toString().equals("")) {
                     new InstructionsViewer(self, vieweLayout).show();
-                }else{
+                } else {
                     new InstructionsViewer(self, vieweLayout).show(manufactureName.getText().toString());
                 }
-
 
 
             }
@@ -114,7 +112,6 @@ public class InstructionsActivity extends AppCompatActivity {
                 startActivity(browserIntent);
             }
         });
-
 
 
     }

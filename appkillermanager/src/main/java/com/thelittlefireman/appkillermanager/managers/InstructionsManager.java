@@ -25,20 +25,7 @@ public class InstructionsManager {
     // By default if the first call failed by 404 code, it will make another general url
     boolean onNotFoundGetGeneralInstructions = true;
     // Is the general url called?
-    boolean generalInstructionsCalled        = false;
-
-    public interface OnStart {
-        void onStart();
-    }
-
-    public interface OnSuccess {
-        public void onSuccess(@NonNull ResponseWrapper responseWrapper);
-        public void onSuccess(@NonNull Instructions instructions);
-    }
-
-    public interface OnFailed {
-        void onFailed(@Nullable CallWrapper callWrapper, @Nullable ResponseWrapper responseWrapper, @Nullable IOException e);
-    }
+    boolean generalInstructionsCalled = false;
 
     public InstructionsManager(OnSuccess onSuccess, OnFailed onFailed) {
         this.onSuccess = onSuccess;
@@ -47,7 +34,6 @@ public class InstructionsManager {
 
     public InstructionsManager() {
     }
-
 
     public InstructionsManager setOnStart(OnStart onStart) {
         this.onStart = onStart;
@@ -72,7 +58,6 @@ public class InstructionsManager {
         this.onNotFoundGetGeneralInstructions = onNotFoundGetGeneralInstructions;
         return this;
     }
-
 
     public void getManufacturerInstructions() {
 
@@ -107,14 +92,14 @@ public class InstructionsManager {
         };
 
         ArrayList<String> manufacturerList = new ArrayList<String>(Arrays.asList(array));
-        if (manufacturerName != null && manufacturerList.contains(manufacturerName.toLowerCase()) ){
+        if (manufacturerName != null && manufacturerList.contains(manufacturerName.toLowerCase())) {
             url = url + manufacturerName.toLowerCase();
         }
         return url;
     }
 
     // Don't use this directly, It is written For testing multiple manufacturers in the same device,
-    public void getManufacturerInstructions(String manufacturerName){
+    public void getManufacturerInstructions(String manufacturerName) {
         OkHttpClient client = new OkHttpClient();
         String url = buildUrl(manufacturerName);
 
@@ -148,29 +133,43 @@ public class InstructionsManager {
                                 onSuccess.onSuccess(instructions);
                             }
                         } else {
-                             onFailedCall(onFailed, call, response, null);
+                            onFailedCall(onFailed, call, response, null);
                         }
                     }
-                }) ;
+                });
     }
 
     private void onFailedCall(OnFailed onFailed, Call call, Response response, IOException e) {
         if (
-            onNotFoundGetGeneralInstructions &&
-            ! generalInstructionsCalled &&
-            response != null &&
-            response.code() == 404
-        ){
+                onNotFoundGetGeneralInstructions &&
+                        !generalInstructionsCalled &&
+                        response != null &&
+                        response.code() == 404
+        ) {
             getManufacturerInstructions("general");
             generalInstructionsCalled = true;
-        }else {
+        } else {
             if (onFailed != null) {
-               onFailed.onFailed(new CallWrapper(call), new ResponseWrapper(response), null);
+                onFailed.onFailed(new CallWrapper(call), new ResponseWrapper(response), null);
             }
         }
     }
 
     private String buildUrl(String manufacturer) {
         return "https://dontkillmyapp.com/api/v2/MANUFACTURER.json".replace("MANUFACTURER", manufacturer.toLowerCase());
+    }
+
+    public interface OnStart {
+        void onStart();
+    }
+
+    public interface OnSuccess {
+        void onSuccess(@NonNull ResponseWrapper responseWrapper);
+
+        void onSuccess(@NonNull Instructions instructions);
+    }
+
+    public interface OnFailed {
+        void onFailed(@Nullable CallWrapper callWrapper, @Nullable ResponseWrapper responseWrapper, @Nullable IOException e);
     }
 }

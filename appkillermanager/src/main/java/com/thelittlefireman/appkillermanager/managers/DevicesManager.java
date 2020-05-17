@@ -31,25 +31,25 @@ public class DevicesManager {
             new Xiaomi(),
             new ZTE()));
 
-    public static DeviceBase getDevice(){
-        List<DeviceBase> currentDeviceBase =new ArrayList<>();
+    public static DeviceBase getDevice() {
+        List<DeviceBase> currentDeviceBase = new ArrayList<>();
         for (DeviceBase deviceBase : deviceBaseList) {
-            if(deviceBase.isThatRom()){
+            if (deviceBase.isThatRom()) {
                 currentDeviceBase.add(deviceBase);
             }
         }
-        if(currentDeviceBase.size()>1){
-            String logDevices="";
+        if (currentDeviceBase.size() > 1) {
+            String logDevices = "";
             for (DeviceBase deviceBase : currentDeviceBase) {
-                logDevices+=deviceBase.getDeviceManufacturer();
+                logDevices += deviceBase.getDeviceManufacturer();
             }
-            LogUtils.e(DevicesManager.class.getName(),"MORE THAN ONE CORRESPONDING:"+logDevices+"|"+
+            LogUtils.e(DevicesManager.class.getName(), "MORE THAN ONE CORRESPONDING:" + logDevices + "|" +
                     SystemUtils.getDefaultDebugInformation());
         }
 
-        if (currentDeviceBase.size()>0) {
+        if (currentDeviceBase.size() > 0) {
             return currentDeviceBase.get(0);
-        }else {
+        } else {
             return null;
         }
     }

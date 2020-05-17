@@ -10,15 +10,15 @@ import java.io.IOException;
 
 public class Instructions {
     String name = "";
-    JSONArray manufacturer= new JSONArray();
-    int award=0;
-    int position=0;
-    String explanation="";
-    String user_solution="";
-    String developer_solution="";
+    JSONArray manufacturer = new JSONArray();
+    int award = 0;
+    int position = 0;
+    String explanation = "";
+    String user_solution = "";
+    String developer_solution = "";
 
     boolean hasException = false;
-    Exception exception  = null;
+    Exception exception = null;
 
 
     public Instructions(ResponseWrapper responseWrapper) {
@@ -28,30 +28,30 @@ public class Instructions {
             LogUtils.i("instructions", "27");
             JSONObject json = new JSONObject(body);
 
-            if ( ! json.isNull("name")){
-                name            = json.getString("name");
+            if (!json.isNull("name")) {
+                name = json.getString("name");
             }
-            if ( ! json.isNull("manufacturer")){
-                manufacturer    = json.getJSONArray("manufacturer");
+            if (!json.isNull("manufacturer")) {
+                manufacturer = json.getJSONArray("manufacturer");
             }
-            if ( ! json.isNull("award")){
-                award           = json.getInt("award");
+            if (!json.isNull("award")) {
+                award = json.getInt("award");
             }
-            if ( ! json.isNull("position")){
-                position        = json.getInt("position");
+            if (!json.isNull("position")) {
+                position = json.getInt("position");
             }
-            if ( ! json.isNull("explanation")){
-                explanation     = json.getString("explanation");
+            if (!json.isNull("explanation")) {
+                explanation = json.getString("explanation");
             }
-            if ( ! json.isNull("user_solution")){
-                user_solution   = json.getString("user_solution");
+            if (!json.isNull("user_solution")) {
+                user_solution = json.getString("user_solution");
             }
-            if ( ! json.isNull("developer_solution")){
+            if (!json.isNull("developer_solution")) {
                 developer_solution = json.getString("developer_solution");
             }
 
 
-            hasException       = false;
+            hasException = false;
         } catch (IOException e) {
             e.printStackTrace();
             hasException = true;

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+
 import androidx.annotation.NonNull;
 
 import java.util.List;
@@ -17,19 +18,20 @@ public class ActionsUtils {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         return intent;
     }
-    public static String getExtrasDebugInformations(Intent intent){
+
+    public static String getExtrasDebugInformations(Intent intent) {
         StringBuilder stringBuilder = new StringBuilder();
-        if(intent !=null){
+        if (intent != null) {
             stringBuilder.append("intent actions").append(intent.getAction());
             stringBuilder.append("intent conponent");
             ComponentName componentName = intent.getComponent();
-            if(componentName!=null){
+            if (componentName != null) {
                 stringBuilder.append("ComponentName package:").append(componentName.getPackageName());
                 stringBuilder.append("ComponentName class:").append(componentName.getClassName());
-            }else {
+            } else {
                 stringBuilder.append("ComponentName is null");
             }
-        }else {
+        } else {
             stringBuilder.append("intent is null");
         }
         return stringBuilder.toString();

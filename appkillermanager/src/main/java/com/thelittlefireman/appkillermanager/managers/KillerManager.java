@@ -2,6 +2,7 @@ package com.thelittlefireman.appkillermanager.managers;
 
 import android.content.Context;
 import android.content.Intent;
+
 import androidx.annotation.Nullable;
 
 import com.thelittlefireman.appkillermanager.devices.DeviceBase;
@@ -11,39 +12,11 @@ import com.thelittlefireman.appkillermanager.utils.SystemUtils;
 
 public class KillerManager {
 
-    public static class NoActionFoundException extends Exception {
-        NoActionFoundException() {
-            this("Intent couldn't find action");
-        }
-
-        NoActionFoundException(String message) {
-            super(message);
-        }
-    }
-
-    public enum Actions {
-        ACTION_AUTOSTART("ACTION_AUTOSTART"),
-        ACTION_NOTIFICATIONS("ACTION_NOTIFICATIONS"),
-        ACTION_POWERSAVING("ACTION_POWERSAVING");
-
-        private String mValue;
-
-        Actions(String value) {
-            this.mValue = value;
-        }
-
-        public String toString() {
-            return this.mValue;
-        }
-    }
-
-    //private static DeviceBase sDevice;
-
     public static DeviceBase getDevice() {
         return DevicesManager.getDevice();
     }
 
-    public static boolean isActionAvailable (Context context, Actions actions) {
+    public static boolean isActionAvailable(Context context, Actions actions) {
         DeviceBase sDevice = DevicesManager.getDevice();
         boolean actionAvailable = false;
         if (sDevice != null) {
@@ -62,17 +35,19 @@ public class KillerManager {
         return actionAvailable;
     }
 
-    public static boolean isAnyActionAvailable(Context context){
-        for (Actions action : Actions.values()){
-            if (isActionAvailable(context, action)){
+    //private static DeviceBase sDevice;
+
+    public static boolean isAnyActionAvailable(Context context) {
+        for (Actions action : Actions.values()) {
+            if (isActionAvailable(context, action)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static boolean isDeviceSupported(){
-        return  DevicesManager.getDevice() != null;
+    public static boolean isDeviceSupported() {
+        return DevicesManager.getDevice() != null;
     }
 
     /**
@@ -139,12 +114,12 @@ public class KillerManager {
             throw new NoActionFoundException();
         }
     }
-/*
-    *//**
+
+    /**
      * Execute the action
      *
      * @param activity the current activity
-     * @param actions the wanted action to execute
+     * @param actions  the wanted action to execute
      *//*
     private static void doAction(Activity activity, Actions actions, Integer code) throws NoActionFoundException {
         // Avoid main app to crash when intent denied by using try catch
@@ -166,8 +141,6 @@ public class KillerManager {
             throw new NoActionFoundException();
         }
     }*/
-
-
     public static void doActionAutoStart(Context context) throws NoActionFoundException {
         doAction(context, Actions.ACTION_AUTOSTART);
     }
@@ -175,9 +148,37 @@ public class KillerManager {
     public static void doActionNotification(Context context) throws NoActionFoundException {
         doAction(context, Actions.ACTION_NOTIFICATIONS);
     }
+    /*
+     */
 
     public static void doActionPowerSaving(Context context) throws NoActionFoundException {
         doAction(context, Actions.ACTION_POWERSAVING);
+    }
+
+    public enum Actions {
+        ACTION_AUTOSTART("ACTION_AUTOSTART"),
+        ACTION_NOTIFICATIONS("ACTION_NOTIFICATIONS"),
+        ACTION_POWERSAVING("ACTION_POWERSAVING");
+
+        private String mValue;
+
+        Actions(String value) {
+            this.mValue = value;
+        }
+
+        public String toString() {
+            return this.mValue;
+        }
+    }
+
+    public static class NoActionFoundException extends Exception {
+        NoActionFoundException() {
+            this("Intent couldn't find action");
+        }
+
+        NoActionFoundException(String message) {
+            super(message);
+        }
     }
 
     /*public static void doActionAutoStart(Activity activity, Integer code) throws NoActionFoundException {

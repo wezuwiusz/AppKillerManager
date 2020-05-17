@@ -3,11 +3,11 @@ package com.thelittlefireman.appkillermanager_exemple;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.widget.AppCompatCheckBox;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.AppCompatCheckBox;
 
 import com.thelittlefireman.appkillermanager.managers.KillerManager;
 import com.thelittlefireman.appkillermanager.ui.DialogKillerManagerBuilder;
@@ -25,7 +25,6 @@ public class MainActivity extends Activity {
     Button goToInstructonsActivityButton;
 
     KillerManager.Actions currentAction = null;
-
 
 
     @Override
@@ -100,8 +99,8 @@ public class MainActivity extends Activity {
 
 
         if (KillerManager.isDeviceSupported()) {
-            isDeviceSupported.setText( "Is supported: true");
-            deviceName.setText( "Device name: " .concat(KillerManager.getDevice().getDeviceManufacturer().toString()) );
+            isDeviceSupported.setText("Is supported: true");
+            deviceName.setText("Device name: ".concat(KillerManager.getDevice().getDeviceManufacturer().toString()));
         }
 
     }
@@ -123,12 +122,12 @@ public class MainActivity extends Activity {
     public void onResume() {
 
         super.onResume();
-        if (currentAction == KillerManager.Actions.ACTION_AUTOSTART){
+        if (currentAction == KillerManager.Actions.ACTION_AUTOSTART) {
             // may show dalog to ask the user about the result of action
             // and store the result in preference
-        }else if (currentAction == KillerManager.Actions.ACTION_NOTIFICATIONS){
+        } else if (currentAction == KillerManager.Actions.ACTION_NOTIFICATIONS) {
 
-        }else if (currentAction == KillerManager.Actions.ACTION_POWERSAVING){
+        } else if (currentAction == KillerManager.Actions.ACTION_POWERSAVING) {
 
         }
         // dont forget to nullify current action

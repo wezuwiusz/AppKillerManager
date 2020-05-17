@@ -25,19 +25,6 @@ public class Huawei extends DeviceAbstract {
     private static final String HUAWEI_SYSTEMMANAGER_AUTO_START_V2 = "com.huawei.systemmanager.startupmgr.ui.StartupNormalAppListActivity";
     private static final String HUAWEI_SYSTEMMANAGER_AUTO_START_V3 = "com.huawei.permissionmanager.ui.MainActivity";
 
-    //com.huawei.systemmanager/com.huawei.notificationmanager.ui.NotificationManagmentActivity // huawei.intent.action.NOTIFICATIONMANAGER
-    @Override
-    public boolean isThatRom() {
-        return isEmotionUI_23() ||
-                isEmotionUI_3() ||
-                isEmotionUI_301() ||
-                isEmotionUI_31() ||
-                isEmotionUI_41() ||
-                Build.BRAND.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
-                Build.MANUFACTURER.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
-                Build.FINGERPRINT.toLowerCase().contains(getDeviceManufacturer().toString());
-    }
-
     public static boolean isEmotionUI_301() {
         return "EmotionUI_3.0.1".equalsIgnoreCase(getEmuiRomName());
     }
@@ -56,6 +43,61 @@ public class Huawei extends DeviceAbstract {
 
     public static boolean isEmotionUI_23() {
         return "EmotionUI_2.3".equalsIgnoreCase(getEmuiRomName()) || Build.DISPLAY.toLowerCase().contains("emui2.3") || "EMUI 2.3".equalsIgnoreCase(getEmuiRomName());
+    }
+
+    private static int getHuaweiSystemManagerVersion(Context context) {
+        int version = 0;
+        int versionNum = 0;
+        int thirdPartFirtDigit = 0;
+        try {
+            PackageManager manager = context.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(HUAWEI_SYSTEMMANAGER_PACKAGE_NAME, 0);
+            Log.i(Huawei.class.getName(), "manager info = " + info.toString());
+            String versionStr = info.versionName;
+            String[] versionTmp = versionStr.split("\\.");
+            if (versionTmp.length >= 2) {
+                if (Integer.parseInt(versionTmp[0]) == 5) {
+                    versionNum = 500;
+                } else if (Integer.parseInt(versionTmp[0]) == 4) {
+                    versionNum = Integer.parseInt(versionTmp[0] + versionTmp[1] + versionTmp[2]);
+                } else {
+                    versionNum = Integer.parseInt(versionTmp[0] + versionTmp[1]);
+                }
+
+            }
+            if (versionTmp.length >= 3) {
+                thirdPartFirtDigit = Integer.valueOf(versionTmp[2].substring(0, 1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (versionNum >= 330) {
+            if (versionNum >= 500) {
+                version = 6;
+            } else if (versionNum >= 400) {
+                version = 5;
+            } else if (versionNum >= 331) {
+                version = 4;
+            } else {
+                version = (thirdPartFirtDigit == 6 || thirdPartFirtDigit == 4 || thirdPartFirtDigit == 2) ? 3 : 2;
+            }
+        } else if (versionNum != 0) {
+            version = 1;
+        }
+        return version;
+    }
+
+    //com.huawei.systemmanager/com.huawei.notificationmanager.ui.NotificationManagmentActivity // huawei.intent.action.NOTIFICATIONMANAGER
+    @Override
+    public boolean isThatRom() {
+        return isEmotionUI_23() ||
+                isEmotionUI_3() ||
+                isEmotionUI_301() ||
+                isEmotionUI_31() ||
+                isEmotionUI_41() ||
+                Build.BRAND.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
+                Build.MANUFACTURER.equalsIgnoreCase(getDeviceManufacturer().toString()) ||
+                Build.FINGERPRINT.toLowerCase().contains(getDeviceManufacturer().toString());
     }
 
     @Override
@@ -150,47 +192,5 @@ public class Huawei extends DeviceAbstract {
         } else {
             return new ComponentName(HUAWEI_SYSTEMMANAGER_PACKAGE_NAME, HUAWEI_SYSTEMMANAGER_AUTO_START_V1);
         }
-    }
-
-    private static int getHuaweiSystemManagerVersion(Context context) {
-        int version = 0;
-        int versionNum = 0;
-        int thirdPartFirtDigit = 0;
-        try {
-            PackageManager manager = context.getPackageManager();
-            PackageInfo info = manager.getPackageInfo(HUAWEI_SYSTEMMANAGER_PACKAGE_NAME, 0);
-            Log.i(Huawei.class.getName(), "manager info = " + info.toString());
-            String versionStr = info.versionName;
-            String versionTmp[] = versionStr.split("\\.");
-            if (versionTmp.length >= 2) {
-                if (Integer.parseInt(versionTmp[0]) == 5) {
-                    versionNum = 500;
-                } else if (Integer.parseInt(versionTmp[0]) == 4) {
-                    versionNum = Integer.parseInt(versionTmp[0] + versionTmp[1] + versionTmp[2]);
-                } else {
-                    versionNum = Integer.parseInt(versionTmp[0] + versionTmp[1]);
-                }
-
-            }
-            if (versionTmp.length >= 3) {
-                thirdPartFirtDigit = Integer.valueOf(versionTmp[2].substring(0, 1));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (versionNum >= 330) {
-            if (versionNum >= 500) {
-                version = 6;
-            } else if (versionNum >= 400) {
-                version = 5;
-            } else if (versionNum >= 331) {
-                version = 4;
-            } else {
-                version = (thirdPartFirtDigit == 6 || thirdPartFirtDigit == 4 || thirdPartFirtDigit == 2) ? 3 : 2;
-            }
-        } else if (versionNum != 0) {
-            version = 1;
-        }
-        return version;
     }
 }

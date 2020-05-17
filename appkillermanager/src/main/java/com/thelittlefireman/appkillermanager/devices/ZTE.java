@@ -10,9 +10,9 @@ import com.thelittlefireman.appkillermanager.utils.Manufacturer;
 
 public class ZTE extends DeviceAbstract {
 
-    private static final String ZTE_HEARTYSERVICE_PACKAGE_NAME ="com.zte.heartyservice";
-    private static final String ZTE_HEARTYSERVICE_AUTOSTART_ACTIVITY ="com.zte.heartyservice.autorun.AppAutoRunManager";
-    private static final String ZTE_HEARTYSERVICE_POWERSAVING_ACTIVITY ="com.zte.heartyservice.setting.ClearAppSettingsActivity";
+    private static final String ZTE_HEARTYSERVICE_PACKAGE_NAME = "com.zte.heartyservice";
+    private static final String ZTE_HEARTYSERVICE_AUTOSTART_ACTIVITY = "com.zte.heartyservice.autorun.AppAutoRunManager";
+    private static final String ZTE_HEARTYSERVICE_POWERSAVING_ACTIVITY = "com.zte.heartyservice.setting.ClearAppSettingsActivity";
 
     @Override
     public boolean isThatRom() {
@@ -44,14 +44,14 @@ public class ZTE extends DeviceAbstract {
     @Override
     public Intent getActionPowerSaving(Context context) {
         Intent intent = ActionsUtils.createIntent();
-        intent.setComponent(new ComponentName(ZTE_HEARTYSERVICE_PACKAGE_NAME,ZTE_HEARTYSERVICE_POWERSAVING_ACTIVITY));
+        intent.setComponent(new ComponentName(ZTE_HEARTYSERVICE_PACKAGE_NAME, ZTE_HEARTYSERVICE_POWERSAVING_ACTIVITY));
         return intent;
     }
 
     @Override
     public Intent getActionAutoStart(Context context) {
         Intent intent = ActionsUtils.createIntent();
-        intent.setComponent(new ComponentName(ZTE_HEARTYSERVICE_PACKAGE_NAME,ZTE_HEARTYSERVICE_AUTOSTART_ACTIVITY));
+        intent.setComponent(new ComponentName(ZTE_HEARTYSERVICE_PACKAGE_NAME, ZTE_HEARTYSERVICE_AUTOSTART_ACTIVITY));
         return intent;
     }
 

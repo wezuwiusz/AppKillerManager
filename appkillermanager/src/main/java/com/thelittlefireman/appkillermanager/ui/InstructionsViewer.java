@@ -1,12 +1,12 @@
 package com.thelittlefireman.appkillermanager.ui;
 
 import android.app.Activity;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.thelittlefireman.appkillermanager.managers.CallWrapper;
 import com.thelittlefireman.appkillermanager.managers.InstructionsManager;
@@ -17,30 +17,15 @@ import com.thelittlefireman.appkillermanager.utils.Instructions;
 import java.io.IOException;
 
 public class InstructionsViewer {
-    private String TAG = "InstructionsViewer";
-
-
-    public  interface OnSuccessCompletion {
-        public void CompleteBy(ResponseWrapper responseWrapper);
-        public void CompleteBy(Instructions instructions);
-
-    }
-
-    public interface OnFailedCompletion {
-        public void CompleteBy(CallWrapper callWrapper,
-                               ResponseWrapper responseWrapper,
-                               Exception e);
-    }
-
     Activity activity;
     ViewGroup viewGroup;
     WebView webView;
     int position = 0;
     String mime_type = "text/html";
-    String encoding = Encoding.UTF_8.toString() ;//"UTF-8";
-
+    String encoding = Encoding.UTF_8.toString();//"UTF-8";
     OnSuccessCompletion onSuccessCompletion;
     OnFailedCompletion onFailedCompletion;
+    private String TAG = "InstructionsViewer";
 
     public InstructionsViewer(Activity activity, ViewGroup viewGroup) {
         this.activity = activity;
@@ -148,10 +133,10 @@ public class InstructionsViewer {
                         new Runnable() {
                             @Override
                             public void run() {
-                                if (webView == null){
+                                if (webView == null) {
                                     webView = new WebView(activity);
                                 }
-                                if (viewGroup != null){
+                                if (viewGroup != null) {
                                     viewGroup.addView(webView, position);
                                 }
 
@@ -183,4 +168,17 @@ public class InstructionsViewer {
             }
         };
     }
-};
+
+    public interface OnSuccessCompletion {
+        void CompleteBy(ResponseWrapper responseWrapper);
+
+        void CompleteBy(Instructions instructions);
+
+    }
+
+    public interface OnFailedCompletion {
+        void CompleteBy(CallWrapper callWrapper,
+                        ResponseWrapper responseWrapper,
+                        Exception e);
+    }
+}

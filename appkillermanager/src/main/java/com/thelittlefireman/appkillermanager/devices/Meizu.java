@@ -81,6 +81,7 @@ public class Meizu extends DeviceAbstract {
         intent.putExtra(MEIZU_DEFAULT_EXTRA_PACKAGE, context.getPackageName());
         return intent;
     }
+
     @Override
     public Intent getActionNotification(Context context) {
         MEIZU_SECURITY_CENTER_VERSION mSecVersion = getMeizuSecVersion(context);
@@ -100,10 +101,10 @@ public class Meizu extends DeviceAbstract {
 
         PackageManager manager = context.getPackageManager();
         PackageInfo info = null;
-        String versionStr ="";
+        String versionStr = "";
         try {
             info = manager.getPackageInfo(MEIZU_DEFAULT_PACKAGE, 0);
-            versionStr= info.versionName;
+            versionStr = info.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -112,24 +113,16 @@ public class Meizu extends DeviceAbstract {
         // ----- PACAKGE INFORMATIONS -----
         stringBuilder.append(MEIZU_DEFAULT_ACTION_APPSPEC).append(ActionsUtils.isIntentAvailable(context, MEIZU_DEFAULT_ACTION_APPSPEC));
         stringBuilder.append(MEIZU_POWERSAVING_ACTION).append(ActionsUtils.isIntentAvailable(context, MEIZU_POWERSAVING_ACTION));
-        stringBuilder.append(MEIZU_DEFAULT_PACKAGE+MEIZU_POWERSAVING_ACTIVITY_V2_2).append(ActionsUtils.isIntentAvailable(context, new ComponentName(MEIZU_DEFAULT_PACKAGE,MEIZU_POWERSAVING_ACTIVITY_V2_2)));
-        stringBuilder.append(MEIZU_DEFAULT_PACKAGE+MEIZU_POWERSAVING_ACTIVITY_V3_4).append(ActionsUtils.isIntentAvailable(context, new ComponentName(MEIZU_DEFAULT_PACKAGE,MEIZU_POWERSAVING_ACTIVITY_V3_4)));
-        stringBuilder.append(MEIZU_DEFAULT_PACKAGE+MEIZU_POWERSAVING_ACTIVITY_V3_7).append(ActionsUtils.isIntentAvailable(context, new ComponentName(MEIZU_DEFAULT_PACKAGE,MEIZU_POWERSAVING_ACTIVITY_V3_7)));
-        stringBuilder.append(MEIZU_DEFAULT_PACKAGE+MEIZU_NOTIFICATION_ACTIVITY).append(ActionsUtils.isIntentAvailable(context, MEIZU_POWERSAVING_ACTION));
+        stringBuilder.append(MEIZU_DEFAULT_PACKAGE + MEIZU_POWERSAVING_ACTIVITY_V2_2).append(ActionsUtils.isIntentAvailable(context, new ComponentName(MEIZU_DEFAULT_PACKAGE, MEIZU_POWERSAVING_ACTIVITY_V2_2)));
+        stringBuilder.append(MEIZU_DEFAULT_PACKAGE + MEIZU_POWERSAVING_ACTIVITY_V3_4).append(ActionsUtils.isIntentAvailable(context, new ComponentName(MEIZU_DEFAULT_PACKAGE, MEIZU_POWERSAVING_ACTIVITY_V3_4)));
+        stringBuilder.append(MEIZU_DEFAULT_PACKAGE + MEIZU_POWERSAVING_ACTIVITY_V3_7).append(ActionsUtils.isIntentAvailable(context, new ComponentName(MEIZU_DEFAULT_PACKAGE, MEIZU_POWERSAVING_ACTIVITY_V3_7)));
+        stringBuilder.append(MEIZU_DEFAULT_PACKAGE + MEIZU_NOTIFICATION_ACTIVITY).append(ActionsUtils.isIntentAvailable(context, MEIZU_POWERSAVING_ACTION));
         return stringBuilder.toString();
     }
 
     @Override
     public int getHelpImagePowerSaving() {
         return 0;
-    }
-
-    private enum MEIZU_SECURITY_CENTER_VERSION {
-        SEC_2_2, //Meizu security center : 2.2.0922, 2.2.0310;
-        SEC_3_4, //Meizu security center : 3.4.0316;
-        SEC_3_6, //Meizu security center : 3.6.0802;
-        SEC_3_7, //Meizu security center : 3.7.1101;
-        SEC_4_1, //Meizu security center : 4.1.10;
     }
 
     private MEIZU_SECURITY_CENTER_VERSION getMeizuSecVersion(Context context) {
@@ -160,5 +153,13 @@ public class Meizu extends DeviceAbstract {
             v = MEIZU_SECURITY_CENTER_VERSION.SEC_4_1;
         }
         return v;
+    }
+
+    private enum MEIZU_SECURITY_CENTER_VERSION {
+        SEC_2_2, //Meizu security center : 2.2.0922, 2.2.0310;
+        SEC_3_4, //Meizu security center : 3.4.0316;
+        SEC_3_6, //Meizu security center : 3.6.0802;
+        SEC_3_7, //Meizu security center : 3.7.1101;
+        SEC_4_1, //Meizu security center : 4.1.10;
     }
 }

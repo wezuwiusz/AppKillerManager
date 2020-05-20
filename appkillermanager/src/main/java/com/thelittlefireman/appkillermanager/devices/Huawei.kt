@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import com.thelittlefireman.appkillermanager.R
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils
 import com.thelittlefireman.appkillermanager.utils.Manufacturer
 import com.thelittlefireman.appkillermanager.utils.SystemUtils.getEmuiRomName
@@ -39,9 +38,6 @@ class Huawei : Device {
 
     override val manufacturer: Manufacturer
         get() = Manufacturer.HUAWEI
-
-    override val helpImagePowerSaving: Int
-        get() = R.drawable.huawei_powersaving
 
     override fun isActionPowerSavingAvailable(context: Context) = true
 

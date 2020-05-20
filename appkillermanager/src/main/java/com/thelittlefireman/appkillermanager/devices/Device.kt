@@ -2,7 +2,6 @@ package com.thelittlefireman.appkillermanager.devices
 
 import android.content.Context
 import android.content.Intent
-import androidx.annotation.DrawableRes
 import com.thelittlefireman.appkillermanager.utils.Manufacturer
 
 interface Device {
@@ -10,18 +9,6 @@ interface Device {
     val isThatRom: Boolean
 
     val manufacturer: Manufacturer
-
-    @get:DrawableRes
-    val helpImagePowerSaving: Int
-        get() = 0
-
-    @get:DrawableRes
-    val helpImageAutoStart: Int
-        get() = 0
-
-    @get:DrawableRes
-    val helpImageNotification: Int
-        get() = 0
 
     fun isActionPowerSavingAvailable(context: Context): Boolean = false
 

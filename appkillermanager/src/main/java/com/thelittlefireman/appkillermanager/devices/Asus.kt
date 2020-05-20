@@ -29,12 +29,6 @@ class Asus : Device {
     override val manufacturer: Manufacturer
         get() = Manufacturer.ASUS
 
-    override val helpImageAutoStart: Int
-        get() = R.drawable.asus_autostart
-
-    override val helpImageNotification: Int
-        get() = R.drawable.asus_notification
-
     override fun isActionPowerSavingAvailable(context: Context): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             val pm = context.getSystemService(Context.POWER_SERVICE) as PowerManager

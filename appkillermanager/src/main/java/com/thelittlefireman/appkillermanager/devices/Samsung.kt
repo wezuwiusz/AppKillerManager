@@ -30,9 +30,6 @@ class Samsung : Device {
         private const val SAMSUNG_SYSTEMMANAGER_AUTOSTART_PACKAGE_V1_ACTIVITY = "com.samsung.memorymanager.RamActivity"
     }
 
-    override val helpImagePowerSaving: Int
-        get() = R.drawable.samsung
-
     override val isThatRom: Boolean
         get() = Build.BRAND.equals(manufacturer.toString(), ignoreCase = true) ||
                 Build.MANUFACTURER.equals(manufacturer.toString(), ignoreCase = true) ||

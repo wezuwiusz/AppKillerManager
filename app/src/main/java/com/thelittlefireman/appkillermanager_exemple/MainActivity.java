@@ -7,11 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.AppCompatCheckBox;
-
 import com.thelittlefireman.appkillermanager.AppKillerManager;
 import com.thelittlefireman.appkillermanager.exceptions.NoActionFoundException;
-import com.thelittlefireman.appkillermanager.ui.DialogKillerManagerBuilder;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -25,7 +22,6 @@ public class MainActivity extends Activity {
     Button powerSavingManagerButton;
     Button autoStartManagerButton;
     Button notificationManagerButton;
-    AppCompatCheckBox mAppCompatCheckBoxByDialog;
 
     AppKillerManager.Action currentAction = null;
 
@@ -50,7 +46,6 @@ public class MainActivity extends Activity {
         powerSavingManagerButton = findViewById(R.id.powerSavingManagerButton);
         autoStartManagerButton = findViewById(R.id.autoStartManagerButton);
         notificationManagerButton = findViewById(R.id.notificationManagerButton);
-        mAppCompatCheckBoxByDialog = findViewById(R.id.idByDialog);
 
 
         //ButterKnife.bind(this);
@@ -58,14 +53,10 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 currentAction = AppKillerManager.Action.ACTION_POWER_SAVING;
-                if (mAppCompatCheckBoxByDialog.isChecked()) {
-                    startDialog(currentAction);
-                } else {
-                    try {
-                        AppKillerManager.doActionPowerSaving(MainActivity.this);
-                    } catch (NoActionFoundException e) {
-                        Timber.e(e);
-                    }
+                try {
+                    AppKillerManager.doActionPowerSaving(MainActivity.this);
+                } catch (NoActionFoundException e) {
+                    Timber.e(e);
                 }
             }
         });
@@ -73,14 +64,10 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 currentAction = AppKillerManager.Action.ACTION_AUTO_START;
-                if (mAppCompatCheckBoxByDialog.isChecked()) {
-                    startDialog(currentAction);
-                } else {
-                    try {
-                        AppKillerManager.doActionAutoStart(MainActivity.this);
-                    } catch (NoActionFoundException e) {
-                        Timber.e(e);
-                    }
+                try {
+                    AppKillerManager.doActionAutoStart(MainActivity.this);
+                } catch (NoActionFoundException e) {
+                    Timber.e(e);
                 }
             }
         });
@@ -88,14 +75,10 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 currentAction = AppKillerManager.Action.ACTION_NOTIFICATIONS;
-                if (mAppCompatCheckBoxByDialog.isChecked()) {
-                    startDialog(currentAction);
-                } else {
-                    try {
-                        AppKillerManager.doActionNotification(MainActivity.this);
-                    } catch (NoActionFoundException e) {
-                        Timber.e(e);
-                    }
+                try {
+                    AppKillerManager.doActionNotification(MainActivity.this);
+                } catch (NoActionFoundException e) {
+                    Timber.e(e);
                 }
             }
         });
@@ -103,19 +86,6 @@ public class MainActivity extends Activity {
         if (AppKillerManager.isDeviceSupported()) {
             isDeviceSupported.setText("Is supported: true");
             deviceName.setText("Device name: ".concat(AppKillerManager.getDevice().getManufacturer().toString()));
-        }
-
-    }
-
-    public void startDialog(AppKillerManager.Action action) {
-
-        try {
-            new DialogKillerManagerBuilder(this).setAction(action).show();
-
-        } catch (DialogKillerManagerBuilder.UnAvailableActionException e) {
-            Timber.e(e);
-        } catch (DialogKillerManagerBuilder.UnSupportedDeviceException e) {
-            Timber.e(e);
         }
 
     }

@@ -7,7 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import com.thelittlefireman.appkillermanager.utils.ActionsUtils
 import com.thelittlefireman.appkillermanager.utils.Manufacturer
-import com.thelittlefireman.appkillermanager.utils.SystemUtils.getEmuiRomName
+import com.thelittlefireman.appkillermanager.utils.SystemUtils.emuiRomName
 import timber.log.Timber
 
 class Huawei : Device {
@@ -25,13 +25,13 @@ class Huawei : Device {
     }
 
     override val isThatRom: Boolean
-        get() = "EmotionUI_2.3".equals(getEmuiRomName(), ignoreCase = true) ||
+        get() = "EmotionUI_2.3".equals(emuiRomName, ignoreCase = true) ||
                 Build.DISPLAY.contains("emui2.3", ignoreCase = true) ||
-                "EMUI 2.3".equals(getEmuiRomName(), ignoreCase = true) ||
-                "EmotionUI_3.0".equals(getEmuiRomName(), ignoreCase = true) ||
-                "EmotionUI_3.0.1".equals(getEmuiRomName(), ignoreCase = true) ||
-                "EmotionUI_3.1".equals(getEmuiRomName(), ignoreCase = true) ||
-                "EmotionUI_4.1".equals(getEmuiRomName(), ignoreCase = true) ||
+                "EMUI 2.3".equals(emuiRomName, ignoreCase = true) ||
+                "EmotionUI_3.0".equals(emuiRomName, ignoreCase = true) ||
+                "EmotionUI_3.0.1".equals(emuiRomName, ignoreCase = true) ||
+                "EmotionUI_3.1".equals(emuiRomName, ignoreCase = true) ||
+                "EmotionUI_4.1".equals(emuiRomName, ignoreCase = true) ||
                 Build.BRAND.equals(manufacturer.toString(), ignoreCase = true) ||
                 Build.MANUFACTURER.equals(manufacturer.toString(), ignoreCase = true) ||
                 Build.FINGERPRINT.contains(manufacturer.toString(), ignoreCase = true)
@@ -77,7 +77,7 @@ class Huawei : Device {
 
     override fun getExtraDebugInfo(context: Context): String {
         val stringBuilder = StringBuilder()
-        stringBuilder.append("ROM_VERSION").append(getEmuiRomName())
+        stringBuilder.append("ROM_VERSION").append(emuiRomName)
         stringBuilder.append("HuaweiSystemManagerVersionMethod:").append(getHuaweiSystemManagerVersion(context))
 
         var versionStr: String? = ""

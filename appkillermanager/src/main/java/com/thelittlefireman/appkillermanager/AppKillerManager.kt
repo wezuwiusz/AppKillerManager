@@ -1,5 +1,6 @@
 package com.thelittlefireman.appkillermanager
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import com.thelittlefireman.appkillermanager.devices.*
@@ -40,7 +41,7 @@ object AppKillerManager {
                 it.manufacturer.toString()
             }
 
-            Timber.w("More than one corresponding device: %s. Debug info: %s", logDevices, SystemUtils.getDefaultDebugInformation())
+            Timber.w("More than one corresponding device: %s. Debug info: %s", logDevices, SystemUtils.defaultDebugInformation)
         }
 
         return currentDevice.firstOrNull()
@@ -106,6 +107,7 @@ object AppKillerManager {
      * @param action the wanted actions
      * @return the intent
      */
+    @SuppressLint("BinaryOperationInTimber")
     private fun getIntentFromAction(context: Context, action: Action): Intent? {
         val sDevice = getDevice()
         return if (sDevice != null) {
@@ -118,19 +120,16 @@ object AppKillerManager {
                 // Intent found action succeed
                 intent
             } else {
-                Timber.e("""
-                    INTENT NOT FOUND :${ActionsUtils.getExtrasDebugInformations(intent)}
-                    Actions: ${action.name}
-                    SYSTEM UTILS: ${SystemUtils.getDefaultDebugInformation()}
-                    DEVICE: ${sDevice.getExtraDebugInfo(context)}
-                    """.trimIndent()
-                )
+                Timber.e("INTENT NOT FOUND :${ActionsUtils.getExtrasDebugInformations(intent)}\n" +
+                        "Actions: ${action.name}\n" +
+                        "DEVICE: ${sDevice.getExtraDebugInfo(context)}\n" +
+                        "SYSTEM UTILS: ${SystemUtils.defaultDebugInformation}")
                 // Intent not found action failed
                 null
             }
         } else {
             // device not found action failed
-            Timber.w("DEVICE NOT FOUND. %s", SystemUtils.getDefaultDebugInformation())
+            Timber.w("DEVICE NOT FOUND. %s", SystemUtils.defaultDebugInformation)
             null
         }
     }

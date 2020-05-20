@@ -10,8 +10,8 @@ android {
         minSdkVersion 15
         targetSdkVersion 29
 
-        //versionCode rootProject.ext.libVersionCode
-        //versionName rootProject.ext.libVersionName
+        versionCode rootProject.ext.libVersionCode
+        versionName rootProject.ext.libVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 

@@ -1,7 +1,6 @@
 
-[![Join the chat at https://gitter.im/AppKillerManager](https://badges.gitter.im/AppKillerManager.svg)](https://gitter.im/AppKillerManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0.html)
-[ ![Download](https://api.bintray.com/packages/thomas-goureau/maven/AppKillerManager/images/download.svg) ](https://bintray.com/thomas-goureau/maven/AppKillerManager/_latestVersion)
+[![Download](https://jitpack.io/v/wulkanowy/appkillermanager.svg)](https://jitpack.io/#wulkanowy/appkillermanager)
 # AppKillerManager
 
 Android library to handle App killer manager, agressive power saving mode or battery optimization (Xiaomi, Huawei, letv, ...) and prevent from : not showing notification, services not start at boot, etc
@@ -46,23 +45,14 @@ Android Custom Roms made sometimes your apps unfunctional due to :
 
 ```groovy
 dependencies {
-    implementation 'com.thelittlefireman:AppKillerManager:2.1.1'
+    implementation 'io.github.wulkanowy:AppKillerManager:3.0.0'
 }
 ```
 
 ### Step 2
 
-Use with a custom dialog:
+Use it:
 
- <img src="IMG/screenshot_dialog.png" width="216" height="384">
-
-```Java
-    public void startDialog(KillerManager.Actions actions) {
-        new DialogKillerManagerBuilder().setContext(this).setAction(actions).show();
-    }
-```
-
-Or use it directly :
 ```Java
 // Open the corresponding Power Saving Settings
 KillerManager.doActionPowerSaving(MyContext);

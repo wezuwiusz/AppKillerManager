@@ -42,9 +42,11 @@ object ActionsUtils {
     fun isIntentAvailable(ctx: Context?, intent: Intent?): Boolean {
         return if (ctx != null && intent != null) {
             val mgr = ctx.packageManager
-            val list = mgr.queryIntentActivities(intent,
-                    PackageManager.MATCH_DEFAULT_ONLY)
-            list != null && list.size > 0
+            val list = mgr.queryIntentActivities(
+                intent,
+                PackageManager.MATCH_DEFAULT_ONLY
+            )
+            list.size > 0
         } else {
             false
         }

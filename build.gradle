@@ -1,30 +1,20 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
-    ext.kotlin_version = '1.3.72'
+    ext.kotlin_version = '1.7.21'
 
     repositories {
         google()
-        jcenter()
         mavenCentral()
         mavenLocal()
-        maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath 'com.android.tools.build:gradle:7.3.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // Two necessary plugins
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
-        classpath "com.github.ben-manes:gradle-versions-plugin:0.21.0"
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
         mavenLocal()
         maven { url 'https://maven.fabric.io/public' }
@@ -34,19 +24,4 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-wrapper {
-    gradleVersion = '6.4.1'
-    distributionUrl = distributionUrl.replace("bin", "all")
-}
-ext{
-    // ValidateTor Library Info
-    libVersionCode = 5
-    libVersionName = '3.0.0'
-    libPomUrl = 'https://github.com/wulkanowy/AppKillerManager'
-    libGithubRepo = 'wulkanowy/AppKillerManager'
-    libModuleName = 'AppKillerManager'
-    libModuleDesc = 'Android library to handle flaky App killer manager (Xiaomi, Huawei, letv, ...) and prevent from : not showing notification, services not start at boot, etc'
-    libBintrayName = 'AppKillerManager'
 }

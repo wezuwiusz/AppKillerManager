@@ -31,7 +31,8 @@ object SystemUtils {
         val packageManager = context.packageManager
         var applicationInfo: ApplicationInfo? = null
         try {
-            applicationInfo = packageManager.getApplicationInfo(context.applicationInfo.packageName, 0)
+            applicationInfo =
+                packageManager.getApplicationInfo(context.applicationInfo.packageName, 0)
         } catch (e: PackageManager.NameNotFoundException) {
         }
         return (if (applicationInfo != null) packageManager.getApplicationLabel(applicationInfo) else "Unknown") as String

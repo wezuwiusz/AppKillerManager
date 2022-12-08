@@ -1,26 +1,17 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-apply plugin: "com.github.ben-manes.versions"
 
 android {
-    compileSdkVersion 29
-
+    namespace 'com.thelittlefireman.appkillermanager'
+    compileSdkVersion 33
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 29
-
-        versionCode rootProject.ext.libVersionCode
-        versionName rootProject.ext.libVersionName
-
+        targetSdkVersion 33
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
-        debug {
-
-        }
+        debug {}
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -30,23 +21,6 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.jakewharton.timber:timber:4.7.1'
-    implementation "androidx.core:core-ktx:1.2.0"
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+    implementation "androidx.core:core-ktx:1.9.0"
 }
-
-dependencyUpdates.resolutionStrategy {
-    componentSelection { rules ->
-        rules.all { ComponentSelection selection ->
-            boolean rejected = ['alpha', 'beta', 'rc', 'cr', 'm'].any { qualifier ->
-                selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
-            }
-            if (rejected) {
-                selection.reject('Release candidate')
-            }
-        }
-    }
-}
-
-// applied specifically at the bottom
-apply from: './scripts/bintrayConfig.gradle'
